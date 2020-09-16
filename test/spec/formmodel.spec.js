@@ -1167,6 +1167,10 @@ describe( 'merging an instance into the model', () => {
             // empty group in record
             [ '<data><age>7</age><details/></data>', '<model><instance><data><age/><details><name>Baby ...</name></details></data></instance></model>',
                 '<model><instance><data><age>7</age><details><name/></details></data></instance></model>'
+            ],
+            ['<data><rep1><rep2><rep3><a>test</a></rep3></rep2></rep1></data>',
+             '<model><instance><data><rep1><rep2><rep3><a/></rep3></rep2></rep1></data></instance></model>',
+             '<model><instance><data><rep1><rep2><rep3><a>test</a></rep3></rep2></rep1></data></instance></model>'
             ]
         ].forEach( test => {
             let result;
