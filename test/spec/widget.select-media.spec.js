@@ -13,11 +13,11 @@ const FORM =
                 <label class="">
                     <input type="radio" name="/widgets/select_widgets/grid_2_columns" data-name="/widgets/select_widgets/grid_2_columns" value="a" data-type-xml="select1">
                     <span lang="default" class="option-label active">some option label</span>
-                    <img lang="default" class="active" src="/media/get/https/api.ona.io/enketo/xformsMedia/68781/139078.jpg" alt="image">
+                    <img lang="default" class="active" src="https://avatars.githubusercontent.com/u/4306589?s=200&v=4" alt="image">
                 </label>
                 <label class=""><input type="radio" name="/widgets/select_widgets/grid_2_columns" data-name="/widgets/select_widgets/grid_2_columns" value="b" data-type-xml="select1">
                     <span lang="default" class="option-label active">some option label</span>
-                    <img lang="default" class="active" src="/media/get/https/api.ona.io/enketo/xformsMedia/68781/139079.jpg" alt="image">
+                    <img lang="default" class="active" src="https://avatars.githubusercontent.com/u/6222985?s=200&v=4" alt="image">
                 </label>
             </div>
         </fieldset>
