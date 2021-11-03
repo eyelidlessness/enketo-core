@@ -96,7 +96,7 @@ module.exports = grunt => {
                 browsers: [ 'ChromeHeadlessNoSandbox' ]
             },
             browsers: {
-                browsers: [ 'Chrome', 'Firefox', 'Safari' ]
+                browsers: [ 'Chrome', 'Firefox' ]
             },
             watch: {
                 browsers: [ 'ChromeHeadlessDebug' ],
