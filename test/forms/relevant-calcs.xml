@@ -17,6 +17,7 @@
                         <two />
                         <three />
                         <four />
+                        <five>five</five>
                     </grp>
                     <is-group-relevant>
                         <is-child-relevant/>
@@ -46,6 +47,7 @@
             <bind calculate="concat('tw', 'o')" nodeset="/data/grp/two" type="string" />
             <bind calculate="if( /data/a != 'ignore', concat('th', 'ree'), 'ignore')" nodeset="/data/grp/three" readonly="true()" type="string" />
             <bind calculate="if( /data/a != 'ignore', concat('fo', 'ur'), 'ignore')" nodeset="/data/grp/four" type="string" />
+            <bind nodeset="/data/grp/five" type="string" />
             <bind nodeset="/data/is-group-relevant" relevant="/data/sets-group-relevance = '1'" />
             <bind nodeset="/data/is-group-relevant/is-child-relevant" relevant="/data/sets-child-relevance = '2'" calculate="'is relevant'" />
             <bind nodeset="/data/is-group-relevant/is-value-recalculated-while-non-relevant" calculate="now()"/>

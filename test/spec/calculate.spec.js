@@ -194,18 +194,22 @@ describe('calculate functionality', () => {
         form.init();
         const grp = form.model.xml.querySelector('grp');
 
-        expect(grp.textContent.replace(/\s/g, '')).to.equal('');
+        expect(grp.textContent.replace(/\s/g, '')).to.equal('five');
 
         const a = form.view.html.querySelector('input[name="/data/a"]');
         a.value = 'a';
         a.dispatchEvent(events.Change());
 
-        expect(grp.textContent.replace(/\s/g, '')).to.equal('onetwothreefour');
+        expect(grp.textContent.replace(/\s/g, '')).to.equal(
+            'onetwothreefourfive'
+        );
 
         a.value = '';
         a.dispatchEvent(events.Change());
 
-        expect(grp.textContent.replace(/\s/g, '')).to.equal('onetwothreefour');
+        expect(grp.textContent.replace(/\s/g, '')).to.equal(
+            'onetwothreefourfive'
+        );
     });
 
     describe('Excluding non-relevant nodes', () => {
@@ -244,7 +248,7 @@ describe('calculate functionality', () => {
             timers.runAll();
 
             expect(grp.textContent.replace(/\s/g, '')).to.equal(
-                'onetwothreefour'
+                'onetwothreefourfive'
             );
 
             a.value = '';
@@ -275,7 +279,7 @@ describe('calculate functionality', () => {
             timers.runAll();
 
             expect(grp.textContent.replace(/\s/g, '')).to.equal(
-                'onetwothreefour'
+                'onetwothreefourfive'
             );
 
             a.value = '';
@@ -289,7 +293,7 @@ describe('calculate functionality', () => {
             timers.runAll();
 
             expect(grp.textContent.replace(/\s/g, '')).to.equal(
-                'onetwothreefour'
+                'onetwothreefourfive'
             );
         });
 
