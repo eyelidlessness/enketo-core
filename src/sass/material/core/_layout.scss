@@ -1,3 +1,6 @@
+@use '../mixins';
+@use '../variables' as core;
+
 $form-padding: 45px;
 
 html {
@@ -5,53 +8,53 @@ html {
 }
 
 body {
-    @include display-flex;
+    @include mixins.display-flex;
 
-    @include flex-direction(column);
+    @include mixins.flex-direction(column);
 
-    @include flex-wrap(nowrap);
+    @include mixins.flex-wrap(nowrap);
 
     position: relative;
     min-height: 100%;
 }
 
 .paper {
-    @include paper-border;
+    @include mixins.paper-border;
     background-color: #fff;
     position: relative;
     min-height: 100%;
 }
 
 .or {
-    @include flex(1);
+    @include mixins.flex(1);
 
     margin-bottom: 20px;
 }
 
 .main {
-    @include flex(1);
+    @include mixins.flex(1);
 
-    @include display-flex;
+    @include mixins.display-flex;
 
-    @include flex-direction(column);
+    @include mixins.flex-direction(column);
 
-    @include flex-wrap(nowrap);
+    @include mixins.flex-wrap(nowrap);
 
     margin: 0 auto;
     padding: 100px 0 70px 0;
     position: relative;
     width: 100%;
-    max-width: $max-content-width;
+    max-width: core.$max-content-width;
 }
 
 .paper {
-    @include flex(1);
+    @include mixins.flex(1);
 
-    @include display-flex;
+    @include mixins.display-flex;
 
-    @include flex-direction(column);
+    @include mixins.flex-direction(column);
 
-    @include flex-wrap(nowrap);
+    @include mixins.flex-wrap(nowrap);
 
     padding: $form-padding;
     position: relative;
@@ -59,7 +62,7 @@ body {
 }
 
 .form-header {
-    @include border-box;
+    @include mixins.border-box;
 
     display: flex;
     flex-direction: row;
@@ -97,7 +100,7 @@ body {
 }
 
 .form-footer {
-    @include form-footer-margin($form-padding);
+    @include mixins.form-footer-margin($form-padding);
 }
 
 .enketo-power {

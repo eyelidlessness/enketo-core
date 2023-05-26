@@ -1,3 +1,6 @@
+@use '../mixins';
+@use '../variables' as core;
+
 $media-margin: 10px;
 
 /** hide stuff **/
@@ -19,7 +22,7 @@ $media-margin: 10px;
     > h3 {
         padding: 5px 0 15px 0;
         word-wrap: break-word;
-        color: $brand-primary-color;
+        color: core.$brand-primary-color;
         text-align: center;
     }
 
@@ -27,7 +30,7 @@ $media-margin: 10px;
         text-align: inherit;
         margin-top: 9px;
         margin-bottom: 9px;
-        color: $brand-primary-color;
+        color: core.$brand-primary-color;
 
         strong {
             font-size: inherit;
@@ -70,7 +73,7 @@ $media-margin: 10px;
 /** hints **/
 
 .or-hint.active {
-    @include font-normal;
+    @include mixins.font-normal;
 
     color: #888888;
     display: block;
@@ -87,7 +90,7 @@ $media-margin: 10px;
 
 .or-form-guidance.active {
     margin: 5px 0;
-    color: $brand-primary-color;
+    color: core.$brand-primary-color;
 
     summary {
         color: #888888;
@@ -108,7 +111,7 @@ $media-margin: 10px;
 }
 
 .or-repeat {
-    background-color: $repeat-bg;
+    background-color: core.$repeat-bg;
     margin: 0 0 3px 0;
     padding: 20px 10px 10px 10px;
     position: relative;
@@ -127,7 +130,7 @@ $media-margin: 10px;
         position: absolute;
         top: 7px;
         right: 10px;
-        color: $brand-primary-color;
+        color: core.$brand-primary-color;
 
         + .or-group {
             border-top: none;
@@ -135,20 +138,20 @@ $media-margin: 10px;
     }
 
     .or-repeat {
-        background-color: $question-bg;
+        background-color: core.$question-bg;
 
         .or-repeat {
-            background-color: $repeat-bg;
+            background-color: core.$repeat-bg;
 
             .or-repeat {
-                background-color: $question-bg;
+                background-color: core.$question-bg;
             }
         }
     }
 }
 
 .or-group {
-    border-top: $line;
+    border-top: core.$line;
     margin: 1.5em 0 0.4em 0;
 
     .or-group {
@@ -205,7 +208,7 @@ $media-margin: 10px;
             height: 0;
             border-left: 12px solid transparent;
             border-right: 12px solid transparent;
-            border-top: 12px solid $brand-primary-color;
+            border-top: 12px solid core.$brand-primary-color;
             border-bottom: 0;
             display: block;
             position: absolute;
@@ -224,7 +227,7 @@ $media-margin: 10px;
                 height: 0;
                 border-top: 12px solid transparent;
                 border-bottom: 12px solid transparent;
-                border-left: 12px solid $brand-primary-color;
+                border-left: 12px solid core.$brand-primary-color;
                 border-right: 0;
                 left: -22px;
                 right: -22px;
@@ -243,7 +246,7 @@ $media-margin: 10px;
     .or-group:not(.or-appearance-no-collapse).or-appearance-compact
         > h4::before {
         border-left: 0;
-        border-right: 12px solid $brand-primary-color;
+        border-right: 12px solid core.$brand-primary-color;
     }
 }
 
@@ -274,7 +277,7 @@ $media-margin: 10px;
 // The question label itself is bold already
 // so we emphasize in a different way.
 .question-label strong {
-    font-size: $font-size-base + 1px;
+    font-size: core.$font-size-base + 1px;
 }
 
 .question {
@@ -299,7 +302,7 @@ $media-margin: 10px;
 
 label,
 legend {
-    font-size: $font-size-base;
+    font-size: core.$font-size-base;
 }
 
 .or {
@@ -328,12 +331,12 @@ legend {
 //works in safari, some other webkit browsers
 .option-wrapper {
     // this flexiness is required for appearance="random"
-    @include display-flex;
+    @include mixins.display-flex;
 
-    @include flex-direction(column);
+    @include mixins.flex-direction(column);
 
     > label {
-        @include font-normal;
+        @include mixins.font-normal;
 
         display: block;
         margin: 0;
@@ -342,7 +345,7 @@ legend {
         margin: 0 8px 1px 10px; // TODO: remove hover rule for tables (in likert already done)
 
         &:hover:not(.filler) {
-            background-color: $brand-secondary-color;
+            background-color: core.$brand-secondary-color;
         }
 
         // clearfix with small adjustments to not mess up radio buttons.
@@ -406,7 +409,7 @@ legend {
             &:focus,
             &:hover,
             &:active {
-                background-color: $brand-secondary-color;
+                background-color: core.$brand-secondary-color;
             }
         }
     }
@@ -473,11 +476,11 @@ select,
 input:not([type='radio']):not([type='checkbox']),
 textarea,
 .print-input-text {
-    height: $input-height;
+    height: core.$input-height;
 }
 
 select {
-    width: $input-max-width;
+    width: core.$input-max-width;
 }
 
 .question input {
@@ -487,7 +490,7 @@ select {
     &[type='url'],
     &[type='email'],
     &[type='file'] {
-        width: $input-max-width;
+        width: core.$input-max-width;
     }
 
     &[type='date'],
@@ -496,7 +499,7 @@ select {
     &[type='number'],
     &[type='time'],
     &[type='text'].mask-date {
-        width: $input-min-width;
+        width: core.$input-min-width;
     }
 
     &[type='radio'],
@@ -509,7 +512,7 @@ select {
 }
 
 .question .print-input-text {
-    width: $input-max-width;
+    width: core.$input-max-width;
 }
 
 .or[dir='rtl'] {
@@ -523,7 +526,7 @@ select {
 }
 
 .question textarea {
-    width: $input-max-width;
+    width: core.$input-max-width;
     resize: vertical;
     min-height: 9em;
 }
@@ -567,7 +570,7 @@ select {
     position: absolute;
     top: 10px;
     left: -10px;
-    color: $brand-primary-color;
+    color: core.$brand-primary-color;
 }
 
 legend .required {
@@ -589,7 +592,7 @@ legend .required {
 .invalid-value,
 .invalid-required,
 .invalid-relevant {
-    @include question-invalid;
+    @include mixins.question-invalid;
 }
 
 .invalid-value .invalid-value-msg.active,
@@ -603,7 +606,7 @@ legend .required {
 .or-constraint-msg.active,
 .or-relevant-msg.active,
 .invalid-value-msg.active {
-    @include question-error-message;
+    @include mixins.question-error-message;
 }
 
 // this may have a very significant positive impact on performance

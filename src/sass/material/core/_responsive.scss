@@ -1,4 +1,7 @@
-@media screen and (max-width: $main-breakpoint) {
+@use '../mixins';
+@use '../variables' as core;
+
+@media screen and (max-width: core.$main-breakpoint) {
     $form-padding: 45px;
     $form-header-padding: 16px;
 
@@ -26,10 +29,10 @@
         position: relative;
         top: 0;
         padding: 0 14px;
-        border-bottom: 1px solid $groupline;
+        border-bottom: 1px solid core.$groupline;
         min-height: 0;
 
-        @include form-header-margin($form-padding);
+        @include mixins.form-header-margin($form-padding);
 
         .form-language-selector {
             padding-top: $form-header-padding;
@@ -50,7 +53,7 @@
     $form-padding: 30px;
 
     body {
-        line-height: 1.05 * $line-height-base;
+        line-height: 1.05 * core.$line-height-base;
     }
 
     .or-group:not(.or-appearance-no-collapse) > h4 {
@@ -68,11 +71,11 @@
     }
 
     .form-header {
-        @include form-header-margin($form-padding);
+        @include mixins.form-header-margin($form-padding);
     }
 
     .form-footer {
-        @include form-footer-margin($form-padding);
+        @include mixins.form-footer-margin($form-padding);
     }
 }
 
@@ -80,7 +83,7 @@
     $form-padding: 20px;
 
     body {
-        line-height: 1.09 * $line-height-base;
+        line-height: 1.09 * core.$line-height-base;
     }
 
     input {
@@ -113,7 +116,7 @@
     }
 
     .form-header {
-        @include form-header-margin($form-padding);
+        @include mixins.form-header-margin($form-padding);
 
         .form-language-selector {
             border-right: none;
@@ -121,6 +124,6 @@
     }
 
     .form-footer {
-        @include form-footer-margin($form-padding);
+        @include mixins.form-footer-margin($form-padding);
     }
 }

@@ -1,5 +1,7 @@
 /** CORE **/
 
+@use '../mixins';
+
 $printBaseFontSize: 12px;
 
 * {
@@ -113,11 +115,11 @@ label.geo {
 // We can not rely on cross-browser printing of CSS background images
 // so to be sure that a box is correctly shown to be "checked", we use the default appearance.
 input[type='radio'] {
-    @include appearance(radio !important);
+    @include mixins.appearance(radio !important);
 }
 
 input[type='checkbox'] {
-    @include appearance(checkbox !important);
+    @include mixins.appearance(checkbox !important);
 }
 
 .or {
@@ -184,7 +186,7 @@ input[type='checkbox'] {
         border-radius: 0px;
         box-shadow: none;
 
-        @include appearance-none;
+        @include mixins.appearance-none;
 
         border: none;
         background: none;
@@ -273,17 +275,17 @@ input[type='checkbox'] {
 }
 
 .bootstrap-select {
-    @include clearfix;
+    @include mixins.clearfix;
 
     .dropdown-toggle {
         display: none;
 
         ~ .dropdown-menu {
-            @include display-flex;
+            @include mixins.display-flex;
 
-            @include flex-wrap(wrap);
+            @include mixins.flex-wrap(wrap);
 
-            @include flex-direction(row);
+            @include mixins.flex-direction(row);
 
             display: block;
             position: static;

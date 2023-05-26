@@ -4,7 +4,7 @@
  */
 const fs = require('fs');
 const path = require('path');
-const nodeSass = require('node-sass');
+const dartSass = require('sass');
 const transformer = require('enketo-transformer');
 
 module.exports = (grunt) => {
@@ -147,8 +147,8 @@ module.exports = (grunt) => {
         },
         sass: {
             options: {
-                implementation: nodeSass,
-                sourceMap: false,
+                implementation: dartSass,
+                sourceMap: true,
                 importer(url, prev, done) {
                     // Fixes enketo-core submodule references.
                     // Those references are correct in apps that use enketo-core as a submodule.
@@ -165,7 +165,7 @@ module.exports = (grunt) => {
                 dest: 'build/css',
                 expand: true,
                 outputStyle: 'expanded',
-                src: '**/*.scss',
+                src: 'src/sass/material/**/*.scss',
                 ext: '.css',
                 flatten: true,
                 extDot: 'last',

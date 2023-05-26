@@ -88,8 +88,8 @@
         "load-grunt-tasks": "^5.1.0",
         "markdown-eslint-parser": "^1.2.1",
         "mocha": "^9.2.2",
-        "node-sass": "^7.0.3",
         "prettier": "^2.8.8",
+        "sass": "^1.62.1",
         "sinon": "^11.1.2",
         "sinon-chai": "^3.7.0",
         "time-grunt": "^2.0.0"

@@ -19,3 +19,16 @@ $input-border-focus-shadow: rgba(
     blue($input-border-focus),
     0.6
 ) !default;
+
+@forward './core/variables' with (
+    $font-size-base: $font-size-base,
+    $brand-primary-color: $brand-primary-color,
+    $brand-secondary-color: $brand-secondary-color,
+    $repeat-bg: $repeat-bg,
+    $radiocheck-unchecked-color: $radiocheck-unchecked-color,
+    $radiocheck-checked-color: $radiocheck-checked-color,
+    $note-bg: $note-bg,
+    $note-border: $note-border,
+    $note-border-radius: $note-border-radius,
+    $input-border-focus: $input-border-focus
+);

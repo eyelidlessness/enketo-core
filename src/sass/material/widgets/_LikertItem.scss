@@ -1,3 +1,6 @@
+@use '../mixins';
+@use '../variables' as material;
+
 @mixin likert-filler {
     content: '';
     display: block;
@@ -6,26 +9,26 @@
 
     //width: calc(50% - 10px);
     width: 50%;
-    background-color: $question-bg;
+    background-color: material.$question-bg;
     height: 10px;
 }
 
 .or-appearance-likert {
     .option-wrapper {
-        @include display-flex;
+        @include mixins.display-flex;
 
-        @include flex-wrap(nowrap);
+        @include mixins.flex-wrap(nowrap);
 
-        @include flex-direction(row);
+        @include mixins.flex-direction(row);
 
         > label {
-            @include flex(1);
+            @include mixins.flex(1);
 
-            @include display-flex;
+            @include mixins.display-flex;
 
-            @include flex-wrap(nowrap);
+            @include mixins.flex-wrap(nowrap);
 
-            @include flex-direction(column);
+            @include mixins.flex-direction(column);
 
             margin: 0;
             float: none;
@@ -60,10 +63,10 @@
                 text-align: center;
                 margin-top: -8.5px;
                 padding-top: 15px;
-                border-top: 3px solid $radiocheck-unchecked-color;
+                border-top: 3px solid material.$radiocheck-unchecked-color;
                 font-size: 12px;
 
-                @include font-normal;
+                @include mixins.font-normal;
             }
 
             &:first-of-type .option-label::after {
@@ -88,7 +91,7 @@
         &:first-of-type,
         &:last-of-type {
             .option-label::after {
-                background-color: $question-hover-bg;
+                background-color: material.$question-hover-bg;
             }
         }
     }
@@ -98,7 +101,7 @@
             &:first-of-type,
             &:last-of-type {
                 .option-label::after {
-                    background-color: $question-focus-bg;
+                    background-color: material.$question-focus-bg;
                 }
             }
         }
@@ -140,6 +143,6 @@
     &:last-of-type .option-label::after,
     input[type='radio'],
     input[type='checkbox'] {
-        background-color: $repeat-bg;
+        background-color: material.$repeat-bg;
     }
 }

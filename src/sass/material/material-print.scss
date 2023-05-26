@@ -1,4 +1,2 @@
-@import './core/mixins';
-@import './mixins';
-@import './core/print';
-@import './print';
+@use './core/print' as core-print;
+@use './print';

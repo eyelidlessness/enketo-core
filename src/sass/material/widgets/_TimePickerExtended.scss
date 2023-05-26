@@ -1,9 +1,11 @@
-@import './TimePicker';
+@use '../core/icons';
+@use '../variables' as material;
+@use './TimePicker';
 
 .timepicker {
     input[type='text'] {
         display: inline-block;
-        width: $input-min-width;
+        width: material.$input-min-width;
     }
 }
 

@@ -1,3 +1,6 @@
+@use '../mixins';
+@use '../variables' as core;
+
 .pages.or {
     .or-group,
     .or-group-data,
@@ -34,7 +37,7 @@
         &.fade-out {
             opacity: 0;
 
-            @include transition-fast;
+            @include mixins.transition-fast;
         }
     } // reduce whitespace
     #form-title {
@@ -92,7 +95,7 @@
 .pages-toc {
     &__list {
         border: 1px solid black;
-        @include paper-border(2px, $gray);
+        @include mixins.paper-border(2px, core.$gray);
 
         position: absolute;
         right: 0;
@@ -105,18 +108,18 @@
         margin: 0 auto;
         list-style: none;
         padding: 0;
-        background: $question-bg;
+        background: core.$question-bg;
         z-index: 1000;
         overflow: scroll;
         transition: height 1s ease-out;
         opacity: 0;
         li {
-            border-top: 1px solid $gray;
+            border-top: 1px solid core.$gray;
             padding: 0;
             margin: 0;
             a {
                 &:hover {
-                    background: $brand-secondary-color;
+                    background: core.$brand-secondary-color;
                 }
             }
             & > details {
@@ -152,7 +155,7 @@
         position: fixed;
         top: 0;
         left: 0;
-        background: $gray;
+        background: core.$gray;
         width: 100%;
         height: 100%;
         z-index: 999;
@@ -176,8 +179,8 @@
         height: 27px;
         margin: 5px 0 5px 20px;
         background: repeating-linear-gradient(
-            $gray 2px,
-            $gray 5px,
+            core.$gray 2px,
+            core.$gray 5px,
             transparent 5px,
             transparent 12px
         );

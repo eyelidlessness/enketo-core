@@ -1,4 +1,8 @@
-$geo-main-breakpoint: $main-breakpoint;
+@use '../core/icons';
+@use '../mixins';
+@use '../variables' as material;
+
+$geo-main-breakpoint: material.$main-breakpoint;
 $map-height: 275px;
 $map-width: 65%;
 $input-width: 27%;
@@ -109,7 +113,7 @@ $input-button-border: 2px solid #aaaaaa;
 
         .disabled-msg {
             display: none;
-            color: $state-danger-text;
+            color: material.$state-danger-text;
         }
     }
 
@@ -122,7 +126,7 @@ $input-button-border: 2px solid #aaaaaa;
         width: $map-width;
         float: right;
         padding-left: $separator-width;
-        border-left: solid 1px $groupline;
+        border-left: solid 1px material.$groupline;
 
         @media screen and (max-width: $geo-main-breakpoint) {
             width: 100%;
@@ -172,7 +176,7 @@ $input-button-border: 2px solid #aaaaaa;
     }
 
     .close-chain-btn {
-        @include font-normal;
+        @include mixins.font-normal;
         display: inline-block;
         padding: 0 5px;
         margin-left: 15px;
@@ -263,7 +267,7 @@ $input-button-border: 2px solid #aaaaaa;
     }
 
     label.geo {
-        @include font-normal;
+        @include mixins.font-normal;
 
         display: block;
         border: none;
@@ -280,7 +284,7 @@ $input-button-border: 2px solid #aaaaaa;
         }
 
         &.alt {
-            border-top: solid 1px $groupline;
+            border-top: solid 1px material.$groupline;
             padding: 12px 0 0 0;
             margin: 0 0 0 0;
 
@@ -298,7 +302,7 @@ $input-button-border: 2px solid #aaaaaa;
         &.acc {
             min-height: 70px;
             line-height: 50px;
-            font-size: 0.75 * $font-size-base;
+            font-size: 0.75 * material.$font-size-base;
         }
     }
 
@@ -307,7 +311,7 @@ $input-button-border: 2px solid #aaaaaa;
     textarea[name='kml'] {
         float: none;
 
-        @include border-box;
+        @include mixins.border-box;
 
         width: 100%;
 
@@ -315,19 +319,19 @@ $input-button-border: 2px solid #aaaaaa;
             //copied from bootstrap
             color: $state-danger-text;
             border-color: $state-danger-text;
-            @include box-shadow(inset 0 1px 1px rgba(0, 0, 0, 0.075));
+            @include mixins.box-shadow(inset 0 1px 1px rgba(0, 0, 0, 0.075));
             // Redeclare so transitions work
             &:focus {
                 border-color: darken($state-danger-text, 10%);
                 $shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px lighten($state-danger-text, 20%);
-                @include box-shadow($shadow);
+                @include mixins.box-shadow($shadow);
             }
         }*/
     }
 
     input[name='alt'],
     input[name='acc'] {
-        @include border-box;
+        @include mixins.border-box;
 
         display: block;
         float: right;
@@ -360,7 +364,7 @@ $input-button-border: 2px solid #aaaaaa;
         top: -10px;
         right: 0;
 
-        @include font-normal;
+        @include mixins.font-normal;
 
         font-size: 12px;
 
@@ -427,11 +431,11 @@ $input-button-border: 2px solid #aaaaaa;
     }
 
     &.full-screen {
-        @include display-flex;
+        @include mixins.display-flex;
 
-        @include flex-direction(column);
+        @include mixins.flex-direction(column);
 
-        @include flex-wrap(nowrap);
+        @include mixins.flex-wrap(nowrap);
 
         position: fixed;
         left: 0;
@@ -464,20 +468,20 @@ $input-button-border: 2px solid #aaaaaa;
             width: 100%;
             padding: 0 25px 15px 25px;
 
-            @include flex(1);
+            @include mixins.flex(1);
 
-            @include display-flex;
+            @include mixins.display-flex;
 
-            @include flex-direction(column);
+            @include mixins.flex-direction(column);
 
-            @include flex-wrap(
+            @include mixins.flex-wrap(
                 nowrap
             ); // have to use flex again to get map canvas to stretch to 100% height
 
             .map-canvas {
                 height: 100%;
 
-                @include flex(1);
+                @include mixins.flex(1);
             }
 
             .show-map-btn {
@@ -559,8 +563,8 @@ $input-button-border: 2px solid #aaaaaa;
 
         .geo-inputs {
             display: none;
-            .geo{
-                display:none
+            .geo {
+                display: none;
             }
         }
 
@@ -590,7 +594,7 @@ $input-button-border: 2px solid #aaaaaa;
     .search-bar {
         float: left;
         border-left: none;
-        border-right: solid 1px $groupline; //padding-left: 0;
+        border-right: solid 1px material.$groupline; //padding-left: 0;
 
         //padding-right: $separator-width;
         @media screen and (max-width: $geo-main-breakpoint) {
@@ -669,14 +673,16 @@ $input-button-border: 2px solid #aaaaaa;
         }
 
         [name='search'] {
-            border-top-right-radius: $border-radius-base;
-            border-bottom-right-radius: $border-radius-base;
+            border-top-right-radius: material.$border-radius-base;
+            border-bottom-right-radius: material.$border-radius-base;
         }
     }
 }
 
 // apply Enketo style to radio buttons in Leaflet layer control
-.question:not(.or-appearance-label):not(.or-appearance-compact):not(.or-appearance-quickcompact)
+.question:not(.or-appearance-label):not(.or-appearance-compact):not(
+        .or-appearance-quickcompact
+    )
     .geopicker
     label {
     line-height: 16px;

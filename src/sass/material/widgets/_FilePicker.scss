@@ -1,24 +1,27 @@
+@use '../mixins';
+@use '../variables' as material;
+
 .file-picker {
     .fake-file-input {
-        @include form-control;
+        @include mixins.form-control;
         display: inline-block;
-        width: $input-max-width;
+        width: material.$input-max-width;
         text-align: start;
     }
 
     .file-feedback,
     .file-preview {
-        @include font-normal;
+        @include mixins.font-normal;
     }
 
     .file-feedback.error {
-        @include question-error-message;
+        @include mixins.question-error-message;
     }
 
     .file-feedback.warning {
-        @include question-error-message;
+        @include mixins.question-error-message;
 
-        color: $state-warning-text;
+        color: material.$state-warning-text;
     }
 
     .file-preview {

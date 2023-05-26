@@ -1,3 +1,6 @@
+@use '../mixins';
+@use '../variables' as material;
+
 .or-big-image {
     display: block;
     // copied from .or img
@@ -5,13 +8,13 @@
     // copied from .or img
     max-height: 300px;
     img {
-        border: 2px solid $link-color;
+        border: 2px solid material.$link-color;
         max-width: 100%;
     }
     &.open {
-        @include display-flex;
-        @include flex-direction(column);
-        @include flex-wrap(nowrap);
+        @include mixins.display-flex;
+        @include mixins.flex-direction(column);
+        @include mixins.flex-wrap(nowrap);
         position: fixed;
         left: 0;
         top: 0;

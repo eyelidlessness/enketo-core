@@ -1,3 +1,5 @@
+@use './mixins';
+
 @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
     .question {
         input[type='radio'],
@@ -20,22 +22,22 @@
         }
         input[type='checkbox'] + .option-label::before {
             border-radius: 0;
-            @include checkbox-unchecked-style;
+            @include mixins.checkbox-unchecked-style;
         }
         input[type='checkbox']:checked + .option-label::before {
-            @include checkbox-checked-style;
+            @include mixins.checkbox-checked-style;
         }
         input[type='radio'] + .option-label::before {
             border-radius: 10px;
-            @include radio-unchecked-style;
+            @include mixins.radio-unchecked-style;
         }
         input[type='radio']:checked + .option-label::before {
-            @include radio-checked-style;
+            @include mixins.radio-checked-style;
         }
         input[type='checkbox']:focus,
         input[type='radio']:focus {
             + .option-label::before {
-                @include focus-shadow;
+                @include mixins.focus-shadow;
             }
         }
         input[type='checkbox']:disabled,
@@ -43,7 +45,7 @@
         input[type='radio']:disabled,
         input[type='radio'][readonly] {
             + .option-label::before {
-                @include disabled-radiocheck-style;
+                @include mixins.disabled-radiocheck-style;
             }
         }
     }

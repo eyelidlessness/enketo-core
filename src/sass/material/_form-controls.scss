@@ -1,3 +1,6 @@
+@use './mixins';
+@use './variables' as material;
+
 input[type='text'],
 .print-input-text,
 input[type='tel'],
@@ -13,7 +16,7 @@ input[type='number'],
 input.number-input,
 select,
 textarea {
-    @include form-control;
+    @include mixins.form-control;
 }
 
 // fix readonly inputs inside widgets that are not actually 'readonly'
@@ -32,11 +35,11 @@ input:not([readonly]) + .widget {
     select,
     textarea {
         &[readonly] {
-            background-color: $input-bg;
+            background-color: material.$input-bg;
             cursor: auto;
 
             &:hover {
-                background-color: $input-bg;
+                background-color: material.$input-bg;
             }
         }
     }
@@ -65,17 +68,17 @@ fieldset {
     display: block;
     width: 100%;
     padding: 0;
-    margin-bottom: $line-height-computed;
-    font-size: $font-size-base * 1.5;
+    margin-bottom: material.$line-height-computed;
+    font-size: material.$font-size-base * 1.5;
     line-height: inherit;
-    color: $legend-color;
+    color: material.$legend-color;
     border: 0;
-    border-bottom: 1px solid $legend-border-color;
+    border-bottom: 1px solid material.$legend-border-color;
 }*/
 
 // Override content-box in Normalize (* isn't specific enough)
 input[type='search'] {
-    @include box-sizing(border-box);
+    @include mixins.box-sizing(border-box);
 }
 
 // Position radios and checkboxes better
@@ -109,7 +112,7 @@ select[size] {
 input[type='file']:focus,
 input[type='radio']:focus,
 input[type='checkbox']:focus {
-    @include tab-focus;
+    @include mixins.tab-focus;
 }
 
 // Search inputs in iOS
@@ -127,7 +130,7 @@ input[type='search'] {
 // In Mobile Safari, date inputs require a pixel line-height that matches the
 // given height of the input.
 input[type='date'] {
-    line-height: $input-height;
+    line-height: material.$input-height;
 }
 
 // Apply same disabled cursor tweak as for inputs
@@ -140,5 +143,3 @@ input[type='checkbox'] {
         cursor: not-allowed;
     }
 }
-
-@import './radiocheck';

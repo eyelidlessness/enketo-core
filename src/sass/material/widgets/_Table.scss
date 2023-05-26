@@ -1,3 +1,5 @@
+@use '../mixins';
+
 .question.or-appearance-list-nolabel,
 .question.or-appearance-label {
     margin: -0.9em 0 -0.7em 0;
@@ -11,14 +13,14 @@
     }
 
     .option-wrapper {
-        @include display-flex;
+        @include mixins.display-flex;
 
-        @include flex-direction(row);
+        @include mixins.flex-direction(row);
 
-        @include flex-wrap(nowrap);
+        @include mixins.flex-wrap(nowrap);
 
         label {
-            @include flex(1);
+            @include mixins.flex(1);
 
             text-align: center;
             padding: 4px 0;

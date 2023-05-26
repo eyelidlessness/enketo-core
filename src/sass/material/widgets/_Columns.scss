@@ -1,3 +1,8 @@
+@use 'sass:math';
+@use '../core/icons';
+@use '../mixins';
+@use '../variables' as material;
+
 @mixin margin($dir: right) {
     margin-#{$dir}: 10px;
 }
@@ -43,24 +48,24 @@
             z-index: -1;
 
             &:not([disabled]):not([readonly]) ~ .active:hover {
-                border-color: lighten($brand-primary-color, 30%);
+                border-color: lighten(material.$brand-primary-color, 30%);
             }
 
             &[disabled],
             &[readonly] {
                 &:checked ~ .active,
                 &:checked ~ .active:hover {
-                    border-color: $gray;
+                    border-color: material.$gray;
                 }
             }
 
             &:checked ~ .active,
             &:checked ~ .active:hover {
-                border-color: $brand-primary-color;
+                border-color: material.$brand-primary-color;
             }
 
             &:focus ~ .active {
-                @include focus-shadow;
+                @include mixins.focus-shadow;
             }
         }
     }
@@ -68,16 +73,16 @@
 
 .or-columns-initialized {
     .option-wrapper {
-        @include display-flex;
+        @include mixins.display-flex;
 
-        @include flex-wrap(wrap);
+        @include mixins.flex-wrap(wrap);
 
-        @include flex-direction(row);
+        @include mixins.flex-direction(row);
     }
 
     label,
     .filler {
-        @include flex(1 0 30%);
+        @include mixins.flex(1 0 30%);
     }
 
     .filler,
@@ -91,11 +96,11 @@
 .or-appearance-columns-pack {
     // the flexiness is only for appearance=random
     .option-wrapper {
-        @include display-flex;
+        @include mixins.display-flex;
 
-        @include flex-wrap(wrap);
+        @include mixins.flex-wrap(wrap);
 
-        @include flex-direction(row);
+        @include mixins.flex-direction(row);
     }
 
     label {
@@ -118,7 +123,7 @@
             @include select-no-buttons;
 
             label {
-                width: 100% / $total;
+                width: math.div(100%, $total);
 
                 img.active {
                     // Use natural image size, but reduce to fit cell if necessary
@@ -132,13 +137,13 @@
 
         .option-wrapper {
             // this flexiness is required for appearance=random
-            @include flex-direction(row);
+            @include mixins.flex-direction(row);
 
-            @include flex-wrap(wrap);
+            @include mixins.flex-wrap(wrap);
         }
 
         label {
-            width: calc(#{100% / $total} - 20px);
+            width: calc(#{math.div(100%, $total)} - 20px);
 
             img.active {
                 // Use natural image size, but reduce to fit cell if necessary
@@ -153,7 +158,9 @@
 
 .touch {
     // this ridiculous not:() specificity is required to combat an aggressive rule in _main.scss
-    .question:not(.or-appearance-no-buttons):not(.or-appearance-label):not(.or-appearance-list-nolabel):not(.or-appearance-likert) {
+    .question:not(.or-appearance-no-buttons):not(.or-appearance-label):not(
+            .or-appearance-list-nolabel
+        ):not(.or-appearance-likert) {
         &.or-columns-initialized {
             .option-wrapper > label {
                 @include margin(right);
@@ -163,7 +170,9 @@
 
     .or[dir='rtl'] {
         // this ridiculous not:() specificity is required to combat an aggressive rule in _main.scss
-        .question:not(.or-appearance-no-buttons):not(.or-appearance-label):not(.or-appearance-list-nolabel):not(.or-appearance-likert) {
+        .question:not(.or-appearance-no-buttons):not(.or-appearance-label):not(
+                .or-appearance-list-nolabel
+            ):not(.or-appearance-likert) {
             &.or-columns-initialized {
                 .option-wrapper > label {
                     @include margin(left);

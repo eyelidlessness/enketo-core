@@ -1,12 +1,14 @@
+@use './mixins';
+
 @mixin disabled {
     &:disabled,
     &[readonly] {
-        @include disabled-radiocheck-style;
+        @include mixins.disabled-radiocheck-style;
     }
 }
 
 @mixin radiocheck-setup {
-    @include appearance-none;
+    @include mixins.appearance-none;
 
     display: inline-block;
     width: 20px;
@@ -28,34 +30,34 @@
     input[type='radio'] {
         @include radiocheck-setup;
 
-        @include radio-unchecked-style;
+        @include mixins.radio-unchecked-style;
 
         @include disabled;
 
-        @include radiocheck-focus;
+        @include mixins.radiocheck-focus;
 
         border-radius: 10px;
 
         &:checked {
-            @include radio-checked-style;
+            @include mixins.radio-checked-style;
 
-            @include radiocheck-focus;
+            @include mixins.radiocheck-focus;
         }
     }
 
     input[type='checkbox'] {
         @include radiocheck-setup;
 
-        @include checkbox-unchecked-style;
+        @include mixins.checkbox-unchecked-style;
 
         @include disabled;
 
-        @include radiocheck-focus;
+        @include mixins.radiocheck-focus;
 
         &:checked {
-            @include checkbox-checked-style;
+            @include mixins.checkbox-checked-style;
 
-            @include radiocheck-focus;
+            @include mixins.radiocheck-focus;
         }
     }
 }
