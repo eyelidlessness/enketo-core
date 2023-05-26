@@ -1,5 +1,4 @@
 @use '../mixins';
-@use '../variables' as material;
 
 /*
  * To save headaches with resizing canvases, it is important to maintain fixed aspect
@@ -45,7 +44,7 @@ $picker-border: 2px solid grey;
         &__canvas {
             background: white;
             // for plain theme:
-            border: 1px solid material.$gray-lighter; // override border:
+            border: 1px solid var(--gray-lighter); // override border:
             @include mixins.form-control;
 
             position: absolute;

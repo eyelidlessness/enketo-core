@@ -1,5 +1,4 @@
 @use './mixins';
-@use './variables' as material;
 
 input[type='text'],
 .print-input-text,
@@ -35,11 +34,11 @@ input:not([readonly]) + .widget {
     select,
     textarea {
         &[readonly] {
-            background-color: material.$input-bg;
+            background-color: var(--input-bg);
             cursor: auto;
 
             &:hover {
-                background-color: material.$input-bg;
+                background-color: var(--input-bg);
             }
         }
     }
@@ -68,12 +67,12 @@ fieldset {
     display: block;
     width: 100%;
     padding: 0;
-    margin-bottom: material.$line-height-computed;
-    font-size: material.$font-size-base * 1.5;
+    margin-bottom: var(--line-height-computed);
+    font-size: var(--font-size-base) * 1.5;
     line-height: inherit;
-    color: material.$legend-color;
+    color: var(--legend-color);
     border: 0;
-    border-bottom: 1px solid material.$legend-border-color;
+    border-bottom: 1px solid var(--legend-border-color);
 }*/
 
 // Override content-box in Normalize (* isn't specific enough)
@@ -130,7 +129,7 @@ input[type='search'] {
 // In Mobile Safari, date inputs require a pixel line-height that matches the
 // given height of the input.
 input[type='date'] {
-    line-height: material.$input-height;
+    line-height: var(--input-height);
 }
 
 // Apply same disabled cursor tweak as for inputs

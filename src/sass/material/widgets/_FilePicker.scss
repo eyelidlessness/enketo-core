@@ -1,11 +1,10 @@
 @use '../mixins';
-@use '../variables' as material;
 
 .file-picker {
     .fake-file-input {
         @include mixins.form-control;
         display: inline-block;
-        width: material.$input-max-width;
+        width: var(--input-max-width);
         text-align: start;
     }
 
@@ -21,7 +20,7 @@
     .file-feedback.warning {
         @include mixins.question-error-message;
 
-        color: material.$state-warning-text;
+        color: var(--state-warning-text);
     }
 
     .file-preview {

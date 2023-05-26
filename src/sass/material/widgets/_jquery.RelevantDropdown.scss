@@ -1,5 +1,3 @@
-@use '../variables' as material;
-
 /*
 	 CSS-Tricks Example
 	 by Chris Coyier
@@ -17,7 +15,7 @@
     overflow-y: auto;
     z-index: 10;
     padding: 0;
-    border: 1px solid material.$gray;
+    border: 1px solid var(--gray);
 }
 
 .datalist:empty {

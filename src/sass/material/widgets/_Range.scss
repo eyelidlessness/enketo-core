@@ -1,5 +1,4 @@
 @use '../mixins';
-@use '../variables' as material;
 
 // Many thanks to https://css-tricks.com/sliding-nightmare-understanding-range-input/
 $track-w: 100%;
@@ -7,7 +6,7 @@ $track-h: 1px;
 $thumb-d: 20px;
 $margin: 10px;
 $height: 200px;
-$track-color: material.$gray-dark;
+$track-color: var(--gray-dark);
 $thick-w: 1px;
 $pad: 10px;
 $left: -85px;
@@ -21,7 +20,7 @@ $left: -85px;
     border-radius: 0.5 * $height;
 }
 
-@mixin thumb($color: material.$brand-primary-color) {
+@mixin thumb($color: var(--brand-primary-color)) {
     box-sizing: border-box;
     border: 1px solid $color;
     width: $thumb-d;

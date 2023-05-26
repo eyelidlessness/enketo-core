@@ -1,22 +1,26 @@
 @use './core/mixins' as core-mixins;
-@use './variables' as material;
 @forward './core/mixins';
 
 /** The next styles are meant to easily customize the background and border of radiobuttons and checkboxes, not their size! */
 
 @mixin disabled-radiocheck-style {
-    border-color: lighten(material.$radiocheck-unchecked-color, 5%);
+    border-color: hsl(
+        var(--brand-primary-color-hue),
+        var(--brand-primary-color-saturation),
+        calc(var(--brand-primary-color-lightness) + 5%)
+    );
 }
 
 @mixin checkbox-unchecked-style {
-    border-color: material.$radiocheck-unchecked-color;
+    border-color: var(--radiocheck-unchecked-color);
 }
 
 @mixin checkbox-checked-style(
-    $color-fill: material.$radiocheck-checked-color,
-    $color-stroke: material.$radiocheck-checked-color
+    $color-fill: var(--radiocheck-checked-color),
+    $color-stroke: var(--radiocheck-checked-color)
 ) {
     border-color: $color-fill;
+    // TODO this won't work with CSS vars :/
     background-image: core-mixins.svg-as-url(
         "<svg xmlns='http://www.w3.org/2000/svg' stroke='#{$color-stroke}' fill='#{$color-fill}' width='32' height='32' viewBox='0 0 32 32'><path d='M25.1 12.5l-3.4-3.3-8 8-2.9-3-3.4 3.4 6.3 6.3z'/></svg>"
     );
@@ -25,10 +29,10 @@
 }
 
 @mixin radio-unchecked-style {
-    border-color: material.$radiocheck-unchecked-color;
+    border-color: var(--radiocheck-unchecked-color);
 }
 
-@mixin radio-checked-style($color: material.$radiocheck-checked-color) {
+@mixin radio-checked-style($color: var(--radiocheck-checked-color)) {
     border-color: $color;
     background-image: radial-gradient(
         4px,
@@ -40,7 +44,7 @@
 
 /** end radiobuttons and checkboxes */
 
-@mixin placeholder($color: material.$input-color-placeholder) {
+@mixin placeholder($color: var(--input-color-placeholder)) {
     &::-moz-placeholder {
         color: $color;
 
@@ -62,12 +66,12 @@
 }
 
 @mixin focus-shadow-border {
-    border-color: material.$input-border-focus;
+    border-color: var(--input-border-focus);
     outline: 0;
 
     @include core-mixins.box-shadow(
         inset 0 1px 1px rgba(0, 0, 0, 0.075),
-        0 0 8px material.$input-border-focus-shadow
+        0 0 8px var(--input-border-focus-shadow)
     );
 }
 
@@ -75,8 +79,8 @@
     outline: 0;
 
     @include core-mixins.box-shadow(
-        0 0 0 1px material.$input-border-focus,
-        0 0 8px material.$input-border-focus-shadow
+        0 0 0 1px var(--input-border-focus),
+        0 0 8px var(--input-border-focus-shadow)
     );
 }
 
@@ -96,22 +100,22 @@
     display: block;
 
     //width: 100%;
-    height: material.$input-height;
+    height: var(--input-height);
 
     // Make inputs at least the height of their button counterpart (base line-height + padding + border)
-    padding: material.$padding-base-vertical material.$padding-base-horizontal;
+    padding: var(--padding-base-vertical) var(--padding-base-horizontal);
 
     @include core-mixins.font-normal;
 
-    font-size: material.$font-size-base;
-    line-height: material.$line-height-base;
-    color: material.$input-color;
-    background-color: material.$input-bg;
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-base);
+    color: var(--input-color);
+    background-color: var(--input-bg);
     background-image: none;
 
     // Reset unusual Firefox-on-Android default style; see https://github.com/necolas/normalize.css/issues/214
-    border: 1px solid material.$input-border;
-    border-radius: material.$input-border-radius;
+    border: 1px solid var(--input-border);
+    border-radius: var(--input-border-radius);
 
     @include core-mixins.box-shadow(inset 0 1px 1px rgba(0, 0, 0, 0.075));
 
@@ -132,7 +136,7 @@
     &[readonly],
     fieldset[disabled] & {
         cursor: not-allowed;
-        background-color: material.$input-bg-disabled;
+        background-color: var(--input-bg-disabled);
         opacity: 1;
 
         // iOS fix for unreadable disabled content

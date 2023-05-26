@@ -1,7 +1,6 @@
 @use 'sass:math';
 @use '../core/icons';
 @use '../mixins';
-@use '../variables' as material;
 
 @mixin margin($dir: right) {
     margin-#{$dir}: 10px;
@@ -48,20 +47,24 @@
             z-index: -1;
 
             &:not([disabled]):not([readonly]) ~ .active:hover {
-                border-color: lighten(material.$brand-primary-color, 30%);
+                border-color: hsl(
+                    var(--brand-primary-color-hue),
+                    var(--brand-primary-color-saturation),
+                    calc(var(--brand-primary-color-lightness) + 30%)
+                );
             }
 
             &[disabled],
             &[readonly] {
                 &:checked ~ .active,
                 &:checked ~ .active:hover {
-                    border-color: material.$gray;
+                    border-color: var(--gray);
                 }
             }
 
             &:checked ~ .active,
             &:checked ~ .active:hover {
-                border-color: material.$brand-primary-color;
+                border-color: var(--brand-primary-color);
             }
 
             &:focus ~ .active {

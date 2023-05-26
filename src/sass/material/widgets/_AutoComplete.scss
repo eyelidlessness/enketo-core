@@ -1,12 +1,11 @@
-@use '../variables' as material;
 @use './jquery.RelevantDropdown';
 
 input[type='text'].autocomplete {
     // width of input same as width of regular select
-    width: material.$input-min-width * material.$golden-ratio - 14px;
+    width: calc(var(--input-min-width) * var(--golden-ratio) - 14px);
 
     &.notfound {
-        color: material.$gray-light;
+        color: var(--gray-light);
     }
 }
 

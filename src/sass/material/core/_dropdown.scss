@@ -1,5 +1,4 @@
 @use '../mixins';
-@use '../variables' as core;
 
 // extracted from bootstrap dropdown.scss
 //
@@ -11,20 +10,24 @@ $zindex-dropdown: 1000 !default;
 $dropdown-divider-bg: #e5e5e5 !default;
 $dropdown-bg: white !default;
 $dropdown-border: rgba(0, 0, 0, 0.15) !default;
-$dropdown-link-color: core.$gray-dark !default;
-$dropdown-link-hover-color: darken(core.$gray-dark, 5%) !default;
+$dropdown-link-color: var(--gray-dark);
+$dropdown-link-hover-color: hsl(
+    --gray-dark-hue,
+    --gray-dark-saturation,
+    calc(--gray-dark-lightness + 5%)
+);
 $dropdown-link-hover-bg: whitesmoke !default;
 $component-active-color: white !default;
-$component-active-bg: core.$brand-primary-color !default;
+$component-active-bg: var(--brand-primary-color);
 $dropdown-link-active-bg: $component-active-bg !default;
 $dropdown-link-active-color: $component-active-color !default;
 $dropdown-link-active-bg: $component-active-bg !default;
 $dropdown-link-active-bg: $component-active-bg !default;
-$dropdown-link-disabled-color: core.$gray-light !default;
+$dropdown-link-disabled-color: var(--gray-light);
 
 @mixin nav-divider($color: #e5e5e5) {
     height: 1px;
-    margin: core.$line-height-computed * 0.5 - 1 0;
+    margin: calc(var(--line-height-computed) * 0.5 - 1) 0;
     overflow: hidden;
     background-color: $color;
 }
@@ -64,10 +67,10 @@ $dropdown-link-disabled-color: core.$gray-light !default;
     margin: 2px 0 0;
     // override default ul
     list-style: none;
-    font-size: core.$font-size-base;
+    font-size: var(--font-size-base);
     background-color: $dropdown-bg;
     border: 1px solid $dropdown-border;
-    border-radius: core.$border-radius-base;
+    border-radius: var(--border-radius-base);
     @include mixins.box-shadow(0 6px 12px rgba(0, 0, 0, 0.175));
     background-clip: padding-box;
     // Aligns the dropdown menu to right
@@ -87,7 +90,7 @@ $dropdown-link-disabled-color: core.$gray-light !default;
         padding: 3px 20px;
         clear: both;
         font-weight: normal;
-        line-height: core.$line-height-base;
+        line-height: var(--line-height-base);
         color: $dropdown-link-color;
         white-space: nowrap;
         // prevent links from randomly breaking onto new lines

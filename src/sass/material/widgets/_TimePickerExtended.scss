@@ -1,11 +1,10 @@
 @use '../core/icons';
-@use '../variables' as material;
 @use './TimePicker';
 
 .timepicker {
     input[type='text'] {
         display: inline-block;
-        width: material.$input-min-width;
+        width: var(--input-min-width);
     }
 }
 

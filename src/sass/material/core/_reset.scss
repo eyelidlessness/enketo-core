@@ -1,5 +1,4 @@
 @use '../mixins';
-@use '../variables' as core;
 
 * {
     @include mixins.box-sizing(border-box);
@@ -18,10 +17,10 @@ html {
 body {
     @include mixins.font-normal;
 
-    font-size: core.$font-size-base;
-    line-height: core.$line-height-base;
-    color: core.$text-color;
-    background-color: core.$body-bg;
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-base);
+    color: var(--text-color);
+    background-color: var(--body-bg);
 }
 
 input,
@@ -34,11 +33,11 @@ textarea {
 }
 
 a {
-    color: core.$link-color;
+    color: var(--link-color);
 
     &:hover,
     &:focus {
-        color: core.$link-hover-color;
+        color: var(--link-hover-color);
     }
 
     &:focus {
@@ -55,10 +54,10 @@ img {
 }
 
 hr {
-    margin-top: core.$line-height-computed;
-    margin-bottom: core.$line-height-computed;
+    margin-top: var(--line-height-computed);
+    margin-bottom: var(--line-height-computed);
     border: 0;
-    border-top: 1px solid core.$hr-border;
+    border-top: 1px solid var(--hr-border);
 }
 
 strong {
@@ -66,27 +65,27 @@ strong {
 }
 
 h1 {
-    font-size: core.$font-size-base * 2.75;
+    font-size: calc(var(--font-size-base) * 2.75);
 }
 
 h2 {
-    font-size: core.$font-size-base * 2.25;
+    font-size: calc(var(--font-size-base) * 2.25);
 }
 
 h3 {
-    font-size: core.$font-size-base * 1.75;
+    font-size: calc(var(--font-size-base) * 1.75);
 }
 
 h4 {
-    font-size: core.$font-size-base * 1.25;
+    font-size: calc(var(--font-size-base) * 1.25);
 }
 
 h5 {
-    font-size: core.$font-size-base;
+    font-size: var(--font-size-base);
 }
 
 h6 {
-    font-size: core.$font-size-base * 0.85;
+    font-size: calc(var(--font-size-base) * 0.85);
 }
 
 h2,

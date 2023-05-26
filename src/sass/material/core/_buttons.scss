@@ -1,5 +1,3 @@
-@use '../variables' as core;
-
 // Button variants
 // -------------------------
 // Easily pump out default styles, as well as :hover, :focus, :active,
@@ -14,15 +12,15 @@
     &:active,
     &.active {
         color: $color;
-        background-color: darken($background, 8%);
-        border-color: darken($border, 12%);
+        background-color: rgb(0 0 0 / 8%);
+        border-color: rgb(0 0 0 / 12%);
     }
 
     .open & {
         &.dropdown-toggle {
             color: $color;
-            background-color: darken($background, 8%);
-            border-color: darken($border, 12%);
+            background-color: rgb(0 0 0 / 8%);
+            border-color: rgb(0 0 0 / 12%);
         }
     }
 
@@ -91,17 +89,17 @@ button {
 
 .btn-default {
     @include button-variant(
-        core.$btn-default-color,
-        core.$btn-default-bg,
-        core.$btn-default-border
+        var(--btn-default-color),
+        var(--btn-default-bg),
+        var(--btn-default-border)
     );
 }
 
 .btn-primary {
     @include button-variant(
-        core.$btn-primary-color,
-        core.$btn-primary-bg,
-        core.$btn-primary-border
+        var(--btn-primary-color),
+        var(--btn-primary-bg),
+        var(--btn-primary-border)
     );
 }
 
@@ -115,11 +113,11 @@ button {
 .btn-icon-only {
     margin: 0 10px 0 10px;
     padding: 7px;
-    color: core.$text-color;
+    color: var(--text-color);
     background: none;
     border: none;
-    width: core.$input-height;
-    height: core.$input-height;
+    width: var(--input-height);
+    height: var(--input-height);
     box-shadow: none;
     opacity: 0.7;
 
@@ -136,7 +134,7 @@ button {
     &:hover,
     &:disabled,
     &.disabled {
-        color: core.$text-color;
+        color: var(--text-color);
         opacity: 0.5;
     }
 }

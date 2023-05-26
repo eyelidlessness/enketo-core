@@ -1,5 +1,4 @@
 @use '../mixins';
-@use '../variables' as material;
 
 .or-appearance-rating {
     .rating-widget__rating {
@@ -23,8 +22,9 @@
             margin-top: 0;
             border-style: solid;
             background-color: transparent;
+            // TODO this won't work
             background-image: mixins.svg-as-url(
-                "<svg xmlns='http://www.w3.org/2000/svg' viewBox='-6 1 53 50'> 0 3 <path d='m25,1 6,17h18l-14,11 5,17-15-10-15,10 5-17-14-11h18z' style='fill:#{material.$brand-primary-color}' /> 0 4 </svg>"
+                "<svg xmlns='http://www.w3.org/2000/svg' viewBox='-6 1 53 50'> 0 3 <path d='m25,1 6,17h18l-14,11 5,17-15-10-15,10 5-17-14-11h18z' style='fill:#{var(--brand-primary-color)}' /> 0 4 </svg>"
             );
             background-size: 35px 25px;
             background-position: -3px;

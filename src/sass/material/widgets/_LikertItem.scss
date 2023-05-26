@@ -1,5 +1,4 @@
 @use '../mixins';
-@use '../variables' as material;
 
 @mixin likert-filler {
     content: '';
@@ -9,7 +8,7 @@
 
     //width: calc(50% - 10px);
     width: 50%;
-    background-color: material.$question-bg;
+    background-color: var(--question-bg);
     height: 10px;
 }
 
@@ -63,7 +62,7 @@
                 text-align: center;
                 margin-top: -8.5px;
                 padding-top: 15px;
-                border-top: 3px solid material.$radiocheck-unchecked-color;
+                border-top: 3px solid var(--radiocheck-unchecked-color);
                 font-size: 12px;
 
                 @include mixins.font-normal;
@@ -91,7 +90,7 @@
         &:first-of-type,
         &:last-of-type {
             .option-label::after {
-                background-color: material.$question-hover-bg;
+                background-color: var(--question-hover-bg);
             }
         }
     }
@@ -101,7 +100,7 @@
             &:first-of-type,
             &:last-of-type {
                 .option-label::after {
-                    background-color: material.$question-focus-bg;
+                    background-color: var(--question-focus-bg);
                 }
             }
         }
@@ -143,6 +142,6 @@
     &:last-of-type .option-label::after,
     input[type='radio'],
     input[type='checkbox'] {
-        background-color: material.$repeat-bg;
+        background-color: var(--repeat-bg);
     }
 }

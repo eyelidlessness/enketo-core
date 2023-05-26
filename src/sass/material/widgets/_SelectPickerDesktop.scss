@@ -1,10 +1,9 @@
 @use '../mixins';
-@use '../variables' as material;
 
 .bootstrap-select {
     margin-top: 15px;
     .dropdown-toggle {
-        width: material.$input-min-width * material.$golden-ratio - 14px;
+        width: calc(var(--input-min-width) * var(--golden-ratio) - 14px);
         @include mixins.font-normal;
         font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
         text-align: left;
@@ -34,7 +33,7 @@
                     padding-top: 2px;
                     padding-bottom: 2px;
                     padding-left: 0px;
-                    font-size: material.$font-size-base;
+                    font-size: var(--font-size-base);
                     &:hover {
                         background: transparent;
                     }

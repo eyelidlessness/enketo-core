@@ -1,5 +1,4 @@
 @use 'sass:math';
-@use '../variables' as core;
 
 @mixin font-normal {
     font-family: 'OpenSans', Arial, sans-serif;
@@ -266,9 +265,9 @@
 @mixin question-invalid {
     @include transition-fast;
 
-    background-color: core.$state-danger-bg;
-    border-color: core.$state-danger-border;
-    border-radius: core.$border-radius-small;
+    background-color: var(--state-danger-bg);
+    border-color: var(--state-danger-border);
+    border-radius: var(--border-radius-small);
 
     $pad: 10px;
 
@@ -284,7 +283,7 @@
     font-weight: bold;
     padding-top: 5px;
     font-size: 0.85em;
-    color: core.$state-danger-text;
+    color: var(--state-danger-text);
 }
 
 // from https://gist.github.com/JacobDB/0ffffaf8e772c12acf7102edb8a302be

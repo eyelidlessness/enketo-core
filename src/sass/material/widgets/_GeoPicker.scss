@@ -1,8 +1,7 @@
 @use '../core/icons';
 @use '../mixins';
-@use '../variables' as material;
 
-$geo-main-breakpoint: material.$main-breakpoint;
+$geo-main-breakpoint: var(--main-breakpoint);
 $map-height: 275px;
 $map-width: 65%;
 $input-width: 27%;
@@ -113,7 +112,7 @@ $input-button-border: 2px solid #aaaaaa;
 
         .disabled-msg {
             display: none;
-            color: material.$state-danger-text;
+            color: var(--state-danger-text);
         }
     }
 
@@ -126,7 +125,7 @@ $input-button-border: 2px solid #aaaaaa;
         width: $map-width;
         float: right;
         padding-left: $separator-width;
-        border-left: solid 1px material.$groupline;
+        border-left: solid 1px var(--groupline);
 
         @media screen and (max-width: $geo-main-breakpoint) {
             width: 100%;
@@ -284,7 +283,7 @@ $input-button-border: 2px solid #aaaaaa;
         }
 
         &.alt {
-            border-top: solid 1px material.$groupline;
+            border-top: solid 1px var(--groupline);
             padding: 12px 0 0 0;
             margin: 0 0 0 0;
 
@@ -302,7 +301,7 @@ $input-button-border: 2px solid #aaaaaa;
         &.acc {
             min-height: 70px;
             line-height: 50px;
-            font-size: 0.75 * material.$font-size-base;
+            font-size: calc(0.75 * var(--font-size-base));
         }
     }
 
@@ -594,7 +593,7 @@ $input-button-border: 2px solid #aaaaaa;
     .search-bar {
         float: left;
         border-left: none;
-        border-right: solid 1px material.$groupline; //padding-left: 0;
+        border-right: solid 1px var(--groupline); //padding-left: 0;
 
         //padding-right: $separator-width;
         @media screen and (max-width: $geo-main-breakpoint) {
@@ -673,8 +672,8 @@ $input-button-border: 2px solid #aaaaaa;
         }
 
         [name='search'] {
-            border-top-right-radius: material.$border-radius-base;
-            border-bottom-right-radius: material.$border-radius-base;
+            border-top-right-radius: var(--border-radius-base);
+            border-bottom-right-radius: var(--border-radius-base);
         }
     }
 }

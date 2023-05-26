@@ -1,6 +1,5 @@
 @use '../mixins';
 @use '../core/icons';
-@use '../variables' as material;
 
 $padding: 30px;
 
@@ -17,7 +16,7 @@ $padding: 30px;
 
     &__content {
         position: relative;
-        border: 1px solid material.$gray;
+        border: 1px solid var(--gray);
         background: white;
         padding: $padding;
         padding-bottom: 100px;
@@ -89,7 +88,7 @@ $padding: 30px;
     }
     &.invalid {
         @include mixins.transition-fast;
-        color: material.$state-dangerest-text;
+        color: var(--state-dangerest-text);
         .icon {
             font-weight: bold;
         }

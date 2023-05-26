@@ -1,5 +1,4 @@
 @use '../mixins';
-@use '../variables' as core;
 
 $form-padding: 45px;
 
@@ -44,7 +43,7 @@ body {
     padding: 100px 0 70px 0;
     position: relative;
     width: 100%;
-    max-width: core.$max-content-width;
+    max-width: var(--max-content-width);
 }
 
 .paper {

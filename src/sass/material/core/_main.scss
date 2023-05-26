@@ -1,5 +1,4 @@
 @use '../mixins';
-@use '../variables' as core;
 
 $media-margin: 10px;
 
@@ -22,7 +21,7 @@ $media-margin: 10px;
     > h3 {
         padding: 5px 0 15px 0;
         word-wrap: break-word;
-        color: core.$brand-primary-color;
+        color: var(--brand-primary-color);
         text-align: center;
     }
 
@@ -30,7 +29,7 @@ $media-margin: 10px;
         text-align: inherit;
         margin-top: 9px;
         margin-bottom: 9px;
-        color: core.$brand-primary-color;
+        color: var(--brand-primary-color);
 
         strong {
             font-size: inherit;
@@ -90,7 +89,7 @@ $media-margin: 10px;
 
 .or-form-guidance.active {
     margin: 5px 0;
-    color: core.$brand-primary-color;
+    color: var(--brand-primary-color);
 
     summary {
         color: #888888;
@@ -111,7 +110,7 @@ $media-margin: 10px;
 }
 
 .or-repeat {
-    background-color: core.$repeat-bg;
+    background-color: var(--repeat-bg);
     margin: 0 0 3px 0;
     padding: 20px 10px 10px 10px;
     position: relative;
@@ -130,7 +129,7 @@ $media-margin: 10px;
         position: absolute;
         top: 7px;
         right: 10px;
-        color: core.$brand-primary-color;
+        color: var(--brand-primary-color);
 
         + .or-group {
             border-top: none;
@@ -138,20 +137,20 @@ $media-margin: 10px;
     }
 
     .or-repeat {
-        background-color: core.$question-bg;
+        background-color: var(--question-bg);
 
         .or-repeat {
-            background-color: core.$repeat-bg;
+            background-color: var(--repeat-bg);
 
             .or-repeat {
-                background-color: core.$question-bg;
+                background-color: var(--question-bg);
             }
         }
     }
 }
 
 .or-group {
-    border-top: core.$line;
+    border-top: var(--line);
     margin: 1.5em 0 0.4em 0;
 
     .or-group {
@@ -208,7 +207,7 @@ $media-margin: 10px;
             height: 0;
             border-left: 12px solid transparent;
             border-right: 12px solid transparent;
-            border-top: 12px solid core.$brand-primary-color;
+            border-top: 12px solid var(--brand-primary-color);
             border-bottom: 0;
             display: block;
             position: absolute;
@@ -227,7 +226,7 @@ $media-margin: 10px;
                 height: 0;
                 border-top: 12px solid transparent;
                 border-bottom: 12px solid transparent;
-                border-left: 12px solid core.$brand-primary-color;
+                border-left: 12px solid var(--brand-primary-color);
                 border-right: 0;
                 left: -22px;
                 right: -22px;
@@ -246,7 +245,7 @@ $media-margin: 10px;
     .or-group:not(.or-appearance-no-collapse).or-appearance-compact
         > h4::before {
         border-left: 0;
-        border-right: 12px solid core.$brand-primary-color;
+        border-right: 12px solid var(--brand-primary-color);
     }
 }
 
@@ -277,7 +276,7 @@ $media-margin: 10px;
 // The question label itself is bold already
 // so we emphasize in a different way.
 .question-label strong {
-    font-size: core.$font-size-base + 1px;
+    font-size: calc(var(--font-size-base) + 1px);
 }
 
 .question {
@@ -302,7 +301,7 @@ $media-margin: 10px;
 
 label,
 legend {
-    font-size: core.$font-size-base;
+    font-size: var(--font-size-base);
 }
 
 .or {
@@ -345,7 +344,7 @@ legend {
         margin: 0 8px 1px 10px; // TODO: remove hover rule for tables (in likert already done)
 
         &:hover:not(.filler) {
-            background-color: core.$brand-secondary-color;
+            background-color: var(--brand-secondary-color);
         }
 
         // clearfix with small adjustments to not mess up radio buttons.
@@ -409,7 +408,7 @@ legend {
             &:focus,
             &:hover,
             &:active {
-                background-color: core.$brand-secondary-color;
+                background-color: var(--brand-secondary-color);
             }
         }
     }
@@ -476,11 +475,11 @@ select,
 input:not([type='radio']):not([type='checkbox']),
 textarea,
 .print-input-text {
-    height: core.$input-height;
+    height: var(--input-height);
 }
 
 select {
-    width: core.$input-max-width;
+    width: var(--input-max-width);
 }
 
 .question input {
@@ -490,7 +489,7 @@ select {
     &[type='url'],
     &[type='email'],
     &[type='file'] {
-        width: core.$input-max-width;
+        width: var(--input-max-width);
     }
 
     &[type='date'],
@@ -499,7 +498,7 @@ select {
     &[type='number'],
     &[type='time'],
     &[type='text'].mask-date {
-        width: core.$input-min-width;
+        width: var(--input-min-width);
     }
 
     &[type='radio'],
@@ -512,7 +511,7 @@ select {
 }
 
 .question .print-input-text {
-    width: core.$input-max-width;
+    width: var(--input-max-width);
 }
 
 .or[dir='rtl'] {
@@ -526,7 +525,7 @@ select {
 }
 
 .question textarea {
-    width: core.$input-max-width;
+    width: var(--input-max-width);
     resize: vertical;
     min-height: 9em;
 }
@@ -570,7 +569,7 @@ select {
     position: absolute;
     top: 10px;
     left: -10px;
-    color: core.$brand-primary-color;
+    color: var(--brand-primary-color);
 }
 
 legend .required {

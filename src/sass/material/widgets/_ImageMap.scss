@@ -1,5 +1,4 @@
 @use '../mixins';
-@use '../variables' as material;
 
 // These rules are specific only to this particular widget
 .or-image-map-initialized {
@@ -43,8 +42,8 @@
         circle[id],
         g[id] {
             &[or-selected] {
-                fill: material.$brand-primary-color !important;
-                stroke: material.$brand-primary-color !important;
+                fill: var(--brand-primary-color) !important;
+                stroke: var(--brand-primary-color) !important;
             }
         }
     }
@@ -57,9 +56,13 @@
 
         &__tooltip {
             display: inline-block;
-            background: lighten(material.$brand-primary-color, 50%);
+            background: hsl(
+                var(--brand-primary-color-hue),
+                var(--brand-primary-color-saturation),
+                calc(var(--brand-primary-color-lightness) + 50%)
+            );
             padding: 2px 8px;
-            color: material.$gray;
+            color: var(--gray);
             border-radius: 2px;
 
             &:empty {

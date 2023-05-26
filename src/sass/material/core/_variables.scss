@@ -1,112 +1,193 @@
-// bootstrap icon font gets messed up if helper is used
-//$bootstrap-sass-asset-helper: false !default;
-//$images-path: "../../images/" !default;
-//$icon-font-path: "/lib/bootstrap-sass/fonts/" !default;
+:root {
+    // fonts
+    --font-size-base: 16px;
 
-// fonts
-$font-size-base: 16px !default;
+    // line-heights
+    --line-height-base: 1.42857;
+    --line-height-computed: calc(
+        var(--font-size-base) * var(--line-height-base)
+    );
 
-// line-heights
-$line-height-base: 1.42857 !default;
-$line-height-computed: floor($font-size-base * $line-height-base) !default;
+    // padding, margin
+    --padding-base-vertical: 6px;
+    --padding-base-horizontal: 12px;
+    --padding-large-vertical: 10px;
+    --padding-large-horizontal: 16px;
+    --question-margin: 20px;
 
-// padding, margin
-$padding-base-vertical: 6px !default;
-$padding-base-horizontal: 12px !default;
-$padding-large-vertical: 10px !default;
-$padding-large-horizontal: 16px !default;
-$question-margin: 20px !default;
+    // input sizing
+    --input-height: 34px;
+    --input-min-width: 240px; // width based on width required for native datetime-local input
+    --input-max-width: 80%;
 
-// input sizing
-$input-height: 34px !default;
-$input-min-width: 240px !default; // width based on width required for native datetime-local input
-$input-max-width: 80% !default;
+    // colors, icons
+    --gray-darker: #222222;
+    --gray-dark-hue: 0;
+    --gray-dark-saturation: 0;
+    --gray-dark-lightness: 20%;
+    --gray-dark: hsl(
+        --gray-dark-hue,
+        --gray-dark-saturation,
+        --gray-dark-lightness
+    );
+    --gray: #555555;
+    --gray-light: #999999;
+    --gray-lighter: #eeeeee;
 
-// colors, icons
-$gray-darker: lighten(black, 13.5%) !default;
-$gray-dark: lighten(black, 20%) !default;
-$gray: lighten(black, 33.5%) !default;
-$gray-light: lighten(black, 60%) !default;
-$gray-lighter: lighten(black, 93.5%) !default;
+    --body-bg: white;
 
-$body-bg: white !default;
+    --brand-primary-color-hue: 0;
+    --brand-primary-color-saturation: 0;
+    --brand-primary-color-lightness: 14.51%;
+    --brand-primary-color: hsl(
+        var(--brand-primary-color-hue),
+        var(--brand-primary-color-saturation),
+        var(--brand-primary-color-lightness)
+    );
+    --brand-secondary-color: hsl(
+        var(--brand-primary-color-hue),
+        var(--brand-primary-color-saturation),
+        calc(var(--brand-primary-color-lightness) + 50%)
+    );
+    --repeat-bg: hsl(
+        var(--brand-primary-color-hue),
+        var(--brand-primary-color-saturation),
+        calc(var(--brand-primary-color-lightness) + 55%)
+    );
+    --note-bg: #eeeeee;
+    --note-color: black;
+    --note-border: 1px solid #aaaaaa;
 
-$brand-primary-color: #252525 !default;
-$brand-secondary-color: lighten($brand-primary-color, 50%) !default;
+    --radiocheck-unchecked-color: var(--brand-primary-color);
+    --radiocheck-checked-color: var(--brand-primary-color);
 
-$repeat-bg: lighten($brand-primary-color, 55%) !default;
+    --question-hover-bg: white;
+    --question-focus-bg: white;
+    --question-bg: white;
 
-$note-bg: #eeeeee !default;
-$note-color: black !default;
-$note-border: 1px solid #aaaaaa !default;
+    --input-bg: white;
+    --input-bg-disabled: var(--gray-lighter);
+    --input-color: var(--gray);
+    --input-color-placeholder: var(--gray-light);
+    --input-border: #cccccc;
+    --input-border-focus: #66afe9;
 
-$radiocheck-unchecked-color: $brand-primary-color !default;
-$radiocheck-checked-color: $brand-primary-color !default;
+    --legend-color: var(--gray-dark);
+    --legend-border-color: #e5e5e5;
 
-$question-hover-bg: white !default;
-$question-focus-bg: white !default;
-$question-bg: white !default;
+    // links
+    --link-color: hsl(
+        var(--brand-primary-color-hue),
+        var(--brand-primary-color-saturation),
+        var(--brand-primary-color-lightness)
+    );
+    --link-hover-color: hsl(
+        var(--brand-primary-color-hue),
+        var(--brand-primary-color-saturation),
+        calc(var(--brand-primary-color-lightness) - 15%)
+    );
 
-$input-bg: white !default;
-$input-bg-disabled: $gray-lighter !default;
-$input-color: $gray !default;
-$input-color-placeholder: $gray-light !default;
-$input-border: #cccccc !default;
-$input-border-focus: #66afe9 !default;
+    // layout
+    --max-content-width: 720px;
+    --main-breakpoint: var(--max-content-width);
 
-$legend-color: $gray-dark !default;
-$legend-border-color: #e5e5e5 !default;
+    // buttons
+    --btn-default-color: #333333;
+    --btn-default-bg: white;
+    --btn-default-border: #cccccc;
 
-// links
-$link-color: $brand-primary-color !default;
-$link-hover-color: darken($link-color, 15%) !default;
+    --btn-primary-color: white;
+    --btn-primary-bg: hsl(
+        var(--brand-primary-color-hue),
+        var(--brand-primary-color-saturation),
+        var(--brand-primary-color-lightness)
+    );
+    --btn-primary-border: hsl(
+        var(--brand-primary-color-hue),
+        var(--brand-primary-color-saturation),
+        calc(var(--brand-primary-color-lightness) - 5%)
+    );
 
-// layout
-$max-content-width: 720px !default;
-$main-breakpoint: $max-content-width !default;
+    // borders and lines
+    --groupline: #bbbbbb;
+    --line: 3px solid var(--groupline);
+    --hr-border: var(--gray-lighter);
+    --border-radius-base: 4px;
+    --border-radius-large: 6px;
+    --border-radius-small: 3px;
+    --input-border-radius: var(--border-radius-base);
+    --note-border-radius: 4px;
 
-// buttons
-$btn-default-color: #333333 !default;
-$btn-default-bg: white !default;
-$btn-default-border: #cccccc !default;
+    // text states
+    --text-color: var(--gray-dark);
+    --text-muted: var(--gray-light);
 
-$btn-primary-color: white !default;
-$btn-primary-bg: $brand-primary-color !default;
-$btn-primary-border: darken($btn-primary-bg, 5%) !default;
+    --state-success-text: #3c763d;
+    --state-success-bg-hue: 102.5deg;
+    --state-success-bg-saturation: 44.44%;
+    --state-success-bg-lightness: 89.41%;
+    --state-success-bg: hsl(
+        var(--state-success-bg-hue),
+        var(--state-success-bg-saturation),
+        var(--state-success-bg-lightness)
+    );
+    --state-success-border: hsl(
+        calc(var(--state-success-bg-hue) - 10deg),
+        var(--state-success-bg-saturation),
+        calc(var(--state-success-bg-lightness) - 5%)
+    );
 
-// borders and lines
-$groupline: #bbbbbb !default;
-$line: 3px solid $groupline !default;
-$hr-border: $gray-lighter !default;
-$border-radius-base: 4px !default;
-$border-radius-large: 6px !default;
-$border-radius-small: 3px !default;
-$input-border-radius: $border-radius-base !default;
-$note-border-radius: 4px !default;
+    --state-info-text: #31708f;
 
-// text states
-$text-color: $gray-dark !default;
-$text-muted: $gray-light !default;
+    --state-info-bg-hue: 200deg;
+    --state-info-bg-saturation: 65.22%;
+    --state-info-bg-lightness: 90.98%;
+    --state-info-bg: hsl(
+        var(--state-info-bg-hue),
+        var(--state-info-bg-saturation),
+        var(--state-info-bg-lightness)
+    );
+    --state-info-border: hsl(
+        calc(var(--state-info-bg-hue) - 10deg),
+        var(--state-info-bg-saturation),
+        calc(var(--state-info-bg-lightness) - 7%)
+    );
 
-$state-success-text: #3c763d !default;
-$state-success-bg: #dff0d8 !default;
-$state-success-border: darken(adjust-hue($state-success-bg, -10), 5%) !default;
+    --state-warning-text: #8a6d3b;
 
-$state-info-text: #31708f !default;
-$state-info-bg: #d9edf7 !default;
-$state-info-border: darken(adjust-hue($state-info-bg, -10), 7%) !default;
+    --state-warning-bg-hue: 50.4deg;
+    --state-warning-bg-saturation: 80.65%;
+    --state-warning-bg-lightness: 93.92%;
+    --state-warning-bg: hsl(
+        var(--state-warning-bg-hue),
+        var(--state-warning-bg-saturation),
+        var(--state-warning-bg-lightness)
+    );
+    --state-warning-border: hsl(
+        calc(var(--state-warning-bg-hue) - 10deg),
+        var(--state-warning-bg-saturation),
+        calc(var(--state-warning-bg-lightness) - 5%)
+    );
 
-$state-warning-text: #8a6d3b !default;
-$state-warning-bg: #fcf8e3 !default;
-$state-warning-border: darken(adjust-hue($state-warning-bg, -10), 5%) !default;
+    --state-danger-text: #a94442;
+    --state-dangerest-text: #e00e0e;
 
-$state-danger-text: #a94442 !default;
-$state-dangerest-text: #e00e0e !default;
+    // #B94A48
+    --state-danger-bg-hue: 0deg;
+    --state-danger-bg-saturation: 43.48%;
+    --state-danger-bg-lightness: 90.98%;
+    --state-danger-bg: hsl(
+        var(--state-danger-bg-hue),
+        var(--state-danger-bg-saturation),
+        var(--state-danger-bg-lightness)
+    );
+    --state-danger-border: hsl(
+        calc(var(--state-danger-bg-hue) - 10deg),
+        var(--state-danger-bg-saturation),
+        calc(var(--state-danger-bg-lightness) - 5%)
+    );
 
-// #B94A48
-$state-danger-bg: #f2dede !default;
-$state-danger-border: darken(adjust-hue($state-danger-bg, -10), 5%) !default;
+    //#EED3D7;
 
-//#EED3D7;
-
-$golden-ratio: 1.61803;
+    --golden-ratio: 1.61803;
+}
