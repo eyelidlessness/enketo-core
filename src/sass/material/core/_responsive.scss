@@ -1,8 +1,37 @@
-@use '../mixins';
+:root {
+    --form-padding: var(--layout-form-padding, 0px);
+}
 
-@media screen and (max-width: var(--main-breakpoint)) {
-    $form-padding: 45px;
-    $form-header-padding: 16px;
+.form-footer {
+    --form-footer-margin: var(--form-padding);
+
+    margin: var(--form-footer-margin) calc(var(--form-footer-margin) * -1)
+        calc(var(--form-footer-margin) * -1)
+        calc(var(--form-footer-margin) * -1);
+}
+
+/*
+ * Previously this was configurable with a Sass variable. CSS variables do not
+ * work in media queries, because they're hierarchically above any selector
+ * which could define them.
+ */
+@media screen and (max-width: 720px) {
+    .main .paper {
+        padding: 0 var(--form-padding) var(--form-padding) var(--form-padding);
+    }
+
+    .form-header {
+        --form-header-margin: var(--form-padding);
+
+        margin-left: calc(var(--form-header-margin) * -1);
+        margin-right: calc(var(--form-header-margin) * -1);
+        width: calc(100% + (2 * var(--form-header-margin)));
+    }
+
+    :root {
+        --form-padding: 45px;
+        --form-header-padding: 16px;
+    }
 
     body {
         padding: 0 !important;
@@ -31,11 +60,9 @@
         border-bottom: 1px solid var(--groupline);
         min-height: 0;
 
-        @include mixins.form-header-margin($form-padding);
-
         .form-language-selector {
-            padding-top: $form-header-padding;
-            padding-bottom: $form-header-padding;
+            padding-top: var(--form-header-padding);
+            padding-bottom: var(--form-header-padding);
 
             span {
                 display: none;
@@ -49,7 +76,9 @@
 }
 
 @media screen and (max-width: 600px) {
-    $form-padding: 30px;
+    :root {
+        --form-padding: 30px;
+    }
 
     body {
         line-height: calc(1.05 * var(--line-height-base));
@@ -62,24 +91,12 @@
     .touch .question.simple-select .option-wrapper > label {
         padding: 10px 5px;
     }
-
-    .main {
-        .paper {
-            padding: 0 $form-padding $form-padding $form-padding;
-        }
-    }
-
-    .form-header {
-        @include mixins.form-header-margin($form-padding);
-    }
-
-    .form-footer {
-        @include mixins.form-footer-margin($form-padding);
-    }
 }
 
 @media screen and (max-width: 400px) {
-    $form-padding: 20px;
+    :root {
+        --form-padding: 20px;
+    }
 
     body {
         line-height: calc(1.09 * var(--line-height-base));
@@ -108,21 +125,9 @@
         margin-left: 15px;
     }
 
-    .main {
-        .paper {
-            padding: 0 $form-padding $form-padding $form-padding;
-        }
-    }
-
     .form-header {
-        @include mixins.form-header-margin($form-padding);
-
         .form-language-selector {
             border-right: none;
         }
-    }
-
-    .form-footer {
-        @include mixins.form-footer-margin($form-padding);
     }
 }

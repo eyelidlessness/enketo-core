@@ -1,6 +1,6 @@
-@use '../mixins';
-
-$media-margin: 10px;
+:root {
+    --main-media-margin: 10px;
+}
 
 /** hide stuff **/
 
@@ -72,8 +72,6 @@ $media-margin: 10px;
 /** hints **/
 
 .or-hint.active {
-    @include mixins.font-normal;
-
     color: #888888;
     display: block;
     line-height: 16px;
@@ -283,7 +281,7 @@ $media-margin: 10px;
     > img,
     > video,
     > audio {
-        margin: $media-margin auto $media-margin;
+        margin: var(--main-media-margin) auto var(--main-media-margin);
     }
 }
 
@@ -330,18 +328,16 @@ legend {
 //works in safari, some other webkit browsers
 .option-wrapper {
     // this flexiness is required for appearance="random"
-    @include mixins.display-flex;
-
-    @include mixins.flex-direction(column);
+    display: flex;
+    flex-direction: column;
 
     > label {
-        @include mixins.font-normal;
-
         display: block;
         margin: 0;
         cursor: pointer;
         padding: 4px;
         margin: 0 8px 1px 10px; // TODO: remove hover rule for tables (in likert already done)
+        font-weight: normal;
 
         &:hover:not(.filler) {
             background-color: var(--brand-secondary-color);
@@ -369,7 +365,8 @@ legend {
     video,
     audio {
         float: right;
-        margin: $media-margin 0 $media-margin $media-margin;
+        margin: var(--main-media-margin) 0 var(--main-media-margin)
+            var(--main-media-margin);
     }
 }
 
@@ -383,7 +380,8 @@ legend {
         video,
         audio {
             float: left;
-            margin: $media-margin $media-margin $media-margin 0;
+            margin: var(--main-media-margin) var(--main-media-margin)
+                var(--main-media-margin) 0;
         }
     }
 }
@@ -587,11 +585,22 @@ legend .required {
     opacity: 0.6;
 }
 
+.core-feedback-invalid,
 .invalid-constraint,
 .invalid-value,
 .invalid-required,
 .invalid-relevant {
-    @include mixins.question-invalid;
+    --invalid-pad: 10px;
+
+    transition: all var(--transition-fast-duration) ease-out;
+    background-color: var(--state-danger-bg);
+    border-color: var(--state-danger-border);
+    border-radius: var(--border-radius-small);
+    margin-right: calc(var(--invalid-pad) * -1);
+    margin-left: calc(var(--invalid-pad) * -1);
+    padding-left: var(--invalid-pad);
+    padding-right: var(--invalid-pad);
+    padding-bottom: var(--invalid-pad);
 }
 
 .invalid-value .invalid-value-msg.active,
@@ -601,11 +610,16 @@ legend .required {
     display: block;
 }
 
+.core-feedback-warning-message,
+.core-feedback-error-message,
 .or-required-msg.active,
 .or-constraint-msg.active,
 .or-relevant-msg.active,
 .invalid-value-msg.active {
-    @include mixins.question-error-message;
+    font-weight: bold;
+    padding-top: 5px;
+    font-size: 0.85em;
+    color: var(--feedback-color, var(--state-danger-text));
 }
 
 // this may have a very significant positive impact on performance

@@ -246,7 +246,7 @@ class DrawWidget extends Widget {
                       : ''
               } accept="${
                   this.props.accept
-              }"/><div class="widget file-picker"><input class="ignore fake-file-input"/><div class="file-feedback"></div></div>`
+              }"/><div class="widget file-picker"><input class="ignore fake-file-input base-form-control"/><div class="file-feedback"></div></div>`
             : '';
         const fullscreenBtns = this.props.touch
             ? '<button type="button" class="show-canvas-btn btn btn-default">Draw/Sign</button>' +
@@ -257,7 +257,7 @@ class DrawWidget extends Widget {
                 <div class="draw-widget__body">
                     ${fullscreenBtns}
                     ${load}
-                    <canvas class="draw-widget__body__canvas noSwipe disabled" tabindex="0"></canvas>
+                    <canvas class="base-form-control draw-widget__body__canvas noSwipe disabled" tabindex="0"></canvas>
                     <div class="draw-widget__colorpicker"></div>
                     ${
                         this.props.type === 'signature'
@@ -266,7 +266,7 @@ class DrawWidget extends Widget {
                     }
                 </div>
                 <div class="draw-widget__footer">
-                    <div class="draw-widget__feedback"></div>
+                    <div class="draw-widget__feedback core-feedback-error-message"></div>
                 </div>
             </div>`
         );

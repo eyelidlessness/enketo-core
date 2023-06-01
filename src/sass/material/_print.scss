@@ -1,5 +1,3 @@
-@use './mixins';
-
 .question {
     input {
         &[type='radio'],
@@ -14,14 +12,12 @@
             }
         }
 
-        &[type='checkbox']:checked {
-            @include mixins.checkbox-checked-style(black, transparent);
-
-            background-position: -1px;
+        &[type='checkbox']:checked::after {
+            display: none;
         }
 
         &[type='radio']:checked {
-            @include mixins.radio-checked-style(black);
+            --radiocheck-checked-color: black;
         }
     }
 }

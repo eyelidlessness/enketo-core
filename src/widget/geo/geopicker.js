@@ -41,7 +41,7 @@ let searchSource =
 const googleApiKey = config.googleApiKey || config.google_api_key;
 const iconSingle = L.divIcon({
     iconSize: [16, 24],
-    className: 'enketo-geopoint-marker',
+    className: 'icon-marker icon enketo-geopoint-marker',
 });
 const iconMulti = L.divIcon({
     iconSize: [16, 16],
@@ -361,7 +361,9 @@ class Geopicker extends Widget {
     _addPointBtn() {
         this.$points
             .find('.addpoint')
-            .before('<a href="#" class="point" aria-label="point"> </a>');
+            .before(
+                '<a href="#" class="enketo-geopoint-circle-marker point" aria-label="point"> </a>'
+            );
     }
 
     /**
@@ -609,9 +611,9 @@ class Geopicker extends Widget {
         this.currentIndex = index;
         this.$points
             .find('.point')
-            .removeClass('active')
+            .removeClass('enketo-geopoint-circle-marker-active active')
             .eq(index)
-            .addClass('active');
+            .addClass('enketo-geopoint-circle-marker-active active');
         this._updateInputs(this.points[index], '');
         // make sure that the current marker is marked as active
         if (this.map && (!this.props.touch || this._inFullScreenMode())) {

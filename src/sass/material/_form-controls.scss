@@ -1,5 +1,3 @@
-@use './mixins';
-
 input[type='text'],
 .print-input-text,
 input[type='tel'],
@@ -14,8 +12,67 @@ input[type='datetime-local'],
 input[type='number'],
 input.number-input,
 select,
-textarea {
-    @include mixins.form-control;
+textarea,
+.base-form-control {
+    display: block;
+
+    height: var(--input-height);
+
+    // Make inputs at least the height of their button counterpart (base line-height + padding + border)
+    padding: var(--padding-base-vertical) var(--padding-base-horizontal);
+
+    font-family: var(--font-family-base);
+    font-weight: var(--font-weight-base);
+    font-style: var(--font-style-base);
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-base);
+    color: var(--input-color);
+    background-color: var(--input-bg);
+    background-image: none;
+
+    // Reset unusual Firefox-on-Android default style; see https://github.com/necolas/normalize.css/issues/214
+    border: 1px solid var(--input-border-color, var(--input-border));
+    border-radius: var(--input-border-radius);
+
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+
+    transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+
+    // Customize the `:focus` state to imitate native WebKit styles.
+    &:focus {
+        border-color: var(--input-border-focus);
+        outline: 0;
+
+        box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075),
+            0 0 8px var(--input-border-focus-shadow);
+    }
+
+    // Placeholder
+    &::-moz-placeholder {
+        // Firefox
+        color: var(--input-color-placeholder);
+        opacity: 1;
+    }
+
+    // Safari and Chrome
+    &::-webkit-input-placeholder {
+        color: var(--input-color-placeholder);
+    }
+
+    // Disabled and read-only inputs
+    //
+    // HTML5 says that controls under a fieldset > legend:first-child won't be
+    // disabled if the fieldset is disabled. Due to implementation difficulty, we
+    // don't honor that edge case; we style them as disabled anyway
+    &[disabled],
+    &[readonly],
+    fieldset[disabled] & {
+        cursor: not-allowed;
+        background-color: var(--input-bg-disabled);
+        opacity: 1;
+
+        // iOS fix for unreadable disabled content
+    }
 }
 
 // fix readonly inputs inside widgets that are not actually 'readonly'
@@ -77,7 +134,7 @@ fieldset {
 
 // Override content-box in Normalize (* isn't specific enough)
 input[type='search'] {
-    @include mixins.box-sizing(border-box);
+    box-sizing: border-box;
 }
 
 // Position radios and checkboxes better
@@ -105,13 +162,6 @@ input[type='range'] {
 select[multiple],
 select[size] {
     height: auto;
-}
-
-// Focus for file, radio, and checkbox
-input[type='file']:focus,
-input[type='radio']:focus,
-input[type='checkbox']:focus {
-    @include mixins.tab-focus;
 }
 
 // Search inputs in iOS

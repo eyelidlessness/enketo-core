@@ -1,44 +1,38 @@
-@use '../mixins';
-
-$form-padding: 45px;
+:root {
+    --layout-form-padding: 45px;
+}
 
 html {
     height: 100%;
 }
 
 body {
-    @include mixins.display-flex;
-
-    @include mixins.flex-direction(column);
-
-    @include mixins.flex-wrap(nowrap);
-
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
     position: relative;
     min-height: 100%;
 }
 
 .paper {
-    @include mixins.paper-border;
+    border-radius: 7px;
+    border: 7px solid #ddd;
     background-color: #fff;
     position: relative;
     min-height: 100%;
 }
 
 .or {
-    @include mixins.flex(1);
+    flex: 1;
 
     margin-bottom: 20px;
 }
 
 .main {
-    @include mixins.flex(1);
-
-    @include mixins.display-flex;
-
-    @include mixins.flex-direction(column);
-
-    @include mixins.flex-wrap(nowrap);
-
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
     margin: 0 auto;
     padding: 100px 0 70px 0;
     position: relative;
@@ -47,21 +41,17 @@ body {
 }
 
 .paper {
-    @include mixins.flex(1);
-
-    @include mixins.display-flex;
-
-    @include mixins.flex-direction(column);
-
-    @include mixins.flex-wrap(nowrap);
-
-    padding: $form-padding;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    padding: var(--layout-form-padding);
     position: relative;
     min-height: 100%;
 }
 
 .form-header {
-    @include mixins.border-box;
+    box-sizing: border-box;
 
     display: flex;
     flex-direction: row;
@@ -96,10 +86,6 @@ body {
 
 [dir='rtl'] #form-languages {
     margin: 0 16px 0 0;
-}
-
-.form-footer {
-    @include mixins.form-footer-margin($form-padding);
 }
 
 .enketo-power {

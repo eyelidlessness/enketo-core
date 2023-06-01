@@ -1,6 +1,9 @@
 :root {
     // fonts
+    --font-family-base: 'OpenSans', Arial, sans-serif;
     --font-size-base: 16px;
+    --font-weight-base: normal;
+    --font-style-base: normal;
 
     // line-heights
     --line-height-base: 1.42857;
@@ -22,13 +25,13 @@
 
     // colors, icons
     --gray-darker: #222222;
-    --gray-dark-hue: 0;
-    --gray-dark-saturation: 0;
+    --gray-dark-hue: 0deg;
+    --gray-dark-saturation: 0%;
     --gray-dark-lightness: 20%;
     --gray-dark: hsl(
-        --gray-dark-hue,
-        --gray-dark-saturation,
-        --gray-dark-lightness
+        var(--gray-dark-hue),
+        var(--gray-dark-saturation),
+        var(--gray-dark-lightness)
     );
     --gray: #555555;
     --gray-light: #999999;
@@ -36,8 +39,8 @@
 
     --body-bg: white;
 
-    --brand-primary-color-hue: 0;
-    --brand-primary-color-saturation: 0;
+    --brand-primary-color-hue: 0deg;
+    --brand-primary-color-saturation: 0%;
     --brand-primary-color-lightness: 14.51%;
     --brand-primary-color: hsl(
         var(--brand-primary-color-hue),
@@ -89,24 +92,26 @@
 
     // layout
     --max-content-width: 720px;
-    --main-breakpoint: var(--max-content-width);
 
     // buttons
     --btn-default-color: #333333;
-    --btn-default-bg: white;
-    --btn-default-border: #cccccc;
+
+    --btn-default-bg-hue: 0deg;
+    --btn-default-bg-saturation: 0%;
+    --btn-default-bg-lightness: 100%;
+
+    --btn-default-border-hue: 0deg;
+    --btn-default-border-saturation: 0%;
+    --btn-default-border-lightness: 80%;
 
     --btn-primary-color: white;
-    --btn-primary-bg: hsl(
-        var(--brand-primary-color-hue),
-        var(--brand-primary-color-saturation),
-        var(--brand-primary-color-lightness)
-    );
-    --btn-primary-border: hsl(
-        var(--brand-primary-color-hue),
-        var(--brand-primary-color-saturation),
-        calc(var(--brand-primary-color-lightness) - 5%)
-    );
+
+    --btn-primary-bg-hue: var(--brand-primary-color-hue);
+    --btn-primary-bg-saturation: var(--brand-primary-color-saturation);
+    --btn-primary-bg-lightness: var(--brand-primary-color-lightness);
+    --btn-primary-border-hue: var(--brand-primary-color-hue);
+    --btn-primary-border-saturation: var(--brand-primary-color-saturation);
+    --btn-primary-border-lightness: var(--brand-primary-color-lightness);
 
     // borders and lines
     --groupline: #bbbbbb;
@@ -190,4 +195,7 @@
     //#EED3D7;
 
     --golden-ratio: 1.61803;
+
+    // Animation
+    --transition-fast-duration: 0.6s;
 }

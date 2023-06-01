@@ -152,7 +152,7 @@ class ImageMap extends Widget {
         console.error(err);
         const fragment = document.createRange().createContextualFragment(
             `<div class="widget image-map">
-                <div class="image-map__error" data-i18n="imagemap.svgNotFound">${t(
+                <div class="core-feedback-error-message image-map__error" data-i18n="imagemap.svgNotFound">${t(
                     'imagemap.svgNotFound'
                 )}</div>
             </div>`

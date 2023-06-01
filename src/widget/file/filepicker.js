@@ -37,7 +37,7 @@ class Filepicker extends Widget {
 
         const fragment = document.createRange().createContextualFragment(
             `<div class="widget file-picker">
-                    <input class="ignore fake-file-input"/>
+                    <input class="ignore fake-file-input base-form-control"/>
                     <div class="file-feedback"></div>
                     <div class="file-preview"></div>
                 </div>`
@@ -67,7 +67,7 @@ class Filepicker extends Widget {
         if (fileManager.isWaitingForPermissions()) {
             this._showFeedback(
                 t('filepicker.waitingForPermissions'),
-                'warning'
+                'core-feedback-warning-message warning'
             );
         }
 
@@ -107,7 +107,7 @@ class Filepicker extends Widget {
                 }
             })
             .catch((error) => {
-                that._showFeedback(error, 'error');
+                that._showFeedback(error, 'core-feedback-error-message error');
             });
     }
 
@@ -229,7 +229,10 @@ class Filepicker extends Widget {
                                 // Update UI
                                 that._showFileName('');
                                 that._showPreview(null);
-                                that._showFeedback(error, 'error');
+                                that._showFeedback(
+                                    error,
+                                    'core-feedback-error-message error'
+                                );
                                 that._updateDownloadLink('', '');
                             });
                     });

@@ -1,8 +1,8 @@
 /** CORE **/
 
-@use '../mixins';
-
-$printBaseFontSize: 12px;
+:root {
+    --print-base-font-size: 12px;
+}
 
 * {
     float: none;
@@ -81,45 +81,44 @@ h4::before {
         appearance: textfield !important;
         -moz-appearance: textfield !important;
         -webkit-appearance: textfield !important;
-        -ms-appearance: textfield !important;
     }
 }
 
 // font sizes  & line heights
 h3 {
-    font-size: 2 * $printBaseFontSize;
+    font-size: calc(2 * var(--print-base-font-size));
 }
 
 h4,
 h4 > .question-label {
-    font-size: 1.5 * $printBaseFontSize;
+    font-size: calc(1.5 * var(--print-base-font-size));
 }
 
 label,
 legend,
 .trigger,
 .readonly {
-    font-size: $printBaseFontSize;
+    font-size: var(--print-base-font-size);
 }
 
 .question-label,
 .option-label,
 label.geo {
-    font-size: $printBaseFontSize;
+    font-size: var(--print-base-font-size);
 }
 
 .question input:not([type='radio']):not([type='checkbox']) {
-    font-size: $printBaseFontSize;
+    font-size: var(--print-base-font-size);
 }
 
 // We can not rely on cross-browser printing of CSS background images
 // so to be sure that a box is correctly shown to be "checked", we use the default appearance.
 input[type='radio'] {
-    @include mixins.appearance(radio !important);
+    appearance: radio !important;
 }
 
 input[type='checkbox'] {
-    @include mixins.appearance(checkbox !important);
+    appearance: checkbox !important;
 }
 
 .or {
@@ -185,9 +184,7 @@ input[type='checkbox'] {
     textarea {
         border-radius: 0px;
         box-shadow: none;
-
-        @include mixins.appearance-none;
-
+        appearance: none;
         border: none;
         background: none;
         border-bottom: 1px solid black;
@@ -275,17 +272,15 @@ input[type='checkbox'] {
 }
 
 .bootstrap-select {
-    @include mixins.clearfix;
-
     .dropdown-toggle {
         display: none;
 
         ~ .dropdown-menu {
-            @include mixins.display-flex;
+            display: flex;
 
-            @include mixins.flex-wrap(wrap);
+            flex-wrap: wrap;
 
-            @include mixins.flex-direction(row);
+            flex-direction: row;
 
             display: block;
             position: static;
@@ -414,10 +409,6 @@ h4 {
         }
 
         &::-moz-range-thumb {
-            border-color: black !important;
-        }
-
-        &::-ms-thumb {
             border-color: black !important;
         }
     }

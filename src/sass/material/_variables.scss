@@ -20,5 +20,5 @@
     --note-border-radius: 0;
     --input-border-focus-rgb: 102 175 233;
     --input-border-focus: rgb(var(--input-border-focus-rgb));
-    --input-border-focus-shadow: rgba(var(--input-border-focus-rgb), 0.6);
+    --input-border-focus-shadow: rgba(var(--input-border-focus-rgb) / 0.6);
 }

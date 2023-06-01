@@ -1,5 +1,3 @@
-@use '../mixins';
-
 //
 // Utility classes
 // --------------------------------------------------
@@ -8,11 +6,21 @@
 // -------------------------
 
 .clearfix {
-    @include mixins.clearfix;
+    &:before,
+    &:after {
+        content: ' '; // 1
+        display: table; // 2
+    }
+
+    &:after {
+        clear: both;
+    }
 }
 
 .center-block {
-    @include mixins.center-block;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .pull-right {
@@ -40,7 +48,11 @@
 }
 
 .text-hide {
-    @include mixins.text-hide;
+    font: #{0 / 0} a;
+    color: transparent;
+    text-shadow: none;
+    background-color: transparent;
+    border: 0;
 }
 
 // Hide from screenreaders and browsers

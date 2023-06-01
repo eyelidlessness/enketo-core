@@ -12,48 +12,45 @@
 
 // Bootstrap Table stuff
 
-$table-cell-padding: 8px !default;
+:root {
+    --bootstrap-table-cell-padding: 8px;
 
-//** Padding for cells in `.table-condensed`.
-$table-condensed-cell-padding: 5px !default;
+    //** Padding for cells in `.table-condensed`.
+    --bootstrap-table-condensed-cell-padding: 5px;
 
-//** Default background color used for all tables.
-$table-bg: transparent !default;
+    //** Default background color used for all tables.
+    --bootstrap-table-bg: transparent;
 
-//** Background color used for `.table-striped`.
-$table-bg-accent: #f9f9f9 !default;
+    //** Background color used for `.table-striped`.
+    --bootstrap-table-bg-accent: #f9f9f9;
 
-//** Background color used for `.table-hover`.
-$table-bg-hover: whitesmoke !default;
-$table-bg-active: $table-bg-hover !default;
+    //** Background color used for `.table-hover`.
+    --bootstrap-table-bg-hover-hue: 0deg;
+    --bootstrap-table-bg-hover-saturation: 0%;
+    --bootstrap-table-bg-hover-lightness: 96%;
 
-//** Border color for table and cell borders.
-$table-border-color: #dddddd !default;
+    --bootstrap-table-bg-hover: hsl(
+        var(--bootstrap-table-bg-hover-hue),
+        var(--bootstrap-table-bg-hover-saturation),
+        var(--bootstrap-table-bg-hover-lightness)
+    );
 
-@mixin table-row-variant($state, $background) {
-    // Exact selectors below required to override `.table-striped` and prevent
-    // inheritance to nested tables.
-    .table > thead > tr,
-    .table > tbody > tr,
-    .table > tfoot > tr {
-        > td.#{$state},
-        > th.#{$state},
-        &.#{$state} > td,
-        &.#{$state} > th {
-            background-color: $background;
-        }
-    }
+    --bootstrap-table-bg-active-hue: var(--bootstrap-table-bg-hover-hue);
+    --bootstrap-table-bg-active-saturation: var(
+        --bootstrap-table-bg-hover-saturation
+    );
+    --bootstrap-table-bg-active-lightness: var(
+        --bootstrap-table-bg-hover-lightness
+    );
 
-    // Hover states for `.table-hover`
-    // Note: this is not available for cells or rows within `thead` or `tfoot`.
-    .table-hover > tbody > tr {
-        > td.#{$state}:hover,
-        > th.#{$state}:hover,
-        &.#{$state}:hover > td,
-        &.#{$state}:hover > th {
-            background-color: darken($background, 5%);
-        }
-    }
+    --bootstrap-table-bg-active: hsl(
+        var(--bootstrap-table-bg-active-hue),
+        var(--bootstrap-table-bg-active-saturation),
+        var(--bootstrap-table-bg-active-lightness)
+    );
+
+    //** Border color for table and cell borders.
+    --bootstrap-table-border-color: #dddddd;
 }
 
 //
@@ -62,7 +59,7 @@ $table-border-color: #dddddd !default;
 
 table {
     max-width: 100%;
-    background-color: $table-bg;
+    background-color: var(--bootstrap-table-bg);
 }
 
 th {
@@ -76,7 +73,7 @@ th {
         > tr {
             > th,
             > td {
-                padding: $table-condensed-cell-padding;
+                padding: var(--bootstrap-table-condensed-cell-padding);
             }
         }
     }
@@ -90,7 +87,7 @@ th {
     > tbody > tr:hover {
         > td,
         > th {
-            background-color: $table-bg-hover;
+            background-color: var(--bootstrap-table-bg-hover);
         }
     }
 }
@@ -121,4 +118,30 @@ table {
 }
 
 // Generate the contextual variants
-@include table-row-variant('active', $table-bg-active);
+// Exact selectors below required to override `.table-striped` and prevent
+// inheritance to nested tables.
+.table > thead > tr,
+.table > tbody > tr,
+.table > tfoot > tr {
+    > td.active,
+    > th.active,
+    &.active > td,
+    &.active > th {
+        background-color: var(--bootstrap-table-bg-active);
+    }
+}
+
+// Hover states for `.table-hover`
+// Note: this is not available for cells or rows within `thead` or `tfoot`.
+.table-hover > tbody > tr {
+    > td.active:hover,
+    > th.active:hover,
+    &.active:hover > td,
+    &.active:hover > th {
+        background-color: hsl(
+            var(--bootstrap-table-bg-active-hue),
+            var(--bootstrap-table-bg-active-saturation),
+            calc(var(--bootstrap-table-bg-active-lightness) - 5%)
+        );
+    }
+}

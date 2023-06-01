@@ -1,8 +1,5 @@
-@use '../mixins';
-
 .file-picker {
     .fake-file-input {
-        @include mixins.form-control;
         display: inline-block;
         width: var(--input-max-width);
         text-align: start;
@@ -10,17 +7,12 @@
 
     .file-feedback,
     .file-preview {
-        @include mixins.font-normal;
+        font: revert;
     }
 
-    .file-feedback.error {
-        @include mixins.question-error-message;
-    }
-
+    .file-feedback.error,
     .file-feedback.warning {
-        @include mixins.question-error-message;
-
-        color: var(--state-warning-text);
+        --feedback-color: var(--state-warning-text);
     }
 
     .file-preview {

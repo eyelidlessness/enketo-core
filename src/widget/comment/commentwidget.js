@@ -37,7 +37,7 @@ class Comment extends Widget {
             const fragment = document
                 .createRange()
                 .createContextualFragment(
-                    '<a class="btn-icon-only btn-comment aria-label="comment" type="button" href="#"><i class="icon"> </i></a>'
+                    '<a class="btn-icon-only btn-comment icon-sticky-note aria-label="comment" type="button" href="#"><i class="icon"> </i></a>'
                 );
             const labels =
                 this.linkedQuestion.querySelectorAll('.question-label');

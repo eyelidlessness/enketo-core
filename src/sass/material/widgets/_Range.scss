@@ -1,42 +1,37 @@
-@use '../mixins';
-
 // Many thanks to https://css-tricks.com/sliding-nightmare-understanding-range-input/
-$track-w: 100%;
-$track-h: 1px;
-$thumb-d: 20px;
-$margin: 10px;
-$height: 200px;
-$track-color: var(--gray-dark);
-$thick-w: 1px;
-$pad: 10px;
-$left: -85px;
+:root {
+    --range-track-w: 100%;
+    --range-track-h: 1px;
+    --range-thumb-d: 20px;
+    --range-margin: 10px;
+    --range-height: 200px;
+    --range-thumb-color: var(--brand-primary-color);
+    --range-tick-color: var(--gray-dark);
+    --range-track-color: var(--range-tick-color);
+    --range-thick-w: 1px;
+    --range-pad: 10px;
+    --range-left: -85px;
+}
 
-@mixin track($color: $track-color, $height: $track-h) {
+.range-widget__ticks {
+    position: relative;
+}
+
+.range-widget__ticks::before {
+    --range-ticks-track-start: 0;
+    --range-ticks-track-center: 50%;
+
+    content: '';
+    display: block;
+    position: absolute;
+    top: var(--range-ticks-track-center);
+    left: var(--range-ticks-track-start);
+    width: var(--range-track-w);
+    height: var(--range-track-h);
     box-sizing: border-box;
     border: none;
-    width: $track-w;
-    height: $height;
-    background: $color;
-    border-radius: 0.5 * $height;
-}
-
-@mixin thumb($color: var(--brand-primary-color)) {
-    box-sizing: border-box;
-    border: 1px solid $color;
-    width: $thumb-d;
-    height: $thumb-d;
-    border-radius: 50%;
-    background: $color;
-    cursor: pointer;
-}
-
-@mixin thumb-focus() {
-    @include mixins.focus-shadow;
-}
-
-@mixin thumb-empty() {
-    background: transparent;
-    border-color: transparent;
+    background: var(--range-track-color);
+    pointer-events: none;
 }
 
 [type='range'] {
@@ -45,69 +40,58 @@ $left: -85px;
         -webkit-appearance: none;
     }
 
-    padding: 0.25 * $margin;
-    width: $track-w;
+    padding: calc(0.25 * var(--range-margin));
+    width: var(--range-track-w);
     background: transparent;
     font: 1em/1 arial, sans-serif;
     z-index: 10;
 
-    &::-webkit-slider-runnable-track {
-        @include track;
-    }
-
-    &::-moz-range-track {
-        @include track;
-    }
-
-    &::-ms-track {
-        @include track;
-    }
-
     &::-webkit-slider-thumb {
-        margin-top: 0.5 * ($track-h - $thumb-d);
-        @include thumb;
+        box-sizing: border-box;
+        border: 1px solid var(--range-thumb-color);
+        width: var(--range-thumb-d);
+        height: var(--range-thumb-d);
+        border-radius: 50%;
+        background: var(--range-thumb-color);
+        cursor: pointer;
     }
 
     &::-moz-range-thumb {
-        @include thumb;
-    }
-
-    &::-ms-thumb {
-        margin-top: 0;
-        @include thumb;
-    }
-
-    &::-ms-tooltip {
-        display: none;
+        box-sizing: border-box;
+        border: 1px solid var(--range-thumb-color);
+        width: var(--range-thumb-d);
+        height: var(--range-thumb-d);
+        border-radius: 50%;
+        background: var(--range-thumb-color);
+        cursor: pointer;
     }
 
     &:focus {
         outline: 0;
 
+        --thumb-focus-box-shadow: 0 0 0 1px var(--input-border-focus),
+            0 0 8px var(--input-border-focus-shadow);
+
         &::-webkit-slider-thumb {
-            @include thumb-focus;
+            outline: 0;
+            box-shadow: var(--thumb-focus-box-shadow);
         }
 
         &::-moz-range-thumb {
-            @include thumb-focus;
-        }
-
-        &::-ms-thumb {
-            @include thumb-focus;
+            outline: 0;
+            box-shadow: var(--thumb-focus-box-shadow);
         }
     }
 
     &.empty {
         &::-webkit-slider-thumb {
-            @include thumb-empty;
+            background: transparent;
+            border-color: transparent;
         }
 
         &::-moz-range-thumb {
-            @include thumb-empty;
-        }
-
-        &::-ms-thumb {
-            @include thumb-empty;
+            background: transparent;
+            border-color: transparent;
         }
     }
 
@@ -119,10 +103,6 @@ $left: -85px;
         &::-moz-range-thumb {
             opacity: 0.7;
         }
-
-        &::-ms-thumb {
-            opacity: 0.7;
-        }
     }
 }
 
@@ -130,47 +110,51 @@ $left: -85px;
     position: relative;
 
     &__wrap {
-        width: $track-w;
-        height: $height;
+        width: var(--range-track-w);
+        height: var(--range-height);
         z-index: 0;
         text-align: center;
     }
 
     &__current {
-        padding-bottom: $pad;
+        padding-bottom: var(--range-pad);
         vertical-align: middle;
-        line-height: ($height - (3 * $track-h)) * 0.5;
-        min-height: 10px + ($height - (3 * $track-h)) * 0.5;
+        line-height: calc(
+            (var(--range-height) - (3 * var(--range-track-h))) * 0.5
+        );
+        min-height: calc(
+            10px + (var(--range-height) - (3 * var(--range-track-h))) * 0.5
+        );
     }
 
     &__ticks {
         height: 20px;
         box-sizing: border-box;
-        margin-left: 0.5 * $thumb-d + 2;
-        margin-right: 0.5 * $thumb-d + 2;
+        padding-left: calc(0.5 * var(--range-thumb-d) + 2px);
+        padding-right: calc(0.5 * var(--range-thumb-d) + 2px);
         display: flex;
         flex-direction: row;
         flex-wrap: nowrap;
 
         span {
             flex: 1;
-            border-left: $thick-w solid $track-color;
+            border-left: var(--range-thick-w) solid var(--range-tick-color);
 
             &:last-child {
-                border-right: $thick-w solid $track-color;
+                border-right: var(--range-thick-w) solid var(--range-tick-color);
             }
         }
     }
 
     &__scale {
         display: flex;
-        padding-top: $pad;
+        padding-top: var(--range-pad);
         justify-content: space-between;
 
         &__start,
         &__end,
         &__between {
-            width: 2 * $margin;
+            width: calc(2 * var(--range-margin));
             opacity: 0.7;
             font-weight: normal;
         }
@@ -187,17 +171,17 @@ $left: -85px;
     }
 }
 
-$v-height: 350px;
-
 .or-appearance-vertical,
 .or-appearance-distress {
+    --v-height: 350px;
+
     input[type='range'] {
         transform: rotate(-90deg);
-        width: $v-height;
-        margin: 0 $margin;
+        width: var(--v-height);
+        margin: 0 var(--range-margin);
         top: 158px;
-        left: $left;
-        right: $left;
+        left: var(--range-left);
+        right: var(--range-left);
     }
 
     .range-widget {
@@ -205,34 +189,35 @@ $v-height: 350px;
             display: flex;
             flex-wrap: nowrap;
             flex-direction: row;
-            height: $v-height;
-            width: $height;
+            height: var(--v-height);
+            width: var(--range-height);
             margin-top: 20px;
         }
 
         &__current {
             flex: 1;
-            padding-right: $pad;
+            padding-right: var(--range-pad);
             padding-bottom: 0;
-            line-height: $v-height;
+            line-height: var(--v-height);
         }
 
         &__ticks {
             width: 20px;
             height: auto;
             border-right: none;
-            margin-left: 0;
-            margin-right: 0;
-            margin-top: 0.5 * $thumb-d + 2;
-            margin-bottom: 0.5 * $thumb-d + 2;
+            padding-left: 0;
+            padding-right: 0;
+            padding-top: calc(0.5 * var(--range-thumb-d) + 2px);
+            padding-bottom: calc(0.5 * var(--range-thumb-d) + 2px);
             flex-direction: column;
 
             span {
-                border-top: $thick-w solid $track-color;
+                border-top: var(--range-thick-w) solid var(--range-tick-color);
                 border-left: none;
 
                 &:last-child {
-                    border-bottom: $thick-w solid $track-color;
+                    border-bottom: var(--range-thick-w) solid
+                        var(--range-tick-color);
                     border-right: none;
                 }
             }
@@ -241,7 +226,7 @@ $v-height: 350px;
         &__scale {
             flex: 1;
             padding-top: 0;
-            padding-left: $pad;
+            padding-left: var(--range-pad);
             flex-direction: column-reverse;
         }
     }
@@ -256,52 +241,49 @@ $v-height: 350px;
     }
 }
 
+.or-appearance-vertical .range-widget .range-widget__ticks::before {
+    --range-track-w: 1px;
+    --range-track-h: 100%;
+
+    top: var(--range-ticks-track-start);
+    left: var(--range-ticks-track-center);
+}
+
+.or-appearance-distress .range-widget .range-widget__ticks::before {
+    --range-track-w: 4px;
+    --range-track-h: calc(100% + 20px);
+
+    top: -10px;
+    left: calc(
+        100% + (var(--bulb-w) * 0.25) - calc(0.5 * var(--range-track-w))
+    );
+    border-radius: calc(0.5 * var(--range-track-w));
+    z-index: 1;
+}
+
 /* distress flavor of vertical range widget*/
 
-$border: 1px solid #aaaaaa;
-$bulb-w: 60px;
-$ds-thumb-color: #3a94a5;
-$ds-track-color: linear-gradient(to bottom, #f9f9f9 0%, whitesmoke 100%);
-$ds-track-h: 4px;
-$red: rgb(226, 4, 24);
-$yellow: rgb(253, 211, 3);
-$green: rgb(60, 182, 67);
-
 .or-appearance-distress {
-    $shift-top: 15px;
+    --border: 1px solid #aaaaaa;
+    --bulb-w: 60px;
+    --ds-thumb-color: #3a94a5;
+    --ds-track-h: 4px;
+    --red: rgb(226, 4, 24);
+    --yellow: rgb(253, 211, 3);
+    --green: rgb(60, 182, 67);
+    --shift-top: 15px;
+    --range-track-color: linear-gradient(
+        to bottom,
+        #f9f9f9 0%,
+        whitesmoke 100%
+    );
+    --range-track-h: var(--ds-track-h);
+    --range-thumb-color: var(--ds-thumb-color);
 
     input[type='range'] {
-        top: 158px + $shift-top;
-        left: $left - 42.5px;
-        right: $left - 42.5px;
-
-        &::-webkit-slider-runnable-track {
-            @include track($ds-track-color, $ds-track-h);
-        }
-
-        &::-moz-range-track {
-            @include track($ds-track-color, $ds-track-h);
-        }
-
-        &::-ms-track {
-            @include track($ds-track-color, $ds-track-h);
-        }
-
-        &:not(.empty) {
-            &::-webkit-slider-thumb {
-                // The reason for the 1.5px correction in Chrome/Safari is unknown.
-                margin-top: 1.5 + 0.5 * ($track-h - $thumb-d);
-                @include thumb($ds-thumb-color);
-            }
-
-            &::-moz-range-thumb {
-                @include thumb($ds-thumb-color);
-            }
-
-            &::-ms-thumb {
-                @include thumb($ds-thumb-color);
-            }
-        }
+        top: calc(158px + var(--shift-top));
+        left: calc(var(--range-left) - 42.5px);
+        right: calc(var(--range-left) - 42.5px);
     }
 
     .range-widget {
@@ -313,13 +295,13 @@ $green: rgb(60, 182, 67);
             width: 115px;
             flex-direction: row-reverse;
             flex-wrap: wrap;
-            padding-top: $shift-top;
-            height: $v-height + $bulb-w;
+            padding-top: var(--shift-top);
+            height: calc(var(--v-height) + var(--bulb-w));
         }
 
         &__current {
             visibility: hidden;
-            padding: 0 (5.5 + 0.5 * 1.5 * $ds-track-h);
+            padding: 0 calc(5.5px + 0.5 * 1.5 * var(--ds-track-h));
 
             &:empty:after {
                 display: block;
@@ -329,21 +311,22 @@ $green: rgb(60, 182, 67);
 
         &__ticks {
             width: 6px;
+            padding: 0;
+            margin: calc(0.5 * var(--range-thumb-d) + 2px) 0;
         }
 
         &__bg {
-            width: $bulb-w * 0.5;
-            border-radius: $bulb-w * 0.25;
-            border: $border;
+            width: calc(var(--bulb-w) * 0.5);
+            border-radius: calc(var(--bulb-w) * 0.25);
+            border: var(--border);
             border-bottom-left-radius: 0;
             border-bottom-right-radius: 0;
             border-bottom: none;
             margin-top: -15px;
-            @include mixins.gradient-vertical-three-colors(
-                $red,
-                $yellow,
-                50%,
-                $green
+            background-image: linear-gradient(
+                var(--red),
+                var(--yellow) 50%,
+                var(--green)
             );
             z-index: 1;
         }
@@ -356,31 +339,33 @@ $green: rgb(60, 182, 67);
         }
 
         &__bulb {
-            $inner-width: 24px;
-            width: $bulb-w;
-            height: $bulb-w;
-            border: $border;
-            border-radius: $bulb-w * 0.5;
+            width: var(--bulb-w);
+            height: var(--bulb-w);
+            border: var(--border);
+            border-radius: calc(var(--bulb-w) * 0.5);
             margin: -7px auto 10px auto;
-            background: $green;
+            background: var(--green);
             position: relative;
+            pointer-events: none;
 
             &__inner {
-                width: $inner-width;
-                height: $inner-width;
-                border-radius: $inner-width * 0.5;
-                background: $ds-thumb-color;
-                margin: ($bulb-w - $inner-width - 2px) * 0.5;
+                --inner-width: 24px;
+
+                width: var(--inner-width);
+                height: var(--inner-width);
+                border-radius: calc(var(--inner-width) * 0.5);
+                background: var(--ds-thumb-color);
+                margin: calc((var(--bulb-w) - var(--inner-width) - 2px) * 0.5);
             }
 
             &__mercury {
                 position: absolute;
-                left: calc(50% - #{$ds-track-h} / 2);
-                right: calc(50% - #{$ds-track-h} / 2);
-                bottom: $bulb-w * 0.5;
-                background: $ds-thumb-color;
-                min-height: ($bulb-w * 0.5) - 5px;
-                width: $ds-track-h;
+                left: calc(50% - var(--ds-track-h) / 2);
+                right: calc(50% - var(--ds-track-h) / 2);
+                bottom: calc(var(--bulb-w) * 0.5);
+                background: var(--ds-thumb-color);
+                min-height: calc((var(--bulb-w) * 0.5) - 5px);
+                width: var(--ds-track-h);
                 z-index: 100;
             }
         }

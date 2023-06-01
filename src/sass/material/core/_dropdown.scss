@@ -1,39 +1,29 @@
-@use '../mixins';
-
 // extracted from bootstrap dropdown.scss
 //
 //
 // Dropdown menus
 // --------------------------------------------------
-$caret-width-base: 4px !default;
-$zindex-dropdown: 1000 !default;
-$dropdown-divider-bg: #e5e5e5 !default;
-$dropdown-bg: white !default;
-$dropdown-border: rgba(0, 0, 0, 0.15) !default;
-$dropdown-link-color: var(--gray-dark);
-$dropdown-link-hover-color: hsl(
-    --gray-dark-hue,
-    --gray-dark-saturation,
-    calc(--gray-dark-lightness + 5%)
-);
-$dropdown-link-hover-bg: whitesmoke !default;
-$component-active-color: white !default;
-$component-active-bg: var(--brand-primary-color);
-$dropdown-link-active-bg: $component-active-bg !default;
-$dropdown-link-active-color: $component-active-color !default;
-$dropdown-link-active-bg: $component-active-bg !default;
-$dropdown-link-active-bg: $component-active-bg !default;
-$dropdown-link-disabled-color: var(--gray-light);
 
-@mixin nav-divider($color: #e5e5e5) {
-    height: 1px;
-    margin: calc(var(--line-height-computed) * 0.5 - 1) 0;
-    overflow: hidden;
-    background-color: $color;
-}
-
-@mixin reset-filter {
-    filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
+:root {
+    --dropdown-caret-width-base: 4px;
+    --dropdown-zindex: 1000;
+    --dropdown-divider-bg: #e5e5e5;
+    --dropdown-bg: white;
+    --dropdown-border: rgba(0, 0, 0, 0.15);
+    --dropdown-link-color: var(--gray-dark);
+    --dropdown-link-hover-color: hsl(
+        var(--gray-dark-hue),
+        var(--gray-dark-saturation),
+        calc(var(--gray-dark-lightness) + 5%)
+    );
+    --dropdown-link-hover-bg: whitesmoke;
+    --dropdown-component-active-color: white;
+    --dropdown-component-active-bg: var(--brand-primary-color);
+    --dropdown-link-active-bg: var(--dropdown-component-active-bg);
+    --dropdown-link-active-color: var(--dropdown-component-active-color);
+    --dropdown-link-active-bg: var(--dropdown-component-active-bg);
+    --dropdown-link-active-bg: var(--dropdown-component-active-bg);
+    --dropdown-link-disabled-color: var(--gray-light);
 }
 
 // Dropdown arrow/caret
@@ -43,9 +33,9 @@ $dropdown-link-disabled-color: var(--gray-light);
     height: 0;
     margin-left: 2px;
     vertical-align: middle;
-    border-top: $caret-width-base solid;
-    border-right: $caret-width-base solid transparent;
-    border-left: $caret-width-base solid transparent;
+    border-top: var(--dropdown-caret-width-base) solid;
+    border-right: var(--dropdown-caret-width-base) solid transparent;
+    border-left: var(--dropdown-caret-width-base) solid transparent;
 }
 
 // Prevent the focus on the dropdown toggle when closing dropdowns
@@ -58,7 +48,7 @@ $dropdown-link-disabled-color: var(--gray-light);
     position: absolute;
     top: 100%;
     left: 0;
-    z-index: $zindex-dropdown;
+    z-index: var(--dropdown-zindex);
     display: none;
     // none by default, but block on "open" of the menu
     float: left;
@@ -68,10 +58,10 @@ $dropdown-link-disabled-color: var(--gray-light);
     // override default ul
     list-style: none;
     font-size: var(--font-size-base);
-    background-color: $dropdown-bg;
-    border: 1px solid $dropdown-border;
+    background-color: var(--dropdown-bg);
+    border: 1px solid var(--dropdown-border);
     border-radius: var(--border-radius-base);
-    @include mixins.box-shadow(0 6px 12px rgba(0, 0, 0, 0.175));
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
     background-clip: padding-box;
     // Aligns the dropdown menu to right
     //
@@ -82,7 +72,10 @@ $dropdown-link-disabled-color: var(--gray-light);
     }
     // Dividers (basically an hr) within the dropdown
     .divider {
-        @include nav-divider($dropdown-divider-bg);
+        height: 1px;
+        margin: calc(var(--line-height-computed) * 0.5 - 1) 0;
+        overflow: hidden;
+        background-color: #e5e5e5;
     }
     // Links within the dropdown menu
     > li > a {
@@ -91,7 +84,7 @@ $dropdown-link-disabled-color: var(--gray-light);
         clear: both;
         font-weight: normal;
         line-height: var(--line-height-base);
-        color: $dropdown-link-color;
+        color: var(--dropdown-link-color);
         white-space: nowrap;
         // prevent links from randomly breaking onto new lines
     }
@@ -108,8 +101,8 @@ $dropdown-link-disabled-color: var(--gray-light);
     &:hover,
     &:focus {
         text-decoration: none;
-        color: $dropdown-link-hover-color;
-        background-color: $dropdown-link-hover-bg;
+        color: var(--dropdown-link-hover-color);
+        background-color: var(--dropdown-link-hover-bg);
     }
 }
 
@@ -118,10 +111,10 @@ $dropdown-link-disabled-color: var(--gray-light);
     &,
     &:hover,
     &:focus {
-        color: $dropdown-link-active-color;
+        color: var(--dropdown-link-active-color);
         text-decoration: none;
         outline: 0;
-        background-color: $dropdown-link-active-bg;
+        background-color: var(--dropdown-link-active-bg);
     }
 }
 
@@ -133,7 +126,7 @@ $dropdown-link-disabled-color: var(--gray-light);
     &,
     &:hover,
     &:focus {
-        color: $dropdown-link-disabled-color;
+        color: var(--dropdown-link-disabled-color);
     }
 }
 
@@ -144,8 +137,6 @@ $dropdown-link-disabled-color: var(--gray-light);
         text-decoration: none;
         background-color: transparent;
         background-image: none;
-        // Remove CSS gradient
-        @include reset-filter;
         cursor: not-allowed;
     }
 }

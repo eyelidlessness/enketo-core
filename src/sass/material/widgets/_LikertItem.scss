@@ -1,33 +1,14 @@
-@use '../mixins';
-
-@mixin likert-filler {
-    content: '';
-    display: block;
-    position: absolute;
-    top: -3px;
-
-    //width: calc(50% - 10px);
-    width: 50%;
-    background-color: var(--question-bg);
-    height: 10px;
-}
-
 .or-appearance-likert {
     .option-wrapper {
-        @include mixins.display-flex;
-
-        @include mixins.flex-wrap(nowrap);
-
-        @include mixins.flex-direction(row);
+        display: flex;
+        flex-wrap: nowrap;
+        flex-direction: row;
 
         > label {
-            @include mixins.flex(1);
-
-            @include mixins.display-flex;
-
-            @include mixins.flex-wrap(nowrap);
-
-            @include mixins.flex-direction(column);
+            flex: 1;
+            display: flex;
+            flex-wrap: nowrap;
+            flex-direction: column;
 
             margin: 0;
             float: none;
@@ -60,23 +41,29 @@
             .option-label {
                 position: relative;
                 text-align: center;
-                margin-top: -8.5px;
+                margin-top: -11.5px;
                 padding-top: 15px;
                 border-top: 3px solid var(--radiocheck-unchecked-color);
                 font-size: 12px;
+                font-weight: normal;
+            }
 
-                @include mixins.font-normal;
+            &:first-of-type .option-label::after,
+            &:last-of-type .option-label::after {
+                content: '';
+                display: block;
+                position: absolute;
+                top: -3px;
+                width: 50%;
+                background-color: var(--question-bg);
+                height: 10px;
             }
 
             &:first-of-type .option-label::after {
-                @include likert-filler;
-
                 left: 0;
             }
 
             &:last-of-type .option-label::after {
-                @include likert-filler;
-
                 right: 0;
             }
 

@@ -1,91 +1,13 @@
-@use 'sass:math';
-@use '../core/icons';
-@use '../mixins';
-
-@mixin margin($dir: right) {
-    margin-#{$dir}: 10px;
-}
-
-@mixin select-no-buttons {
-    legend {
-        border: none;
-    }
-
-    .option-wrapper > label {
-        display: inline-block;
-        margin: 0;
-
-        // aggressively and dumbly override _radiocheck.scss
-        padding: 10px !important;
-
-        &:hover {
-            background: none;
-        }
-
-        .option-label {
-            padding: 2px;
-        }
-
-        .active {
-            display: inline-block;
-            margin-left: 0;
-            margin-right: 0;
-
-            // force similar sizing for all images
-            max-width: 150px;
-            max-height: 150px;
-            float: none;
-            border: 2px solid transparent;
-        }
-
-        input {
-            width: 1px;
-            height: 1px;
-            position: relative;
-            top: 15px;
-            left: 15px;
-            z-index: -1;
-
-            &:not([disabled]):not([readonly]) ~ .active:hover {
-                border-color: hsl(
-                    var(--brand-primary-color-hue),
-                    var(--brand-primary-color-saturation),
-                    calc(var(--brand-primary-color-lightness) + 30%)
-                );
-            }
-
-            &[disabled],
-            &[readonly] {
-                &:checked ~ .active,
-                &:checked ~ .active:hover {
-                    border-color: var(--gray);
-                }
-            }
-
-            &:checked ~ .active,
-            &:checked ~ .active:hover {
-                border-color: var(--brand-primary-color);
-            }
-
-            &:focus ~ .active {
-                @include mixins.focus-shadow;
-            }
-        }
-    }
-}
-
 .or-columns-initialized {
     .option-wrapper {
-        @include mixins.display-flex;
-
-        @include mixins.flex-wrap(wrap);
-
-        @include mixins.flex-direction(row);
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
     }
 
     label,
     .filler {
-        @include mixins.flex(1 0 30%);
+        flex: 1 0 30%;
     }
 
     .filler,
@@ -99,11 +21,11 @@
 .or-appearance-columns-pack {
     // the flexiness is only for appearance=random
     .option-wrapper {
-        @include mixins.display-flex;
+        display: flex;
 
-        @include mixins.flex-wrap(wrap);
+        flex-wrap: wrap;
 
-        @include mixins.flex-direction(row);
+        flex-direction: row;
     }
 
     label {
@@ -112,49 +34,168 @@
 }
 
 .question.or-appearance-columns,
-.question.or-appearance-columns-pack {
+.question.or-appearance-columns-pack,
+.question.or-appearance-columns-1,
+.question.or-appearance-columns-2,
+.question.or-appearance-columns-3,
+.question.or-appearance-columns-4,
+.question.or-appearance-columns-5,
+.question.or-appearance-columns-6,
+.question.or-appearance-columns-7,
+.question.or-appearance-columns-8,
+.question.or-appearance-columns-9,
+.question.or-appearance-columns-10 {
     &.or-appearance-no-buttons {
-        @include select-no-buttons;
-    }
-}
+        legend {
+            border: none;
+        }
 
-@for $total from 1 through 10 {
-    .question.or-appearance-columns-#{$total} {
-        $margin: 10px;
+        .option-wrapper > label {
+            display: inline-block;
+            margin: 0;
 
-        &.or-appearance-no-buttons {
-            @include select-no-buttons;
+            // aggressively and dumbly override _radiocheck.scss
+            padding: 10px !important;
 
-            label {
-                width: math.div(100%, $total);
+            &:hover {
+                background: none;
+            }
 
-                img.active {
-                    // Use natural image size, but reduce to fit cell if necessary
-                    // Deliberately deviated from ODK Collect scaling-up behavior
-                    // because scaling up images never provides satisfactory results.
-                    max-width: 100%;
-                    max-height: 100%;
+            .option-label {
+                padding: 2px;
+            }
+
+            .active {
+                display: inline-block;
+                margin-left: 0;
+                margin-right: 0;
+
+                // force similar sizing for all images
+                max-width: 150px;
+                max-height: 150px;
+                float: none;
+                border: 2px solid transparent;
+            }
+
+            input {
+                width: 1px;
+                height: 1px;
+                position: relative;
+                top: 15px;
+                left: 15px;
+                z-index: -1;
+
+                &:not([disabled]):not([readonly]) ~ .active:hover {
+                    border-color: hsl(
+                        var(--brand-primary-color-hue),
+                        var(--brand-primary-color-saturation),
+                        calc(var(--brand-primary-color-lightness) + 30%)
+                    );
+                }
+
+                &[disabled],
+                &[readonly] {
+                    &:checked ~ .active,
+                    &:checked ~ .active:hover {
+                        border-color: var(--gray);
+                    }
+                }
+
+                &:checked ~ .active,
+                &:checked ~ .active:hover {
+                    border-color: var(--brand-primary-color);
+                }
+
+                &:focus ~ .active {
+                    outline: 0;
+                    box-shadow: 0 0 0 1px var(--input-border-focus),
+                        0 0 8px var(--input-border-focus-shadow);
                 }
             }
         }
+    }
+}
 
-        .option-wrapper {
-            // this flexiness is required for appearance=random
-            @include mixins.flex-direction(row);
+.question.or-appearance-columns-1 {
+    --columns: 1;
+}
 
-            @include mixins.flex-wrap(wrap);
+.question.or-appearance-columns-2 {
+    --columns: 2;
+}
+
+.question.or-appearance-columns-3 {
+    --columns: 3;
+}
+
+.question.or-appearance-columns-4 {
+    --columns: 4;
+}
+
+.question.or-appearance-columns-5 {
+    --columns: 5;
+}
+
+.question.or-appearance-columns-6 {
+    --columns: 6;
+}
+
+.question.or-appearance-columns-7 {
+    --columns: 7;
+}
+
+.question.or-appearance-columns-8 {
+    --columns: 8;
+}
+
+.question.or-appearance-columns-9 {
+    --columns: 9;
+}
+
+.question.or-appearance-columns-10 {
+    --columns: 10;
+}
+.question.or-appearance-columns-1,
+.question.or-appearance-columns-2,
+.question.or-appearance-columns-3,
+.question.or-appearance-columns-4,
+.question.or-appearance-columns-5,
+.question.or-appearance-columns-6,
+.question.or-appearance-columns-7,
+.question.or-appearance-columns-8,
+.question.or-appearance-columns-9,
+.question.or-appearance-columns-10 {
+    // TODO: it's unclear if this is redundant to the same styles below, or
+    // intentionally structured this way for specificity and/or to override
+    // styles defined elsewhere.
+    &.or-appearance-no-buttons label {
+        width: calc(100% / var(--columns));
+
+        img.active {
+            // Use natural image size, but reduce to fit cell if necessary
+            // Deliberately deviated from ODK Collect scaling-up behavior
+            // because scaling up images never provides satisfactory results.
+            max-width: 100%;
+            max-height: 100%;
         }
+    }
 
-        label {
-            width: calc(#{math.div(100%, $total)} - 20px);
+    .option-wrapper {
+        // this flexiness is required for appearance=random
+        flex-direction: row;
 
-            img.active {
-                // Use natural image size, but reduce to fit cell if necessary
-                // Deliberately deviated from ODK Collect scaling-up behavior
-                // because scaling up images never provides satisfactory results.
-                max-width: 100%;
-                max-height: 100%;
-            }
+        flex-wrap: wrap;
+    }
+
+    label {
+        width: calc((100% / var(--columns)) - 20px);
+
+        img.active {
+            // Use natural image size, but reduce to fit cell if necessary
+            // Deliberately deviated from ODK Collect scaling-up behavior
+            // because scaling up images never provides satisfactory results.
+            max-width: 100%;
+            max-height: 100%;
         }
     }
 }
@@ -166,7 +207,7 @@
         ):not(.or-appearance-likert) {
         &.or-columns-initialized {
             .option-wrapper > label {
-                @include margin(right);
+                margin-right: 10px;
             }
         }
     }
@@ -178,8 +219,7 @@
             ):not(.or-appearance-likert) {
             &.or-columns-initialized {
                 .option-wrapper > label {
-                    @include margin(left);
-
+                    margin-left: 10px;
                     margin-right: inherit;
                 }
             }

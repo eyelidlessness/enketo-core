@@ -1,15 +1,15 @@
-@use '../mixins';
-
 /*
  * To save headaches with resizing canvases, it is important to maintain fixed aspect
  * ratios at all times:
  */
 
-$ratio1: 0.75;
-$ratio2: 0.45;
-$fullscreen-margin-v: 50px;
-$fullscreen-margin-h: 15px;
-$picker-border: 2px solid grey;
+:root {
+    --draw-ratio1: 0.75;
+    --draw-ratio2: 0.45;
+    --draw-fullscreen-margin-v: 50px;
+    --draw-fullscreen-margin-h: 15px;
+    --draw-picker-border: 2px solid grey;
+}
 
 .or-drawing-initialized,
 .or-signature-initialized,
@@ -21,7 +21,7 @@ $picker-border: 2px solid grey;
 
 .or-signature-initialized {
     .draw-widget__body {
-        padding-top: $ratio2 * 100%;
+        padding-top: calc(var(--draw-ratio2) * 100%);
     }
 }
 
@@ -39,14 +39,15 @@ $picker-border: 2px solid grey;
         position: relative;
         width: 100%; // trick to fix aspect ratio with width of 100% to 4:3
         // combined with absolutely positioned canvas child
-        padding-top: $ratio1 * 100%;
+        padding-top: calc(var(--draw-ratio1) * 100%);
 
         &__canvas {
-            background: white;
-            // for plain theme:
-            border: 1px solid var(--gray-lighter); // override border:
-            @include mixins.form-control;
+            --input-border-color: var(--input-border-color);
+            --padding-base-vertical: 0;
+            --padding-base-horizontal: 0;
+            --input-height: 100%;
 
+            background: white;
             position: absolute;
             top: 0;
             left: 0;
@@ -76,7 +77,7 @@ $picker-border: 2px solid grey;
 
         .file-picker {
             position: absolute;
-            top: -($fullscreen-margin-v);
+            top: calc(var(--draw-fullscreen-margin-v) * -1);
             left: 0; // TODO: RTL
             width: 100%;
         }
@@ -103,10 +104,6 @@ $picker-border: 2px solid grey;
         }
     }
 
-    &__feedback {
-        @include mixins.question-error-message;
-    }
-
     &__undo {
         position: absolute;
         top: 37px;
@@ -115,7 +112,7 @@ $picker-border: 2px solid grey;
         height: 20px;
         margin: 2px;
         padding: 0;
-        border: $picker-border;
+        border: var(--draw-picker-border);
     }
 
     &__colorpicker {
@@ -144,16 +141,16 @@ $picker-border: 2px solid grey;
 
         .current {
             display: block;
-            border: $picker-border;
+            border: var(--draw-picker-border);
         }
     }
 
     &.full-screen {
-        @include mixins.display-flex;
+        display: flex;
 
-        @include mixins.flex-direction(column);
+        flex-direction: column;
 
-        @include mixins.flex-wrap(nowrap);
+        flex-wrap: nowrap;
 
         position: fixed;
         left: 0;
@@ -163,15 +160,15 @@ $picker-border: 2px solid grey;
         z-index: 20;
         background: white;
         margin: 0;
-        padding-left: $fullscreen-margin-h;
-        padding-right: $fullscreen-margin-h;
+        padding-left: var(--fullscreen-margin-h);
+        padding-right: var(--fullscreen-margin-h);
 
         .draw-widget__body {
-            width: calc(100% - 2 * #{$fullscreen-margin-h});
+            width: calc(100% - 2 * var(--fullscreen-margin-h));
             padding-top: calc(
-                #{$ratio1} * (100% - 2 * #{$fullscreen-margin-h})
+                var(--draw-ratio1) * (100% - 2 * var(--fullscreen-margin-h))
             );
-            margin: $fullscreen-margin-v auto;
+            margin: var(--draw-fullscreen-margin-v) auto;
 
             input[type='file'] {
                 left: 90px; // TODO: RTL
@@ -187,7 +184,7 @@ $picker-border: 2px solid grey;
             display: block;
             position: absolute;
             z-index: 30;
-            top: -($fullscreen-margin-v - 10px);
+            top: calc((var(--draw-fullscreen-margin-v) * -1) + 10px);
             left: 0; // TODO: RTL
             width: 70px;
         }
@@ -197,8 +194,9 @@ $picker-border: 2px solid grey;
         }
 
         .draw-widget__footer {
-            width: calc(100vmin - 2 * #{$fullscreen-margin-h});
-            margin: -($fullscreen-margin-v - 10px) auto 0 auto;
+            width: calc(100vmin - 2 * var(--draw-fullscreen-margin-h));
+            margin: calc((var(--draw-fullscreen-margin-v) * -1) + 10px) auto 0
+                auto;
         }
     }
 
@@ -214,15 +212,16 @@ $picker-border: 2px solid grey;
 .or-signature-initialized {
     .draw-widget.full-screen {
         .draw-widget__body {
-            width: calc(100% - 2 * #{$fullscreen-margin-h});
+            width: calc(100% - 2 * var(--draw-fullscreen-margin-h));
             padding-top: calc(
-                #{$ratio2} * (100% - 2 * #{$fullscreen-margin-h})
+                var(--draw-ratio2) *
+                    (100% - 2 * var(--draw-fullscreen-margin-h))
             );
         }
 
         .draw-widget__footer {
             width: calc(
-                100% - 2 * #{$fullscreen-margin-h}
+                100% - 2 * var(--draw-fullscreen-margin-h)
             ); //margin: -($fullscreen-margin-v - 10px) auto 0 auto;
         }
     }
@@ -230,6 +229,6 @@ $picker-border: 2px solid grey;
 
 .or-annotate-initialized {
     .draw-widget__body {
-        margin-top: $fullscreen-margin-v;
+        margin-top: var(--draw-fullscreen-margin-v);
     }
 }

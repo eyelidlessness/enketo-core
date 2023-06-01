@@ -1,5 +1,3 @@
-@use '../mixins';
-
 .or-big-image {
     display: block;
     // copied from .or img
@@ -11,9 +9,9 @@
         max-width: 100%;
     }
     &.open {
-        @include mixins.display-flex;
-        @include mixins.flex-direction(column);
-        @include mixins.flex-wrap(nowrap);
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
         position: fixed;
         left: 0;
         top: 0;

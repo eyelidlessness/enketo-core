@@ -1329,8 +1329,8 @@ import { time } from '../../js/format';
         appendWidgetTo: 'body',
         showWidgetOnAddonClick: true,
         icons: {
-            up: 'glyphicon glyphicon-chevron-up',
-            down: 'glyphicon glyphicon-chevron-down',
+            up: 'glyphicon icon icon-chevron icon-chevron-up glyphicon-chevron-up',
+            down: 'glyphicon icon icon-chevron icon-chevron-down glyphicon-chevron-down',
         },
         maxHours: 24,
         explicitMode: false,

@@ -1,5 +1,3 @@
-@use '../mixins';
-
 .pages.or {
     .or-group,
     .or-group-data,
@@ -35,8 +33,7 @@
 
         &.fade-out {
             opacity: 0;
-
-            @include mixins.transition-fast;
+            transition: all var(--transition-fast-duration) ease-out;
         }
     } // reduce whitespace
     #form-title {
@@ -93,9 +90,8 @@
 
 .pages-toc {
     &__list {
-        border: 1px solid black;
-        @include mixins.paper-border(2px, var(--gray));
-
+        border-radius: 2px;
+        border: 2px solid var(--gray);
         position: absolute;
         right: 0;
         left: 0;
