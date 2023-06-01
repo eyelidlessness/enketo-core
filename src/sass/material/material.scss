@@ -1,14 +1,14 @@
-@use './core/fonts';
+@use './fonts';
 @use './variables';
 
-@use './core/reset';
-@use './core/utilities';
-@use './core/icons';
-@use './core/layout';
-@use './core/buttons';
-@use './core/main' as core-main;
-@use './core/pages';
-@use './core/widgets';
-@use './core/responsive';
-@use './core/dropdown';
+@use './reset';
+@use './utilities';
+@use './icons';
+@use './layout';
+@use './buttons';
+@use './base';
+@use './pages';
+@use './widgets';
+@use './responsive';
+@use './dropdown';
 @use './main';

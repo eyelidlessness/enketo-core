@@ -1,8 +1,204 @@
-// load this before the core/variables
-
-@use './core/variables';
-
 :root {
+    // fonts
+    --font-family-base: 'OpenSans', Arial, sans-serif;
+    --font-size-base: 16px;
+    --font-weight-base: normal;
+    --font-style-base: normal;
+
+    // line-heights
+    --line-height-base: 1.42857;
+    --line-height-computed: calc(
+        var(--font-size-base) * var(--line-height-base)
+    );
+
+    // padding, margin
+    --padding-base-vertical: 6px;
+    --padding-base-horizontal: 12px;
+    --padding-large-vertical: 10px;
+    --padding-large-horizontal: 16px;
+    --question-margin: 20px;
+
+    // input sizing
+    --input-height: 34px;
+    --input-min-width: 240px; // width based on width required for native datetime-local input
+    --input-max-width: 80%;
+
+    // colors, icons
+    --gray-darker: #222222;
+    --gray-dark-hue: 0deg;
+    --gray-dark-saturation: 0%;
+    --gray-dark-lightness: 20%;
+    --gray-dark: hsl(
+        var(--gray-dark-hue),
+        var(--gray-dark-saturation),
+        var(--gray-dark-lightness)
+    );
+    --gray: #555555;
+    --gray-light: #999999;
+    --gray-lighter: #eeeeee;
+
+    --body-bg: white;
+
+    --brand-primary-color-hue: 0deg;
+    --brand-primary-color-saturation: 0%;
+    --brand-primary-color-lightness: 14.51%;
+    --brand-primary-color: hsl(
+        var(--brand-primary-color-hue),
+        var(--brand-primary-color-saturation),
+        var(--brand-primary-color-lightness)
+    );
+    --brand-secondary-color: hsl(
+        var(--brand-primary-color-hue),
+        var(--brand-primary-color-saturation),
+        calc(var(--brand-primary-color-lightness) + 50%)
+    );
+    --repeat-bg: hsl(
+        var(--brand-primary-color-hue),
+        var(--brand-primary-color-saturation),
+        calc(var(--brand-primary-color-lightness) + 55%)
+    );
+    --note-bg: #eeeeee;
+    --note-color: black;
+    --note-border: 1px solid #aaaaaa;
+
+    --radiocheck-unchecked-color: var(--brand-primary-color);
+    --radiocheck-checked-color: var(--brand-primary-color);
+
+    --question-hover-bg: white;
+    --question-focus-bg: white;
+    --question-bg: white;
+
+    --input-bg: white;
+    --input-bg-disabled: var(--gray-lighter);
+    --input-color: var(--gray);
+    --input-color-placeholder: var(--gray-light);
+    --input-border: #cccccc;
+    --input-border-focus: #66afe9;
+
+    --legend-color: var(--gray-dark);
+    --legend-border-color: #e5e5e5;
+
+    // links
+    --link-color: hsl(
+        var(--brand-primary-color-hue),
+        var(--brand-primary-color-saturation),
+        var(--brand-primary-color-lightness)
+    );
+    --link-hover-color: hsl(
+        var(--brand-primary-color-hue),
+        var(--brand-primary-color-saturation),
+        calc(var(--brand-primary-color-lightness) - 15%)
+    );
+
+    // layout
+    --max-content-width: 720px;
+
+    // buttons
+    --btn-default-color: #333333;
+
+    --btn-default-bg-hue: 0deg;
+    --btn-default-bg-saturation: 0%;
+    --btn-default-bg-lightness: 100%;
+
+    --btn-default-border-hue: 0deg;
+    --btn-default-border-saturation: 0%;
+    --btn-default-border-lightness: 80%;
+
+    --btn-primary-color: white;
+
+    --btn-primary-bg-hue: var(--brand-primary-color-hue);
+    --btn-primary-bg-saturation: var(--brand-primary-color-saturation);
+    --btn-primary-bg-lightness: var(--brand-primary-color-lightness);
+    --btn-primary-border-hue: var(--brand-primary-color-hue);
+    --btn-primary-border-saturation: var(--brand-primary-color-saturation);
+    --btn-primary-border-lightness: var(--brand-primary-color-lightness);
+
+    // borders and lines
+    --groupline: #bbbbbb;
+    --line: 3px solid var(--groupline);
+    --hr-border: var(--gray-lighter);
+    --border-radius-base: 4px;
+    --border-radius-large: 6px;
+    --border-radius-small: 3px;
+    --input-border-radius: var(--border-radius-base);
+    --note-border-radius: 4px;
+
+    // text states
+    --text-color: var(--gray-dark);
+    --text-muted: var(--gray-light);
+
+    --state-success-text: #3c763d;
+    --state-success-bg-hue: 102.5deg;
+    --state-success-bg-saturation: 44.44%;
+    --state-success-bg-lightness: 89.41%;
+    --state-success-bg: hsl(
+        var(--state-success-bg-hue),
+        var(--state-success-bg-saturation),
+        var(--state-success-bg-lightness)
+    );
+    --state-success-border: hsl(
+        calc(var(--state-success-bg-hue) - 10deg),
+        var(--state-success-bg-saturation),
+        calc(var(--state-success-bg-lightness) - 5%)
+    );
+
+    --state-info-text: #31708f;
+
+    --state-info-bg-hue: 200deg;
+    --state-info-bg-saturation: 65.22%;
+    --state-info-bg-lightness: 90.98%;
+    --state-info-bg: hsl(
+        var(--state-info-bg-hue),
+        var(--state-info-bg-saturation),
+        var(--state-info-bg-lightness)
+    );
+    --state-info-border: hsl(
+        calc(var(--state-info-bg-hue) - 10deg),
+        var(--state-info-bg-saturation),
+        calc(var(--state-info-bg-lightness) - 7%)
+    );
+
+    --state-warning-text: #8a6d3b;
+
+    --state-warning-bg-hue: 50.4deg;
+    --state-warning-bg-saturation: 80.65%;
+    --state-warning-bg-lightness: 93.92%;
+    --state-warning-bg: hsl(
+        var(--state-warning-bg-hue),
+        var(--state-warning-bg-saturation),
+        var(--state-warning-bg-lightness)
+    );
+    --state-warning-border: hsl(
+        calc(var(--state-warning-bg-hue) - 10deg),
+        var(--state-warning-bg-saturation),
+        calc(var(--state-warning-bg-lightness) - 5%)
+    );
+
+    --state-danger-text: #a94442;
+    --state-dangerest-text: #e00e0e;
+
+    // #B94A48
+    --state-danger-bg-hue: 0deg;
+    --state-danger-bg-saturation: 43.48%;
+    --state-danger-bg-lightness: 90.98%;
+    --state-danger-bg: hsl(
+        var(--state-danger-bg-hue),
+        var(--state-danger-bg-saturation),
+        var(--state-danger-bg-lightness)
+    );
+    --state-danger-border: hsl(
+        calc(var(--state-danger-bg-hue) - 10deg),
+        var(--state-danger-bg-saturation),
+        calc(var(--state-danger-bg-lightness) - 5%)
+    );
+
+    //#EED3D7;
+
+    --golden-ratio: 1.61803;
+
+    // Animation
+    --transition-fast-duration: 0.6s;
+
     --font-size-base: 15px;
     --brand-primary-color-hue: 21.71deg;
     --brand-primary-color-saturation: 93.43%;
