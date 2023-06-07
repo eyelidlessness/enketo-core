@@ -99,6 +99,7 @@ module.exports = (grunt) => {
             js: {
                 files: [
                     'config.json',
+                    'src/**/*.html',
                     '*.js',
                     'src/**/*.js',
                     'test/mock/forms.mjs',
