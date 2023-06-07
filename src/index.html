@@ -3,24 +3,28 @@
     <head>
         <title>Enketo-Core Developer template</title>
         <link
+            id="theme-link-formhub-fonts"
             href="http://fonts.googleapis.com/css?family=Open+Sans:400,700,600&amp;subset=latin,cyrillic-ext,cyrillic,greek-ext,greek,vietnamese,latin-ext"
-            rel="stylesheet"
-            type="text/css"
+            rel="ignored"
+            type="ignored"
         />
 
         <!--<link type="text/css" href="./css/plain.css" media="all" rel="stylesheet" />-->
         <link
+            id="theme-link-main"
             type="text/css"
-            href="./css/formhub.css"
+            href="./css/material.css"
             media="all"
             rel="stylesheet"
         />
+
         <!--<link type="text/css" href="./css/grid.css" media="all" rel="stylesheet" />-->
 
         <!--<link type="text/css" href="./css/plain-print.css" media="print" rel="stylesheet" />-->
         <link
+            id="theme-link-print"
             type="text/css"
-            href="./css/formhub-print.css"
+            href="./css/material-print.css"
             media="print"
             rel="stylesheet"
         />
@@ -45,7 +49,7 @@
                 <!--
 				This section is to be removed in application
 			-->
-                <section class="guidance">
+                <section class="guidance hide">
                     <p>
                         Add querystring to source of XForm (URL or local file
                         relative to /test/forms), eg:

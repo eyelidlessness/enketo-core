@@ -15,9 +15,17 @@ const aliases = Object.fromEntries(
 esbuild.build({
     assetNames: '[name]',
     bundle: true,
-    entryPoints: ['src/index.html', 'app.js'],
+    entryPoints: [
+        'src/index.html',
+        'app.js',
+        'src/images/odk-logo.svg',
+    ],
     format: 'iife',
-    loader: { '.html': 'file' },
+    loader: {
+        '.html': 'file',
+        '.png': 'file',
+        '.svg': 'file',
+    },
     minify: isProduction,
     outdir: 'build',
     plugins: [alias(aliases)],

@@ -1,3 +1,5 @@
+import config from 'enketo/config';
+
 /**
  * This placeholder module is meant to be overwritten with one that uses the app's own dialogs.
  *
@@ -15,7 +17,7 @@
  * @param {string | DialogContentObj} content - Dialog content
  */
 function alert(content) {
-    window.alert(content);
+    config.alertMethod(content);
 
     return Promise.resolve();
 }
