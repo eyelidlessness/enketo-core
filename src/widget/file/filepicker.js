@@ -115,12 +115,12 @@ class Filepicker extends Widget {
      * Updates placeholder
      */
     _updatePlaceholder() {
-        this.fakeInput.setAttribute(
-            'placeholder',
-            t('filepicker.placeholder', {
-                maxSize: fileManager.getMaxSizeReadable() || '?MB',
-            })
-        );
+        // this.fakeInput.setAttribute(
+        //     'placeholder',
+        //     t('filepicker.placeholder', {
+        //         maxSize: fileManager.getMaxSizeReadable() || '?MB',
+        //     })
+        // );
     }
 
     /**

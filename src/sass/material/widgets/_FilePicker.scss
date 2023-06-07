@@ -1,28 +1,57 @@
 .file-picker {
+    position: relative;
+
     .fake-file-input {
-        display: inline-block;
-        width: var(--input-max-width);
-        text-align: start;
-    }
+        appearance: none;
+        width: 15.5rem;
+        height: var(--input-height);
+        padding-left: 5.6rem;
+        border: 0.2rem solid currentColor;
+        border-radius: calc(var(--input-height) / 2);
+        background: var(--image-upload) 2.4rem 50%/1.4rem 1.6rem no-repeat;
+        cursor: pointer;
+        caret-color: transparent;
 
-    .file-feedback,
-    .file-preview {
-        font: revert;
-    }
-
-    .file-feedback.error,
-    .file-feedback.warning {
-        --current-feedback-color: var(--state-warning-text);
-    }
-
-    .file-preview {
-        margin-top: 10px;
-    }
-
-    .btn-download {
-        margin-right: 0;
-        &[href=''] {
-            display: none;
+        &:hover {
+            background-color: rgba(0, 0, 0, 0.05);
         }
     }
+
+    &::after {
+        content: 'Upload';
+        display: block;
+        position: absolute;
+        top: 2.5rem;
+        left: 5.6rem;
+        pointer-events: none;
+    }
 }
+
+// .file-picker {
+//     .fake-file-input {
+//         display: inline-block;
+//         width: var(--input-max-width);
+//         text-align: start;
+//     }
+
+//     .file-feedback,
+//     .file-preview {
+//         font: revert;
+//     }
+
+//     .file-feedback.error,
+//     .file-feedback.warning {
+//         --current-feedback-color: var(--state-warning-text);
+//     }
+
+//     .file-preview {
+//         margin-top: 10px;
+//     }
+
+//     .btn-download {
+//         margin-right: 0;
+//         &[href=''] {
+//             display: none;
+//         }
+//     }
+// }

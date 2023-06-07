@@ -226,12 +226,12 @@ class DrawWidget extends Widget {
      * Updates placeholder
      */
     _updatePlaceholder() {
-        this.$widget.find('.fake-file-input').attr(
-            'placeholder',
-            t('filepicker.placeholder', {
-                maxSize: fileManager.getMaxSizeReadable() || '?MB',
-            })
-        );
+        // this.$widget.find('.fake-file-input').attr(
+        //     'placeholder',
+        //     t('filepicker.placeholder', {
+        //         maxSize: fileManager.getMaxSizeReadable() || '?MB',
+        //     })
+        // );
     }
 
     /**
