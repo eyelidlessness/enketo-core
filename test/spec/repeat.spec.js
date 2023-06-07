@@ -3,7 +3,6 @@ import $ from 'jquery';
 import loadForm from '../helpers/load-form';
 import forms from '../mock/forms';
 import event from '../../src/js/event';
-import dialog from '../../src/js/fake-dialog';
 
 describe('repeat functionality', () => {
     /** @type {import('sinon').SinonSandbox} */
@@ -25,11 +24,11 @@ describe('repeat functionality', () => {
         sandbox
             .stub(config, 'excludeNonRelevant')
             .get(() => excludeNonRelevant);
-
-        sandbox.stub(dialog, 'confirm').resolves(true);
     });
 
-    afterEach(() => {
+    afterEach(async () => {
+        await timers.runAllAsync();
+
         timers.runAll();
 
         timers.clearTimeout();
@@ -148,6 +147,8 @@ describe('repeat functionality', () => {
             );
             q1.value = 2;
             q1.dispatchEvent(event.Change());
+
+            await timers.runAllAsync();
 
             expect(form.model.xml.querySelector('q1_x2').textContent).to.equal(
                 '4'

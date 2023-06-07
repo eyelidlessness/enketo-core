@@ -1,4 +1,5 @@
 import $ from 'jquery';
+import dialog from 'enketo/dialog';
 import loadForm from '../helpers/load-form';
 import events from '../../src/js/event';
 import { isStaticItemsetFromSecondaryInstance } from '../../src/js/itemset';
@@ -834,7 +835,7 @@ describe('Itemset functionality', () => {
             );
             loadErrors = form.init();
 
-            alertStub = sandbox.stub(window, 'alert');
+            alertStub = sandbox.stub(dialog, 'alert');
         });
 
         it('initializes form', () => {
