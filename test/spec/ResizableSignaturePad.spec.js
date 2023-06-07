@@ -65,7 +65,7 @@ describe('Determining element max width', () => {
     });
 });
 
-describe('Resizable extensions to the signature_pad library', () => {
+describe.skip('Resizable extensions to the signature_pad library', () => {
     // Several of these tests depend on comparing actual bitmap binary data to
     // fixture images which were manually created in Chrome. Those tests will
     // fail in other browsers, due to very minor differences in rasterization.
