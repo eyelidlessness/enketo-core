@@ -57,7 +57,13 @@ module.exports = (grunt) => {
             server: {
                 options: {
                     port: 8005,
-                    base: ['test/forms', 'test/mock', 'test/temp', 'build'],
+                    base: [
+                        'test/forms',
+                        'test/mock',
+                        'test/temp',
+                        'build',
+                        'src/sass',
+                    ],
                 },
             },
             test: {
