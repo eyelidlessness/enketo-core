@@ -111,7 +111,7 @@ module.exports = (grunt) => {
                 },
             },
             transforms: {
-                files: 'test/forms/*.xml',
+                files: 'test/{forms,temp}/**/*.xml',
                 tasks: ['transforms'],
                 options: {
                     spawn: true,
@@ -209,7 +209,10 @@ module.exports = (grunt) => {
             const done = this.async();
             const formsJsPath = './test/mock/forms.js';
             const formsESMPath = './test/mock/forms.mjs';
-            const xformsPaths = grunt.file.expand({}, 'test/forms/*.xml');
+            const xformsPaths = grunt.file.expand(
+                {},
+                'test/{forms,temp}/*.xml'
+            );
             grunt.log.write('Transforming XForms ');
 
             let currentForms;
@@ -238,9 +241,9 @@ module.exports = (grunt) => {
             }
 
             for await (const filePath of xformsPaths) {
-                const formsKey = filePath.substring(
-                    filePath.lastIndexOf('/') + 1
-                );
+                const formsKey = filePath
+                    .replace(`${process.cwd()}/`, '')
+                    .replace('test/forms/', '');
                 const current = currentForms[formsKey];
                 const { mtimeMs } = fs.statSync(filePath);
                 const modifiedTime = Math.floor(mtimeMs);
