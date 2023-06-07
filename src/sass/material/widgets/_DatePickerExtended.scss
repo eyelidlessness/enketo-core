@@ -1,145 +1,250 @@
-@use 'node_modules/bootstrap-datepicker/dist/css/bootstrap-datepicker.min';
-
 /** fixes by martijn **/
 
 .question .date {
     input[type='text'] {
         display: inline-block;
         width: var(--input-min-width);
+        padding-right: 5rem;
         min-width: 0;
+        background: var(--image-icons-today) calc(100% - 1.6rem) 50%/1.8rem 2rem
+            no-repeat;
     }
 }
 
-// Bootstrap Table stuff
-
-:root {
-    --bootstrap-table-cell-padding: 8px;
-
-    //** Padding for cells in `.table-condensed`.
-    --bootstrap-table-condensed-cell-padding: 5px;
-
-    //** Default background color used for all tables.
-    --bootstrap-table-bg: transparent;
-
-    //** Background color used for `.table-striped`.
-    --bootstrap-table-bg-accent: #f9f9f9;
-
-    //** Background color used for `.table-hover`.
-    --bootstrap-table-bg-hover-hue: 0deg;
-    --bootstrap-table-bg-hover-saturation: 0%;
-    --bootstrap-table-bg-hover-lightness: 96%;
-
-    --bootstrap-table-bg-hover: hsl(
-        var(--bootstrap-table-bg-hover-hue),
-        var(--bootstrap-table-bg-hover-saturation),
-        var(--bootstrap-table-bg-hover-lightness)
-    );
-
-    --bootstrap-table-bg-active-hue: var(--bootstrap-table-bg-hover-hue);
-    --bootstrap-table-bg-active-saturation: var(
-        --bootstrap-table-bg-hover-saturation
-    );
-    --bootstrap-table-bg-active-lightness: var(
-        --bootstrap-table-bg-hover-lightness
-    );
-
-    --bootstrap-table-bg-active: hsl(
-        var(--bootstrap-table-bg-active-hue),
-        var(--bootstrap-table-bg-active-saturation),
-        var(--bootstrap-table-bg-active-lightness)
-    );
-
-    //** Border color for table and cell borders.
-    --bootstrap-table-border-color: #dddddd;
+// Temporarily hide reset button until we know what we're doing with it
+.question .widget.date .btn-reset {
+    display: none;
 }
 
-//
-// Tables
-// --------------------------------------------------
+.datepicker-dropdown {
+    padding: 0;
 
-table {
-    max-width: 100%;
-    background-color: var(--bootstrap-table-bg);
+    thead,
+    tbody,
+    th,
+    td {
+        display: block;
+    }
+
+    tfoot {
+        display: flex;
+    }
+
+    // ?
+
+    thead tr:first-child {
+        display: none !important;
+    }
+
+    thead tr:nth-child(2) {
+        display: flex;
+        align-items: center;
+        margin-top: 1.6rem;
+        margin-bottom: 0.8rem;
+        padding-left: 2.4rem;
+        padding-right: 1.2rem;
+        max-height: 3rem;
+        min-height: 3rem;
+        font-size: 1.6rem;
+
+        th {
+            font-weight: 500;
+        }
+
+        // Currently selected month/year
+        .datepicker-switch {
+            order: 1;
+            margin-right: auto;
+            cursor: pointer;
+        }
+
+        .prev,
+        .next {
+            --image-chevron: #{url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZD0iTTE1LjQxIDE2LjU5TDEwLjgzIDEybDQuNTgtNC41OUwxNCA2bC02IDYgNiA2IDEuNDEtMS40MXoiIGZpbGw9IiM3NTc1NzUiPjwvcGF0aD48L3N2Zz4=')};
+
+            width: 3.2rem;
+            height: 3.2rem;
+            padding: 0.8rem;
+            color: transparent;
+            background: var(--image-chevron) 50%/2.4rem no-repeat;
+            cursor: pointer;
+        }
+
+        .prev {
+            order: 2;
+        }
+
+        .next {
+            order: 3;
+            transform: rotate(180deg);
+        }
+    }
+
+    thead tr:nth-child(3),
+    tbody tr {
+        display: flex;
+        align-items: center;
+        padding: 0 2.4rem;
+        font-size: 1.2rem;
+    }
 }
 
-th {
-    text-align: left;
-}
+.datepicker-days {
+    thead tr:nth-child(3) th {
+        position: relative;
+        color: transparent;
 
-.table-condensed {
-    > thead,
-    > tbody,
-    > tfoot {
-        > tr {
-            > th,
-            > td {
-                padding: var(--bootstrap-table-condensed-cell-padding);
-            }
+        &::after {
+            display: grid;
+            place-content: center;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            color: var(--text-color);
+        }
+
+        &:nth-child(1)::after {
+            content: 'S';
+        }
+
+        &:nth-child(2)::after {
+            content: 'M';
+        }
+
+        &:nth-child(3)::after {
+            content: 'T';
+        }
+
+        &:nth-child(4)::after {
+            content: 'W';
+        }
+
+        &:nth-child(5)::after {
+            content: 'T';
+        }
+
+        &:nth-child(6)::after {
+            content: 'F';
+        }
+
+        &:nth-child(7)::after {
+            content: 'S';
+        }
+    }
+
+    thead tr:nth-child(3) th,
+    tbody td {
+        display: grid;
+        place-content: center;
+        width: 3.6rem;
+        margin: 0 0.2rem;
+        font-weight: 400;
+    }
+
+    thead tr:nth-child(3) th {
+        height: 4rem;
+    }
+
+    tbody {
+        min-height: 24rem;
+    }
+
+    tbody td {
+        height: 3.6rem;
+        cursor: pointer;
+        border-radius: 50%;
+
+        &:hover {
+            background-color: var(--m3-ref-primary-95);
+        }
+
+        &.active {
+            background-color: var(--brand-primary-color);
+            color: var(--m3-white);
+        }
+
+        &.today {
+            border: 1px solid rgba(0, 0, 0, 0.6);
+        }
+
+        &.active.today {
+            border: 0;
+        }
+
+        &.old,
+        &.new {
+            color: transparent;
+            pointer-events: none;
+        }
+    }
+
+    thead {
+        // ?
+        tr:first-child {
+            display: none !important;
+        }
+
+        // Month
+        tr:nth-child(2),
+        // Days of week
+        tr:nth-child(3) {
         }
     }
 }
 
-// Hover effect
-//
-// Placed here since it has to come after the potential zebra striping
+.datepicker-months,
+.datepicker-years,
+.datepicker-decades,
+.datepicker-centuries {
+    min-width: 30rem;
 
-.table-hover {
-    > tbody > tr:hover {
-        > td,
-        > th {
-            background-color: var(--bootstrap-table-bg-hover);
+    table,
+    tbody,
+    tbody tr,
+    tbody td,
+    .month,
+    .year,
+    .decade,
+    .century {
+        display: block;
+        font-size: 1.6rem;
+    }
+
+    tbody tr {
+        padding: 0 0.8rem;
+    }
+
+    tbody td {
+        max-height: 30rem;
+        overflow-y: auto;
+    }
+
+    .month,
+    .year,
+    .decade,
+    .century {
+        display: grid;
+        place-content: center start;
+        height: 3.6rem;
+        padding: 0 1.6rem;
+        margin: 0.8rem 0;
+        border-radius: 1.8rem;
+
+        &:hover {
+            background-color: var(--m3-ref-primary-95);
+        }
+
+        &.active {
+            background-color: var(--brand-primary-color);
+            color: var(--m3-white);
         }
     }
-}
 
-// Table cell sizing
-//
-// Reset default table behavior
-
-table col[class*='col-'] {
-    position: static;
-
-    // Prevent border hiding in Firefox and IE9/10 (see https://github.com/twbs/bootstrap/issues/11623)
-    display: table-column;
-}
-
-table {
-    td,
-    th {
-        &[class*='col-'] {
-            position: static;
-
-            // Prevent border hiding in Firefox and IE9/10 (see https://github.com/twbs/bootstrap/issues/11623)
-            display: table-cell;
-        }
-    }
-}
-
-// Generate the contextual variants
-// Exact selectors below required to override `.table-striped` and prevent
-// inheritance to nested tables.
-.table > thead > tr,
-.table > tbody > tr,
-.table > tfoot > tr {
-    > td.active,
-    > th.active,
-    &.active > td,
-    &.active > th {
-        background-color: var(--bootstrap-table-bg-active);
-    }
-}
-
-// Hover states for `.table-hover`
-// Note: this is not available for cells or rows within `thead` or `tfoot`.
-.table-hover > tbody > tr {
-    > td.active:hover,
-    > th.active:hover,
-    &.active:hover > td,
-    &.active:hover > th {
-        background-color: hsl(
-            var(--bootstrap-table-bg-active-hue),
-            var(--bootstrap-table-bg-active-saturation),
-            calc(var(--bootstrap-table-bg-active-lightness) - 5%)
-        );
+    .month,
+    .year,
+    .decade {
+        cursor: pointer;
     }
 }
