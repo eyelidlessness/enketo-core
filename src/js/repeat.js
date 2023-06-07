@@ -12,8 +12,6 @@
  */
 
 import $ from 'jquery';
-import { t } from 'enketo/translator';
-import dialog from 'enketo/dialog';
 import config from 'enketo/config';
 import events from './event';
 import {
@@ -89,14 +87,28 @@ export default {
         $repeatInfos
             .filter('*:not([data-repeat-fixed]):not([data-repeat-count])')
             .append(
-                '<button type="button" class="btn btn-default add-repeat-btn"><i class="icon icon-plus"> </i></button>'
+                /* html */ `
+                <button type="button" class="btn btn-default add-repeat-btn">
+                    <!-- TODO translations -->
+                    Add
+                </button>
+            `
             )
-            .siblings('.or-repeat')
-            .append(
-                `<div class="repeat-buttons"><button type="button" ${
-                    disableFirstRepeatRemoval ? ' disabled ' : ' '
-                }class="btn btn-default remove"><i class="icon icon-minus"> </i></button></div>`
-            );
+            .siblings('.or-repeat').prepend(/* html */ `
+                <div class="repeat-options btn-group bootstrap-select">
+                    <!-- TODO translations -->
+                    <button type="button" class="btn btn-default dropdown-toggle clearfix" data-toggle="dropdown" aria-label="Options"></button>
+                    <ul class="dropdown-menu">
+                        <li class="repeat-options-remove">
+                            <button type="button" ${
+                                disableFirstRepeatRemoval ? ' disabled ' : ' '
+                            }class="btn remove">
+                                Remove
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+            `);
         /**
          * The model also requires storing repeat templates for repeats that do not have a jr:template.
          * Since the model has no knowledge of which node is a repeat, we direct this here.
@@ -119,18 +131,54 @@ export default {
             .siblings('.or-repeat')
             .reverse()
             .each(function () {
-                const templateEl = this.cloneNode(true);
+                const repeatInstance = this;
+                const templateEl = repeatInstance.cloneNode(true);
+
+                const xPath = templateEl.getAttribute('name');
+                const { parentElement } = repeatInstance;
+
+                /** @type {HTMLElement} */
+                let repeatTitleElement;
+
+                if (
+                    parentElement.classList.contains('or-group') &&
+                    parentElement.getAttribute('name') === xPath
+                ) {
+                    const groupTitleElement =
+                        parentElement.querySelector(':scope > h4');
+
+                    repeatTitleElement =
+                        groupTitleElement?.cloneNode(true) ??
+                        document.createElement('h4');
+                } else {
+                    repeatTitleElement = document.createElement('h4');
+                }
+
+                const repeatNumber =
+                    repeatInstance.querySelector('.repeat-number');
+
+                repeatTitleElement.classList.add('container-title');
+                repeatTitleElement.append(' ', repeatNumber);
+                templateEl.prepend(repeatTitleElement);
+
+                if (
+                    parentElement.classList.contains('or-group-data') &&
+                    parentElement.getAttribute('name') === xPath
+                ) {
+                    parentElement.classList.add('or-group', 'repeat-group');
+                    repeatInstance.classList.add('grouped-repeat');
+                }
+
                 that.form.langs.setFormUi(
                     that.form.currentLanguage,
                     templateEl
                 );
-                const xPath = templateEl.getAttribute('name');
 
                 if (templateEl.querySelector('.option-wrapper') != null) {
                     that.optionWrapperContainers.add(xPath);
                 }
 
-                this.remove();
+                repeatInstance.remove();
                 $(templateEl)
                     .removeClass('contains-current current')
                     .find('.current')
@@ -180,19 +228,7 @@ export default {
     },
     // Make this function overwritable
     confirmDelete(repeatEl) {
-        const that = this;
-        dialog
-            .confirm({
-                heading: t('confirm.repeatremove.heading'),
-                msg: t('confirm.repeatremove.msg'),
-            })
-            .then((confirmed) => {
-                if (confirmed) {
-                    // remove clone
-                    that.remove($(repeatEl));
-                }
-            })
-            .catch(console.error);
+        this.remove($(repeatEl));
     },
 
     /**

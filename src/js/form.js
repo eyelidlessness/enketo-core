@@ -1155,6 +1155,14 @@ Form.prototype.setEventHandlers = function () {
             .toggleClass('or-appearance-compact')
             .trigger('resize');
     });
+
+    this.view.$.on('click', '.or-repeat > .container-title', function () {
+        // The resize trigger is to make sure canvas widgets start working.
+        $(this)
+            .closest('.or-repeat')
+            .toggleClass('container-collapsed')
+            .trigger('resize');
+    });
 };
 
 /**
