@@ -762,7 +762,7 @@ Form.prototype.getRelatedNodes = function (attr, filter, updated) {
     updated = updated || {};
     filter = filter || '';
 
-    const { allRepeats, cloned, repeatPath } = updated;
+    const { allRepeats, cloned, removed, repeatPath } = updated;
 
     // The collection of non-repeat inputs, calculations and groups is cached (unchangeable)
     if (!allRepeats && !this.nonRepeats[attr]) {
@@ -832,7 +832,7 @@ Form.prototype.getRelatedNodes = function (attr, filter, updated) {
     if (!updated.nodes || updated.nodes.length === 0) {
         if (
             repeatControls != null &&
-            cloned &&
+            (cloned || removed) &&
             filter === '.itemset-template'
         ) {
             selector = [`.or-repeat[name="${repeatPath}"] ${filter}[${attr}]`];
