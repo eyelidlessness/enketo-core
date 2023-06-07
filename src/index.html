@@ -85,19 +85,40 @@
 				Just make sure to keep a .form-language-selector element into which the form language selector (<select>)
 				will be appended by Enketo Core.
 			-->
-                <header class="form-header clearfix">
-                    <span class="form-language-selector hide"
-                        ><span>Choose Language</span></span
+                <header class="form-header">
+                    <div class="form-progress"></div>
+                    <div class="form-header__branding">
+                        <div class="logo-wrapper">
+                            <img
+                                src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="
+                                alt="brand logo"
+                            />
+                        </div>
+                    </div>
+                    <div class="form-header__filler"></div>
+                    <button
+                        class="form-header__button--print btn-bg-icon-only"
+                        onclick="return false;"
+                    ></button
+                    ><span class="form-language-selector hide"
+                        ><span data-i18n="form.chooseLanguage"
+                            >Choose Language</span
+                        ></span
+                    ><button
+                        class="form-header__button--homescreen btn-icon-only hide"
+                        type="button"
+                        aria-label="add to homescreen"
                     >
+                        <i class="icon icon-bookmark-o"> </i>
+                    </button>
                     <nav class="pages-toc hide" role="navigation">
-                        <label for="toc-toggle"></label>
-                        <input
-                            type="checkbox"
-                            id="toc-toggle"
+                        <label for="toc-toggle"></label
+                        ><input
                             class="ignore"
+                            id="toc-toggle"
+                            type="checkbox"
                             value="show"
                         />
-                        <!-- this element can be placed anywhere, leaving it out will prevent running ToC-generating code -->
                         <ul class="pages-toc__list"></ul>
                         <div class="pages-toc__overlay"></div>
                     </nav>
@@ -107,56 +128,65 @@
                 <!-- {{<form>}} -->
 
                 <section class="form-footer">
-                    <!--
-					Used some quick-and-dirty inline CSS styles here because the form-footer should be styled in the
-					mother application. The HTML markup can be changed as well.
-				-->
-                    <a
-                        href="#"
-                        class="previous-page disabled"
-                        style="position: absolute; left: 10px; bottom: 40px"
-                        >Back</a
-                    >
-                    <button
-                        id="validate-form"
-                        class="btn btn-primary"
-                        style="width: 200px; margin-left: calc(50% - 100px)"
-                    >
-                        Validate
-                    </button>
-                    <a
-                        href="#"
-                        class="btn btn-primary next-page disabled"
-                        style="width: 200px; margin-left: calc(50% - 100px)"
-                        >Next</a
-                    >
-
-                    <div class="enketo-power" style="margin-bottom: 30px">
-                        Powered by
-                        <a href="http://enketo.org" title="enketo.org website"
-                            ><img
-                                src="https://enketo.org/media/images/logos/enketo_bare_150x56.png"
-                                alt="enketo logo"
-                        /></a>
+                    <div class="form-footer__content">
+                        <div class="form-footer__content__main-controls">
+                            <!-- <button class="btn btn-primary" id="submit-form">
+                                <i class="icon icon-check"> </i
+                                ><span data-i18n="formfooter.submit.btn"
+                                    >Submit</span
+                                ></button
+                            > -->
+                            <button class="btn btn-primary" id="validate-form">
+                                <i class="icon icon-check"> </i
+                                ><span data-i18n="formfooter.submit.btn"
+                                    >Validate</span
+                                >
+                            </button>
+                            <a class="btn btn-primary next-page" href="#"
+                                ><i class="icon icon-arrow-right"></i
+                                ><span data-i18n="form.pages.next"
+                                    >Next</span
+                                ></a
+                            >
+                            <div class="logout hide">
+                                <a
+                                    href="/-/logout"
+                                    title="log out of all enketo forms that require authentication"
+                                    data-i18n="form.logout"
+                                    >log out</a
+                                >
+                            </div>
+                            <div class="powered-by">
+                                Powered by
+                                <a href="https://getodk.org" title="ODK"
+                                    ><img
+                                        src="/odk-logo.png"
+                                        alt="ODK"
+                                        width="74"
+                                        height="40"
+                                /></a>
+                            </div>
+                            <a
+                                class="previous-page disabled"
+                                href="#"
+                                data-i18n="form.pages.back"
+                                >Back</a
+                            >
+                        </div>
+                        <div class="form-footer__content__jump-nav">
+                            <a
+                                class="btn btn-default disabled first-page"
+                                href="#"
+                                data-i18n="form.pages.return"
+                                >Return to Beginning</a
+                            ><a
+                                class="btn btn-default disabled last-page"
+                                href="#"
+                                data-i18n="form.pages.end"
+                                >Go to End</a
+                            >
+                        </div>
                     </div>
-                    <div
-                        class="form-footer__jump-nav"
-                        style="display: flex; flex-direction: row"
-                    >
-                        <a
-                            href="#"
-                            class="btn btn-default disabled first-page"
-                            style="flex: 1; border-radius: 0"
-                            >Return to Beginning</a
-                        >
-                        <a
-                            href="#"
-                            class="btn btn-default disabled last-page"
-                            style="flex: 1; border-radius: 0"
-                            >Go to End</a
-                        >
-                    </div>
-                    <!--<ol class="page-toc"></ol>-->
                 </section>
             </article>
         </div>
