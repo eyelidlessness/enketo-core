@@ -12,7 +12,7 @@
 
     .file-feedback.error,
     .file-feedback.warning {
-        --feedback-color: var(--state-warning-text);
+        --current-feedback-color: var(--state-warning-text);
     }
 
     .file-preview {

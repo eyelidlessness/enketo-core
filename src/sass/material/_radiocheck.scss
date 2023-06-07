@@ -1,102 +1,45 @@
-.option-wrapper {
-    line-height: 20px;
-}
-
-.question input[type='radio'],
-.question input[type='checkbox'] {
+.question input[type='checkbox'],
+.question input[type='radio'] {
     appearance: none;
-    display: inline-block;
-    width: 20px;
-    height: 20px;
-    margin-right: 10px;
-    margin-bottom: 0;
-    margin-top: 0;
-    border-width: 3px;
-    border-style: solid;
-    border-radius: 0;
-    background-color: transparent;
+    width: 1em;
+    height: 1em;
+    border: 0.1em solid var(--radiocheck-unchecked-border-color);
+    background-color: var(--radiocheck-unchecked-bg-color);
 
-    &:disabled,
-    &[readonly] {
-        border-color: hsl(
-            var(--brand-primary-color-hue),
-            var(--brand-primary-color-saturation),
-            calc(var(--brand-primary-color-lightness) + 5%)
-        );
+    &:checked {
+        border: 0.1em solid var(--radiocheck-checked-border-color);
+    }
+
+    &:focus,
+    &:focus-visible {
+        border-color: var(--radiocheck-checked-border-color);
+        outline: none;
     }
 }
 
-.question {
-    input[type='radio'] {
-        border-color: var(--radiocheck-unchecked-color);
-        border-radius: 10px;
+.question input[type='checkbox'] {
+    border-radius: 0.2rem;
 
-        &:checked {
-            border-color: var(--radiocheck-checked-color);
-            background-image: radial-gradient(
-                4px,
-                var(--radiocheck-checked-color) 0%,
-                var(--radiocheck-checked-color) 99%,
-                transparent 100%
-            );
-        }
-    }
+    &:checked {
+        --mask-image: #{url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0Ij48cGF0aCBkPSJNMTkgM0g1Yy0xLjExIDAtMiAuOS0yIDJ2MTRjMCAxLjEuODkgMiAyIDJoMTRjMS4xMSAwIDItLjkgMi0yVjVjMC0xLjEtLjg5LTItMi0yem0tOSAxNGwtNS01IDEuNDEtMS40MUwxMCAxNC4xN2w3LjU5LTcuNTlMMTkgOGwtOSA5eiIgZmlsbD0iIzAwMCI+PC9wYXRoPjwvc3ZnPg==')};
 
-    input[type='checkbox'] {
-        appearance: none;
-        border-color: var(--radiocheck-unchecked-color);
-
-        &:checked {
-            position: relative;
-            border-color: var(--radiocheck-checked-color);
-
-            &::after {
-                --checkmark: #{url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'><path d='M25.1 12.5l-3.4-3.3-8 8-2.9-3-3.4 3.4 6.3 6.3z'/></svg>")};
-
-                content: '';
-                display: block;
-                position: absolute;
-                top: -3px;
-                left: -3px;
-                width: 32px;
-                height: 32px;
-                transform-origin: 0 0;
-                transform: scale(0.625);
-                background-color: var(--radiocheck-checked-color);
-                mask: var(--checkmark);
-                -webkit-mask: var(--checkmark);
-            }
-        }
-    }
-
-    input[type='radio']:focus,
-    input[type='radio']:checked:focus,
-    input[type='checkbox']:focus,
-    input[type='checkbox']:checked:focus {
-        outline: 0;
-        box-shadow: 0 0 0 1px var(--input-border-focus),
-            0 0 8px var(--input-border-focus-shadow);
+        mask: var(--mask-image) 50% no-repeat;
+        -webkit-mask: var(--mask-image) 50% no-repeat;
+        background-color: var(--radiocheck-checked-bg-color);
     }
 }
 
-// tweak for touchscreens
-.touch .question.simple-select {
-    .option-wrapper {
-        .option-label {
-            //TODO: do not yet know why this correction is necessary
-            margin-left: 35px;
-        }
-    }
-}
+.question input[type='radio'] {
+    border-radius: 50%;
 
-// tweaks for rtl display
-.or[dir='rtl'],
-[dir='rtl'] .form-footer {
-    .question {
-        input[type='checkbox'],
-        input[type='radio'] {
-            margin-right: 0;
-            margin-left: 10px;
-        }
+    &:checked {
+        background: var(--radiocheck-checked-bg-color)
+            radial-gradient(
+                circle at center,
+                rgba(255, 255, 255, 0),
+                rgba(255, 255, 255, 0) 50%,
+                rgba(255, 255, 255, 1) 50%
+            )
+            50% no-repeat;
     }
 }

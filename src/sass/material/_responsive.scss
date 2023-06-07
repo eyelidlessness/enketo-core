@@ -1,5 +1,7 @@
-:root {
-    --form-padding: var(--layout-form-padding, 0px);
+html,
+body {
+    margin: 0;
+    padding: 0;
 }
 
 .form-footer {
@@ -10,98 +12,7 @@
         calc(var(--form-footer-margin) * -1);
 }
 
-/*
- * Previously this was configurable with a Sass variable. CSS variables do not
- * work in media queries, because they're hierarchically above any selector
- * which could define them.
- */
-@media screen and (max-width: 720px) {
-    .main .paper {
-        padding: 0 var(--form-padding) var(--form-padding) var(--form-padding);
-    }
-
-    .form-header {
-        --form-header-margin: var(--form-padding);
-
-        margin-left: calc(var(--form-header-margin) * -1);
-        margin-right: calc(var(--form-header-margin) * -1);
-        width: calc(100% + (2 * var(--form-header-margin)));
-    }
-
-    :root {
-        --form-padding: 45px;
-        --form-header-padding: 16px;
-    }
-
-    body {
-        padding: 0 !important;
-        margin: 0;
-    }
-
-    .main {
-        margin: 0;
-        padding: 0;
-    }
-
-    .preview-header {
-        top: -5px;
-    }
-
-    .paper {
-        border-radius: 0;
-        padding-top: 0;
-    } // When the form-header is absolutely positioned, we'd like the height to be 0,
-    // if there is no visible content (e.g. no languages, no print button, no brand)
-    // To do this we give the content a padding, but set padding, min-height and margin of form-header to 0.
-    .form-header {
-        position: relative;
-        top: 0;
-        padding: 0 14px;
-        border-bottom: 1px solid var(--groupline);
-        min-height: 0;
-
-        .form-language-selector {
-            padding-top: var(--form-header-padding);
-            padding-bottom: var(--form-header-padding);
-
-            span {
-                display: none;
-            }
-        }
-    }
-
-    #form-title {
-        padding-top: 25px;
-    }
-}
-
-@media screen and (max-width: 600px) {
-    :root {
-        --form-padding: 30px;
-    }
-
-    body {
-        line-height: calc(1.05 * var(--line-height-base));
-    }
-
-    .or-group:not(.or-appearance-no-collapse) > h4 {
-        margin-left: 8px;
-    }
-
-    .touch .question.simple-select .option-wrapper > label {
-        padding: 10px 5px;
-    }
-}
-
 @media screen and (max-width: 400px) {
-    :root {
-        --form-padding: 20px;
-    }
-
-    body {
-        line-height: calc(1.09 * var(--line-height-base));
-    }
-
     input {
         &[type='text'],
         &[type='password'],
@@ -119,15 +30,5 @@
     select,
     textarea {
         width: 100%;
-    }
-
-    .or-group:not(.or-appearance-no-collapse) > h4 {
-        margin-left: 15px;
-    }
-
-    .form-header {
-        .form-language-selector {
-            border-right: none;
-        }
     }
 }

@@ -1,23 +1,20 @@
-:root {
-    --layout-form-padding: 45px;
-}
-
 html {
     height: 100%;
 }
 
 body {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
     position: relative;
     min-height: 100%;
 }
 
+html,
+body,
+.main,
 .paper {
-    border-radius: 7px;
-    border: 7px solid #ddd;
-    background-color: #fff;
+    position: relative;
+}
+
+.paper {
     position: relative;
     min-height: 100%;
 }
@@ -34,10 +31,9 @@ body {
     flex-direction: column;
     flex-wrap: nowrap;
     margin: 0 auto;
-    padding: 100px 0 70px 0;
+    padding: var(--layout-body-padding) 0 0;
     position: relative;
     width: 100%;
-    max-width: var(--max-content-width);
 }
 
 .paper {
@@ -45,65 +41,46 @@ body {
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
+    width: 100%;
+    max-width: var(--layout-max-width);
+    margin: 0 auto;
     padding: var(--layout-form-padding);
     position: relative;
     min-height: 100%;
 }
 
-.form-header {
-    box-sizing: border-box;
+.form-footer {
+    padding: 2rem 0 var(--layout-body-padding);
+}
 
+.form-footer__content__main-controls {
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-columns: [powered-by] 1fr [secondary-control] auto [main-control] auto;
+    gap: 2rem;
+}
+
+.powered-by {
+    grid-column: powered-by;
     display: flex;
-    flex-direction: row;
     align-items: center;
-    justify-content: flex-end;
-
-    position: absolute;
-    left: 0;
-    top: -76px;
-
-    width: 100%;
-    min-height: 69px;
-    padding: 16px 0;
+    gap: 0.8rem;
+    font-size: 2.4rem;
+    font-weight: 600;
+    text-transform: lowercase;
+    color: var(--theme-powered-by);
 }
 
-.form-language-selector {
-    padding: 0;
-    margin-left: 10px;
-    font-size: 0.8em;
-}
+.form-footer #submit-form,
+.form-footer #validate-form,
+.form-footer .next-page {
+    grid-column: main-control;
 
-#form-languages {
-    display: inline;
-    width: auto;
-    height: 36px;
-    background: none;
-    min-width: 11em;
-    border: 1px solid #ccc;
-    margin: 0 0 0 16px;
-    font-size: 0.9em;
-}
-
-[dir='rtl'] #form-languages {
-    margin: 0 16px 0 0;
-}
-
-.enketo-power {
-    position: relative;
-    left: 50%;
-    margin: 30px 0 0 -100px;
-    width: 200px;
-    font-size: 16px;
-    line-height: 23px;
-    text-align: center;
-
-    a {
-        font-style: italic;
+    .icon {
+        display: none;
     }
+}
 
-    img {
-        float: none;
-        vertical-align: top;
-        width: 48px;
-    }
+.form-footer .btn.next-page {
+    display: none;
 }

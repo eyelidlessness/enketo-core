@@ -3,21 +3,22 @@ button {
     border: none;
 }
 
-.btn {
+.btn,
+.form-footer .previous-page {
     display: flex;
     align-items: center;
     justify-content: center;
+    height: var(--input-height);
     margin-bottom: 0;
-    font-weight: normal;
+    font-weight: 400;
     text-align: center;
     cursor: pointer;
     background-image: none;
     border: 1px solid transparent;
     white-space: nowrap;
-    padding: 6px 12px;
-    font-size: 15px;
+    padding: 2rem;
+    font-size: 1em;
     line-height: 1.25;
-    border-radius: 4px;
     -webkit-user-select: none;
     -moz-user-select: none;
     user-select: none;
@@ -28,67 +29,56 @@ button {
     &:visited {
         text-decoration: none;
     }
+
+    &[disabled],
+    &.disabled {
+        cursor: not-allowed;
+    }
+}
+
+.btn:not(.dropdown-toggle),
+.form-footer .previous-page {
+    border-radius: var(--button-radius, calc(var(--input-height) / 2));
+}
+
+.btn,
+.btn-default,
+.form-footer .previous-page,
+.btn-primary,
+.btn-bg-icon-only {
+    &:focus,
+    &:focus-visible {
+        border-color: var(--theme-control-focus-border-color);
+        outline: 1px solid var(--theme-control-focus-border-color);
+    }
 }
 
 .btn-default,
+.form-footer .previous-page,
 .btn-primary {
     --button-bg: hsl(
         var(--button-bg-hue),
         var(--button-bg-saturation),
         var(--button-bg-lightness)
     );
-    --button-border: hsl(
-        var(--button-border-hue),
-        var(--button-border-saturation),
-        var(--button-border-lightness)
-    );
+    --button-border: var(--theme-control-border-color);
 
     color: var(--button-color);
     background-color: var(--button-bg);
-    border-color: var(--button-border);
+    border-color: var(--theme-control-border-color);
 
     &:hover,
-    &:focus,
     &:active,
-    &.active {
+    &.active,
+    .open &.dropdown-toggle {
         color: var(--button-color);
-        background-color: hsl(
-            var(--button-bg-hue),
-            var(--button-bg-saturation),
-            calc(var(--button-bg-lightness) - 8%)
-        );
-        border-color: hsl(
-            var(--button-border-hue),
-            var(--button-border-saturation),
-            calc(var(--button-border-lightness) - 8%)
-        );
-    }
-
-    .open & {
-        &.dropdown-toggle {
-            color: var(--button-color);
-            background-color: hsl(
-                var(--button-bg-hue),
-                var(--button-bg-saturation),
-                calc(var(--button-bg-lightness) - 8%)
-            );
-            border-color: hsl(
-                var(--button-border-hue),
-                var(--button-border-saturation),
-                calc(var(--button-border-lightness) - 8%)
-            );
-        }
+        border-color: var(--theme-control-hover-border-color);
     }
 
     &:active,
-    &.active {
+    &.active,
+    .open &.dropdown-toggle {
         background-image: none;
-    }
-
-    .open & {
-        &.dropdown-toggle {
-            background-image: none;
-        }
     }
 
     &.disabled,
@@ -110,7 +100,8 @@ button {
     }
 }
 
-.btn-default {
+.btn-default,
+.form-footer .previous-page {
     --button-color: var(--btn-default-color);
     --button-bg-hue: var(--btn-default-bg-hue);
     --button-bg-saturation: var(--btn-default-bg-saturation);
@@ -118,6 +109,9 @@ button {
     --button-border-hue: var(--btn-default-border-hue);
     --button-border-saturation: var(--btn-default-border-saturation);
     --button-border-lightness: var(--btn-default-border-lightness);
+
+    border-width: 1px;
+    border-style: solid;
 }
 
 .btn-primary {
@@ -164,4 +158,19 @@ button {
         color: var(--text-color);
         opacity: 0.5;
     }
+}
+
+.form-footer .btn,
+.form-footer .previous-page {
+    --button-radius: 3rem;
+
+    min-width: 25rem;
+    height: 6rem;
+    padding: 0;
+    border: none;
+    box-shadow: var(--theme-form-footer-button-shadow);
+    font-size: 2.4rem;
+    font-weight: 500;
+    line-height: 0.833;
+    text-decoration: none;
 }

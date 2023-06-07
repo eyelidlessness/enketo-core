@@ -1,0 +1,56 @@
+/*
+ * TODO:
+ *
+ * - We should *really* consider a DOM structure to always wrap repeat series/info so they're identifiable with or without instances, as well as to track metadata such as the presence/count/absence of instances
+ *
+ * - Should an .or-group-data whose first item is an .inferred-question-label be treated as a card group?
+ */
+
+form.pages,
+.or:not(.pages)
+    :is(#form-title, .question, .or-group, .or-repeat):not(.or-group *):not(
+        .or-repeat *
+    ):not(.inferred-label-question *) {
+    padding: var(--theme-card-padding);
+    border-radius: var(--theme-card-radius);
+    box-shadow: var(--theme-card-shadow);
+    background-color: var(--theme-card-bg-color);
+}
+
+.or:not(.pages) > #form-title {
+    margin: 2rem 0 var(--theme-card-gap);
+}
+
+form.pages,
+.or:not(.pages)
+    :is(.question, .or-group, .or-repeat):not(.or-group *):not(.or-repeat *) {
+    margin: 0 0 var(--theme-card-gap);
+    padding: var(--theme-card-padding);
+
+    // WIDE: Theme/brand primary color decoration
+    border-top: var(--theme-card-decoration-border);
+
+    // NARROW: Thin separator (mimicks a border, but can't use the narrow/wide toggle trick for the color change)
+    background-image: linear-gradient(
+        to bottom,
+        var(--theme-card-separator-color) 0,
+        var(--theme-card-separator-color) var(--theme-card-separator-height),
+        transparent var(--theme-card-separator-height)
+    );
+}
+
+.or .question:is(.inferred-label-question) {
+    border: none !important;
+}
+
+.or
+    :where(.or-group-data, .or-group, .or-repeat)
+    > :where(.question, .or-group, .or-repeat-info)
+    + :where(.question, .or-group, .or-repeat) {
+    margin-top: var(--theme-card-item-gap);
+}
+
+.inferred-label-question:not(.disabled)
+    + :where(.question, .or-group, .or-repeat, .or-repeat-info) {
+    margin-top: 2rem;
+}

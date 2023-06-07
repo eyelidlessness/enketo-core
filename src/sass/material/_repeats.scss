@@ -1,0 +1,112 @@
+.or .or-group > .or-repeat,
+.or .or-group-data > .or-repeat,
+.or :not(.or-group, .or-group-data) > .or-repeat {
+    position: relative;
+    padding: var(--theme-card-padding);
+    border-radius: var(--theme-card-radius);
+    color: var(--theme-repeat-color);
+    background-color: var(--theme-repeat-bg-color);
+}
+
+.or .or-repeat {
+    margin-bottom: var(--theme-card-gap);
+}
+
+.or-repeat .repeat-options {
+    position: absolute;
+    top: var(--theme-card-options-toggle-inset);
+    right: var(--theme-card-options-toggle-inset);
+
+    .dropdown-toggle {
+        margin: 0;
+    }
+}
+
+.or-repeat .repeat-options .dropdown-toggle {
+    width: var(--theme-card-options-toggle-size);
+    height: var(--theme-card-options-toggle-size);
+    border: none;
+    border-radius: 2rem;
+    background-color: transparent;
+    background-position: 50%;
+    background-repeat: no-repeat;
+    transform: rotate(90deg);
+}
+
+.or-repeat .repeat-options .dropdown-toggle,
+.or-repeat .repeat-options .dropdown-toggle:hover,
+.or-repeat .repeat-options.open .dropdown-toggle {
+    background-image: var(--image-ellipsis);
+    transition: background-color 0.25s ease-in-out;
+}
+
+.or-repeat .repeat-options .dropdown-toggle:hover,
+.or-repeat .repeat-options.open .dropdown-toggle {
+    box-shadow: none;
+    border-color: transparent;
+    outline-color: transparent;
+    background-color: var(--theme-repeat-options-menu-button-bg-hover);
+}
+
+.or-repeat .repeat-options .dropdown-menu {
+    border: none;
+    border-radius: 0.8rem;
+    box-shadow: var(--theme-menu-shadow);
+    margin-top: 0.8rem;
+}
+
+.or-repeat .repeat-options-remove .btn {
+    height: auto;
+    padding: 0 0 0 5.6rem;
+    border-radius: 0;
+    background-image: var(--image-delete);
+    background-position: 2rem 50%;
+    background-repeat: no-repeat;
+}
+
+.or-repeat-info .add-repeat-btn,
+.or-repeat-info .add-repeat-btn:hover,
+.or-repeat-info .add-repeat-btn:active {
+    --button-radius: 3rem;
+
+    position: relative;
+    height: 6rem;
+    padding: 1.6rem 2.6rem 1.6rem 5.4rem;
+    border: 1px solid var(--brand-primary-color);
+    color: var(--brand-primary-color);
+    transition: background-color 0.25s ease-in-out;
+}
+
+.or-repeat-info .add-repeat-btn::before {
+    --mask: var(--image-add) 50%/2rem no-repeat;
+
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 2.4rem;
+    width: 2rem;
+    height: 100%;
+    background-color: var(--brand-primary-color);
+    mask: var(--mask);
+    -webkit-mask: var(--mask);
+}
+
+.or-repeat-info .add-repeat-btn:active,
+.or-repeat-info .add-repeat-btn:hover {
+    box-shadow: none;
+    background-color: hsla(
+        var(--brand-primary-color-hue),
+        var(--brand-primary-color-saturation),
+        var(--brand-primary-color-lightness),
+        0.04
+    );
+}
+
+.or-repeat-info:empty {
+    margin-top: -2rem;
+}
+
+.or-repeat {
+    --font-size-base: 1.8rem;
+}

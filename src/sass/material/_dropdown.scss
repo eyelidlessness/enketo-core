@@ -9,38 +9,31 @@
     --dropdown-zindex: 1000;
     --dropdown-divider-bg: #e5e5e5;
     --dropdown-bg: white;
-    --dropdown-border: rgba(0, 0, 0, 0.15);
     --dropdown-link-color: var(--gray-dark);
     --dropdown-link-hover-color: hsl(
         var(--gray-dark-hue),
         var(--gray-dark-saturation),
         calc(var(--gray-dark-lightness) + 5%)
     );
-    --dropdown-link-hover-bg: whitesmoke;
     --dropdown-component-active-color: white;
     --dropdown-component-active-bg: var(--brand-primary-color);
-    --dropdown-link-active-bg: var(--dropdown-component-active-bg);
-    --dropdown-link-active-color: var(--dropdown-component-active-color);
-    --dropdown-link-active-bg: var(--dropdown-component-active-bg);
-    --dropdown-link-active-bg: var(--dropdown-component-active-bg);
     --dropdown-link-disabled-color: var(--gray-light);
 }
 
 // Dropdown arrow/caret
 .caret {
-    display: inline-block;
-    width: 0;
-    height: 0;
-    margin-left: 2px;
-    vertical-align: middle;
-    border-top: var(--dropdown-caret-width-base) solid;
-    border-right: var(--dropdown-caret-width-base) solid transparent;
-    border-left: var(--dropdown-caret-width-base) solid transparent;
+    display: block;
+    position: absolute;
+    width: 1.2rem;
+    height: 0.8rem;
+    top: calc(50% - 0.4rem);
+    right: 1.6rem;
+    background-size: 1.2rem 0.8rem;
 }
 
-// Prevent the focus on the dropdown toggle when closing dropdowns
-.dropdown-toggle:focus {
-    //outline: 0;
+.dropdown-toggle {
+    margin-top: 1.6rem;
+    border-radius: var(--input-border-radius);
 }
 
 // The dropdown menu (ul)
@@ -50,18 +43,15 @@
     left: 0;
     z-index: var(--dropdown-zindex);
     display: none;
-    // none by default, but block on "open" of the menu
-    float: left;
     min-width: 160px;
-    padding: 5px 0;
+    padding: 0.8rem 0;
     margin: 2px 0 0;
     // override default ul
     list-style: none;
     font-size: var(--font-size-base);
     background-color: var(--dropdown-bg);
-    border: 1px solid var(--dropdown-border);
     border-radius: var(--border-radius-base);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+    box-shadow: var(--theme-menu-shadow);
     background-clip: padding-box;
     // Aligns the dropdown menu to right
     //
@@ -79,14 +69,47 @@
     }
     // Links within the dropdown menu
     > li > a {
-        display: block;
-        padding: 3px 20px;
-        clear: both;
-        font-weight: normal;
+        font-weight: 400;
         line-height: var(--line-height-base);
         color: var(--dropdown-link-color);
         white-space: nowrap;
         // prevent links from randomly breaking onto new lines
+
+        > label {
+            display: flex;
+            gap: 1.6rem;
+            align-items: center;
+        }
+
+        &,
+        & > label {
+            &:active,
+            &:focus,
+            &:focus-visible {
+                border: none;
+                outline: none;
+            }
+        }
+
+        input[type='checkbox'],
+        input[type='radio'] {
+            &,
+            &:active,
+            &:focus,
+            &:focus-visible,
+            &:checked {
+                appearance: none;
+                all: unset;
+                flex-shrink: 0;
+                width: 2rem;
+                height: 2rem;
+                line-height: 1.6;
+            }
+
+            &:checked {
+                background: var(--image-icon-checkmark) 50%/2rem no-repeat;
+            }
+        }
     }
 }
 
@@ -97,12 +120,14 @@
 }
 
 // Hover/Focus state
-.dropdown-menu > li > a {
+.dropdown-menu > li {
+    padding: 0.6rem 1.6rem;
+    line-height: 1.2;
+
     &:hover,
     &:focus {
         text-decoration: none;
-        color: var(--dropdown-link-hover-color);
-        background-color: var(--dropdown-link-hover-bg);
+        background-color: var(--theme-menu-item-bg-hover);
     }
 }
 
@@ -111,10 +136,8 @@
     &,
     &:hover,
     &:focus {
-        color: var(--dropdown-link-active-color);
         text-decoration: none;
         outline: 0;
-        background-color: var(--dropdown-link-active-bg);
     }
 }
 

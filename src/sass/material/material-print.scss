@@ -2,10 +2,6 @@
     --print-base-font-size: 12px;
 }
 
-* {
-    float: none;
-}
-
 body {
     display: block;
     overflow: visible;
@@ -153,14 +149,10 @@ input[type='checkbox'] {
 
     .readonly,
     .trigger {
-        font-weight: normal;
+        font-weight: 400;
         background: none;
         color: black;
         padding: 5px 5px 12px 5px;
-    }
-
-    .required {
-        float: right;
     }
 
     .or-repeat {

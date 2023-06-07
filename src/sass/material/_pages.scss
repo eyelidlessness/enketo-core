@@ -35,19 +35,21 @@
             opacity: 0;
             transition: all var(--transition-fast-duration) ease-out;
         }
-    } // reduce whitespace
+    }
+
     #form-title {
-        margin: 0;
+        margin-top: 0;
     }
 }
 
 .pages ~ .form-footer {
-    // reduce whitespace
-    margin-top: 0;
+    position: relative;
+    padding-bottom: 10rem;
 
     &.end {
-        .btn {
-            display: inline-block;
+        #submit-form,
+        #validate-form {
+            display: revert;
         }
 
         .next-page {
@@ -68,18 +70,65 @@
         display: none;
     }
 
-    .previous-page,
-    .next-page {
-        display: inline-block;
+    .first-page,
+    .last-page {
+        // Override .btn styles. TODO: this can be reverted when we have control
+        // over what Enketo Express defines in the footer.
+        width: unset;
+        min-width: unset;
+        height: unset;
+        border: unset;
+        background: unset;
+        box-shadow: unset;
 
-        &.disabled {
-            display: none;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        position: absolute;
+        bottom: 0rem;
+        padding: 1rem;
+        gap: 1.6rem;
+        text-transform: capitalize;
+
+        > *,
+        &::after {
+            flex-shrink: 0;
+        }
+
+        &::after {
+            content: '';
+            display: block;
+            width: 2.6rem;
+            height: 2.6rem;
+            background: var(--image-arrow-back) 50%/100% no-repeat;
         }
     }
 
-    .first-page,
+    .first-page {
+        left: -1rem;
+        flex-direction: row-reverse;
+    }
+
     .last-page {
-        display: inline-block;
+        right: -1rem;
+
+        &::after {
+            transform: rotate(180deg);
+        }
+    }
+
+    // Similar to the default <button> appearance
+    .previous-page,
+    .next-page {
+        display: inline-grid;
+        place-content: center;
+    }
+
+    .previous-page,
+    .next-page {
+        &.disabled {
+            display: none;
+        }
     }
 
     .logout,
@@ -89,6 +138,9 @@
 }
 
 .pages-toc {
+    // Temporarily hidden/deprioritized
+    display: none;
+
     &__list {
         border-radius: 2px;
         border: 2px solid var(--gray);
@@ -145,17 +197,6 @@
             text-overflow: ellipsis;
         }
     }
-    &__overlay {
-        display: none;
-        position: fixed;
-        top: 0;
-        left: 0;
-        background: var(--gray);
-        width: 100%;
-        height: 100%;
-        z-index: 999;
-        opacity: 0.5;
-    }
     #toc-toggle {
         display: none;
         &:checked {
@@ -163,24 +204,12 @@
                 height: auto;
                 opacity: 1;
             }
-            & ~ .pages-toc__overlay {
-                display: block;
-            }
         }
     }
+
     label[for='toc-toggle'] {
+        --button-icon: var(--image-toc);
+
         display: block;
-        width: 27px;
-        height: 27px;
-        margin: 5px 0 5px 20px;
-        background: repeating-linear-gradient(
-            var(--gray) 2px,
-            var(--gray) 5px,
-            transparent 5px,
-            transparent 12px
-        );
-        &:hover {
-            opacity: 0.7;
-        }
     }
 }

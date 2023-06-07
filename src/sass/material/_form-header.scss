@@ -1,0 +1,153 @@
+.form-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    align-items: center;
+    gap: 1.4rem;
+    padding: var(--layout-form-header-padding);
+}
+
+.form-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 0.4rem;
+    z-index: 2;
+
+    &::before {
+        content: '';
+        display: block;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 0.4rem;
+        background-color: var(--theme-form-progress-track);
+    }
+
+    &::after {
+        content: '';
+        display: block;
+        position: relative;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: var(--theme-form-progress);
+    }
+}
+
+.form-header__branding,
+.form-header .logo-wrapper {
+    position: relative;
+}
+
+.form-header__branding {
+    margin-right: auto;
+    padding-right: 1.4rem;
+}
+
+.form-header .logo-wrapper {
+    box-sizing: content-box;
+    display: grid;
+    place-items: center;
+    max-width: 20rem;
+    max-height: 20rem;
+
+    img {
+        display: block;
+        object-fit: contain;
+        max-width: 100%;
+        margin-bottom: 1rem;
+    }
+}
+
+.form-header__filler {
+    display: none;
+}
+
+.form-header .btn-bg-icon-only,
+#form-languages,
+.form-header label[for='toc-toggle'] {
+    flex-shrink: 0;
+    height: 4rem;
+    border: 1px solid var(--theme-form-header-control-border);
+    border-radius: 2rem;
+    background-color: var(--theme-form-header-control-bg);
+    transition-property: border-color, background-color;
+
+    &:hover {
+        border-color: var(--theme-form-header-control-border-hover);
+        background-color: var(--theme-form-header-control-bg-hover);
+    }
+
+    &:focus,
+    &:focus-visible {
+        --theme-form-header-control-border: var(
+            --theme-control-focus-border-color
+        );
+    }
+}
+
+.form-header .btn-bg-icon-only,
+.form-header label[for='toc-toggle'] {
+    width: 4rem;
+    background-position: 50%;
+    background-repeat: no-repeat;
+    background-image: var(--button-icon);
+    background-size: 2rem;
+    cursor: pointer;
+}
+
+.form-header__button--print {
+    --button-icon: var(--image-printer);
+}
+
+.form-language-selector {
+    position: relative;
+}
+
+.form-language-selector::before,
+.form-language-selector::after {
+    --inline-inset: 1.2rem;
+
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    width: 2rem;
+    height: 100%;
+    background-position: 50%;
+    background-repeat: no-repeat;
+    pointer-events: none;
+}
+
+.form-language-selector::before {
+    left: var(--inline-inset);
+    background-image: var(--image-globe);
+    background-size: 2rem 2rem;
+}
+
+.form-language-selector::after {
+    right: var(--inline-inset);
+    background-image: var(--image-chevron);
+    background-size: 1.2rem 0.8rem;
+    transform: rotate(180deg);
+}
+
+/* The new theme does not label the language selector */
+.form-language-selector > *:not(#form-languages) {
+    display: none;
+}
+
+#form-languages {
+    appearance: none;
+    width: auto;
+    padding: 1rem 4rem;
+    margin: 0;
+    box-shadow: none;
+    font-size: 1.4rem;
+    font-weight: 500;
+    line-height: 1.3;
+    cursor: pointer;
+}

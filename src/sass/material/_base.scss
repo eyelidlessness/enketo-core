@@ -2,6 +2,18 @@
     --main-media-margin: 10px;
 }
 
+// Include space when programmatically scrolling to a question
+html,
+body {
+    scroll-padding-top: var(--theme-card-gap);
+}
+
+#form-title {
+    font-weight: 600;
+    font-size: 3.6rem;
+    line-height: 1.22;
+}
+
 /** hide stuff **/
 
 .or [lang]:not(.active, .question),
@@ -21,19 +33,10 @@
     > h3 {
         padding: 5px 0 15px 0;
         word-wrap: break-word;
-        color: var(--brand-primary-color);
-        text-align: center;
     }
 
-    > h4 {
-        text-align: inherit;
-        margin-top: 9px;
-        margin-bottom: 9px;
-        color: var(--brand-primary-color);
-
-        strong {
-            font-size: inherit;
-        }
+    > h4 strong {
+        font-size: inherit;
     }
 }
 
@@ -42,27 +45,6 @@
 }
 
 .or {
-    .question-label,
-    .or-hint {
-        h1,
-        h2,
-        h3,
-        h4,
-        h5,
-        h6 {
-            margin-top: 10px;
-            margin-bottom: 10px;
-
-            &:first-child {
-                margin-top: 0;
-            }
-
-            &:last-child {
-                margin-bottom: 0;
-            }
-        }
-    }
-
     .question-label {
         word-break: break-word;
         display: inline-block; // to ensure that comment icons are displayed next to multi-line labels and not below
@@ -72,13 +54,9 @@
 /** hints **/
 
 .or-hint.active {
-    color: #888888;
     display: block;
-    line-height: 16px;
-    font-weight: normal;
-    font-size: 11px;
-    font-style: italic;
-    padding-top: 5px;
+    margin: 0.6rem 0 0;
+    font-size: 0.667em;
 
     ~ br {
         display: none;
@@ -100,150 +78,9 @@
     width: 100%;
 
     img {
-        float: none;
         display: inline;
         max-height: 200px;
         max-width: 120px;
-    }
-}
-
-.or-repeat {
-    background-color: var(--repeat-bg);
-    margin: 0 0 3px 0;
-    padding: 20px 10px 10px 10px;
-    position: relative;
-
-    &.empty {
-        // calculation-only repeats
-        padding: 0;
-
-        .repeat-number {
-            display: none;
-        }
-    }
-
-    .repeat-number {
-        display: block;
-        position: absolute;
-        top: 7px;
-        right: 10px;
-        color: var(--brand-primary-color);
-
-        + .or-group {
-            border-top: none;
-        }
-    }
-
-    .or-repeat {
-        background-color: var(--question-bg);
-
-        .or-repeat {
-            background-color: var(--repeat-bg);
-
-            .or-repeat {
-                background-color: var(--question-bg);
-            }
-        }
-    }
-}
-
-.or-group {
-    border-top: var(--line);
-    margin: 1.5em 0 0.4em 0;
-
-    .or-group {
-        margin: 1.5em 0 0.5em 0;
-
-        > h4 .active {
-            &::before {
-                content: '\00BB  ';
-            }
-
-            font-size: 80%;
-        }
-
-        .or-group {
-            > h4 .active::before {
-                content: '\00BB  \00BB  ';
-            }
-
-            .or-group {
-                > h4 .active::before {
-                    content: '\00BB  \00BB  \00BB  ';
-                }
-
-                .or-group {
-                    > h4 .active::before {
-                        content: '\00BB  \00BB  \00BB  \00BB';
-                    }
-
-                    .or-group {
-                        > h4 .active::before {
-                            content: '\00BB  \00BB  \00BB  \00BB  \00BB';
-                        }
-
-                        .or-group {
-                            > h4 .active::before {
-                                content: '\00BB  \00BB  \00BB  \00BB  \00BB  \00BB';
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-}
-
-// collapse icon for group labels
-.or-group:not(.or-appearance-no-collapse) {
-    > h4 {
-        position: relative;
-        pointer-events: none;
-
-        &::before {
-            width: 0;
-            height: 0;
-            border-left: 12px solid transparent;
-            border-right: 12px solid transparent;
-            border-top: 12px solid var(--brand-primary-color);
-            border-bottom: 0;
-            display: block;
-            position: absolute;
-            content: '';
-            top: 5px;
-            left: -30px;
-            right: -30px;
-            pointer-events: all;
-        }
-    }
-
-    &.or-appearance-compact {
-        > h4 {
-            &::before {
-                width: 0;
-                height: 0;
-                border-top: 12px solid transparent;
-                border-bottom: 12px solid transparent;
-                border-left: 12px solid var(--brand-primary-color);
-                border-right: 0;
-                left: -22px;
-                right: -22px;
-                top: 0;
-            }
-
-            ~ * {
-                // !important is added to battle pages rules
-                display: none !important;
-            }
-        }
-    }
-}
-
-[dir='rtl'] {
-    .or-group:not(.or-appearance-no-collapse).or-appearance-compact
-        > h4::before {
-        border-left: 0;
-        border-right: 12px solid var(--brand-primary-color);
     }
 }
 
@@ -253,14 +90,8 @@
     border-top: none;
 }
 
-.question:not(.readonly) {
-    font-weight: bold;
-}
-
 .question {
     display: block;
-    margin: 0 0 9px 0;
-    padding-top: 15px;
     border: none;
     position: relative;
 
@@ -269,15 +100,7 @@
         margin: 0;
         border: none;
     }
-}
 
-// The question label itself is bold already
-// so we emphasize in a different way.
-.question-label strong {
-    font-size: calc(var(--font-size-base) + 1px);
-}
-
-.question {
     > img,
     > video,
     > audio {
@@ -330,33 +153,25 @@ legend {
     // this flexiness is required for appearance="random"
     display: flex;
     flex-direction: column;
+    gap: 1.6rem;
 
     > label {
-        display: block;
+        display: flex;
+        flex-direction: row;
+        gap: 1.6rem;
+        align-items: start;
         margin: 0;
+        font-weight: 400;
+        line-height: 1.6;
         cursor: pointer;
-        padding: 4px;
-        margin: 0 8px 1px 10px; // TODO: remove hover rule for tables (in likert already done)
-        font-weight: normal;
+    }
 
-        &:hover:not(.filler) {
-            background-color: var(--brand-secondary-color);
-        }
-
-        // clearfix with small adjustments to not mess up radio buttons.
-        &:before,
-        &:after {
-            content: ' ';
-            display: table;
-        }
-
-        &:after {
-            clear: both;
-        }
+    > label input {
+        flex-shrink: 0;
+        margin: 0.3em 0 0 0.2rem;
     }
 
     .option-label {
-        margin-left: 30px; // input is floated to deal with multi-line labels
         display: block;
         word-break: break-word;
     }
@@ -364,7 +179,6 @@ legend {
     img,
     video,
     audio {
-        float: right;
         margin: var(--main-media-margin) 0 var(--main-media-margin)
             var(--main-media-margin);
     }
@@ -379,7 +193,6 @@ legend {
         img,
         video,
         audio {
-            float: left;
             margin: var(--main-media-margin) var(--main-media-margin)
                 var(--main-media-margin) 0;
         }
@@ -467,7 +280,6 @@ textarea,
 select,
 .widget {
     display: block;
-    margin: 8px 0 8px 0;
 }
 
 input:not([type='radio']):not([type='checkbox']),
@@ -501,25 +313,12 @@ select {
 
     &[type='radio'],
     &[type='checkbox'] {
-        // input is floated to deal with multi-line labels
-        float: left;
         display: block;
-        margin-top: 2px;
     }
 }
 
 .question .print-input-text {
     width: var(--input-max-width);
-}
-
-.or[dir='rtl'] {
-    .question input {
-        &[type='radio'],
-        &[type='checkbox'] {
-            // input is floated to deal with multi-line labels
-            float: right;
-        }
-    }
 }
 
 .question textarea {
@@ -528,50 +327,54 @@ select {
     min-height: 9em;
 }
 
-.or-repeat {
-    .repeat-buttons {
-        margin-top: 30px;
-        display: flex;
-        flex-direction: row;
-        flex-wrap: nowrap;
-        justify-content: flex-end;
-    }
-
-    .remove {
-        margin-bottom: 0;
-        margin-right: 0;
-    }
-}
-
-.or-repeat-info:not(:empty) {
-    padding-top: 10px;
-}
-
-.add-repeat-btn {
-    display: block;
-    margin: 0 auto 10px auto;
-    min-width: 150px;
-}
-
-.or[dir='rtl'] {
-    .remove {
-        float: left;
-    }
-}
-
 .alert {
     margin-bottom: 4px;
 }
 
 .required {
-    position: absolute;
-    top: 10px;
-    left: -10px;
-    color: var(--brand-primary-color);
+    color: var(--theme-control-required-color);
 }
 
-legend .required {
-    top: 0;
+.question,
+.question > fieldset > legend {
+    display: grid;
+    grid-auto-flow: row;
+    grid-template-columns: [required] auto [label] 1fr;
+    grid-template-rows:
+        [label] auto
+        repeat(auto-fill, minmax(0px, 1fr));
+}
+
+:is(.question, .question > fieldset > legend) > * {
+    grid-column: 1 / -1;
+}
+
+:is(.question, .question > fieldset > legend)
+    > :is(.question-label, .required) {
+    grid-row: 2 / -1;
+    margin-bottom: 2rem;
+}
+
+.or > .inferred-label-question {
+    display: block;
+
+    #form-title {
+        margin-top: 0;
+    }
+}
+
+:is(.question, .question > fieldset > legend) > .question-label {
+    grid-column: label;
+}
+
+:is(.question, .question > fieldset > legend) > .required {
+    grid-column: required;
+    width: 1.5ch;
+    margin-left: -1.5ch;
+}
+
+.or .question.inferred-label-question .question-label {
+    margin: 0;
 }
 
 .or[dir='rtl'] {
@@ -585,29 +388,20 @@ legend .required {
     opacity: 0.6;
 }
 
-.core-feedback-invalid,
-.invalid-constraint,
-.invalid-value,
-.invalid-required,
-.invalid-relevant {
-    --invalid-pad: 10px;
-
-    transition: all var(--transition-fast-duration) ease-out;
-    background-color: var(--state-danger-bg);
-    border-color: var(--state-danger-border);
-    border-radius: var(--border-radius-small);
-    margin-right: calc(var(--invalid-pad) * -1);
-    margin-left: calc(var(--invalid-pad) * -1);
-    padding-left: var(--invalid-pad);
-    padding-right: var(--invalid-pad);
-    padding-bottom: var(--invalid-pad);
-}
-
+.core-feedback-warning-message,
+.core-feedback-error-message,
 .invalid-value .invalid-value-msg.active,
 .invalid-constraint .or-constraint-msg.active,
 .invalid-required .or-required-msg.active,
 .question.invalid-relevant .or-relevant-msg.active {
-    display: block;
+    display: none;
+    gap: 1rem;
+    align-items: center;
+    margin-top: 2rem;
+
+    &:not(:empty) {
+        display: flex;
+    }
 }
 
 .core-feedback-warning-message,
@@ -616,14 +410,28 @@ legend .required {
 .or-constraint-msg.active,
 .or-relevant-msg.active,
 .invalid-value-msg.active {
-    font-weight: bold;
-    padding-top: 5px;
+    --feedback-color: var(--current-feedback-color, var(--state-danger-text));
+
+    font-weight: 600;
+    padding-top: 0.5rem;
     font-size: 0.85em;
-    color: var(--feedback-color, var(--state-danger-text));
+    color: var(--feedback-color);
+
+    &::before {
+        --mask: var(--image-icon-error) 50%/2rem no-repeat;
+
+        content: '';
+        display: inline-block;
+        width: 2rem;
+        height: 2rem;
+        mask: var(--mask);
+        -webkit-mask: var(--mask);
+        background-color: var(--feedback-color);
+    }
 }
 
 // this may have a very significant positive impact on performance
-.or-branch {
+.or .or-branch {
     &.disabled,
     &.or-branch.pre-init {
         display: none;

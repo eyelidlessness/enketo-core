@@ -11,7 +11,6 @@
             flex-direction: column;
 
             margin: 0;
-            float: none;
 
             // to eliminate a problem when mixing horizontal and likert appearances
             padding-left: 0 !important;
@@ -45,7 +44,7 @@
                 padding-top: 15px;
                 border-top: 3px solid var(--radiocheck-unchecked-color);
                 font-size: 12px;
-                font-weight: normal;
+                font-weight: 400;
             }
 
             &:first-of-type .option-label::after,

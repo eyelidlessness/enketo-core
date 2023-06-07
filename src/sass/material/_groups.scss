@@ -1,0 +1,57 @@
+// TODO move to separate containers file
+.or-group > h4,
+.container-title {
+    position: relative;
+    margin: 0 0 4rem;
+    font-size: 3.4rem;
+}
+
+// Collapse icon for group labels
+.or-group:not(.or-appearance-no-collapse) > h4,
+.container-title {
+    padding-left: 3.4rem;
+    cursor: pointer;
+}
+
+.or-group:not(.or-appearance-no-collapse) > h4::before,
+.container-title::before {
+    content: '';
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 2rem;
+    height: calc(1em * var(--line-height-base));
+    background-image: var(--image-chevron);
+    background-size: 2rem 1.3rem;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+}
+
+.or-group.or-appearance-compact > h4,
+.container-collapsed > .container-title {
+    margin-bottom: 0;
+
+    &::before {
+        transform: rotate(180deg);
+    }
+}
+
+.or-group.or-appearance-compact > *:not(h4),
+.container-collapsed > *:not(.container-title),
+.pages.or .or-group.or-appearance-compact > [role='page'].current {
+    display: none;
+}
+
+.or .or-group .or-group,
+.or .or-repeat .or-group {
+    --nested-group-padding: 2rem;
+
+    padding-inline: var(--nested-group-padding);
+    border-left: 0.6rem solid var(--theme-nested-group-decoration-color);
+    background-color: var(--theme-nested-group-bg-color);
+}
+
+.or .or-repeat > .or-group {
+    padding-block: var(--nested-group-padding);
+}

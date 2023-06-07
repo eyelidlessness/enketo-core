@@ -28,7 +28,7 @@
             position: absolute;
             content: '\00D7';
             font-size: 26px;
-            font-weight: normal;
+            font-weight: 400;
             line-height: 31px;
             height: 30px;
             width: 30px;
@@ -96,7 +96,7 @@
         color: var(--state-dangerest-text);
 
         .icon {
-            font-weight: bold;
+            font-weight: 600;
         }
     }
 }
