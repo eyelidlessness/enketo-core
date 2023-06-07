@@ -1,6 +1,6 @@
+// TODO: remove all float stuff (except for Leaflet copypasta, which really shouldn't be copypasta?)
+
 :root {
-    --geopicker-map-height: 275px;
-    --geopicker-map-width: 65%;
     --geopicker-input-width: 27%;
     --geopicker-separator-width: 4%;
     --geopicker-input-button-border: 2px solid #aaaaaa;
@@ -18,6 +18,16 @@
     line-height: 1;
     text-align: center;
     color: rgb(80, 142, 205);
+}
+
+.map-canvas-wrapper {
+    position: relative;
+    aspect-ratio: 3 / 2;
+}
+
+.map-canvas {
+    width: 100%;
+    height: 100%;
 }
 
 .enketo-area-popup {
@@ -85,6 +95,7 @@
     }
 
     .geo-inputs {
+        display: none;
         position: relative;
         min-width: 160px;
         width: var(--geopicker-input-width);
@@ -110,28 +121,19 @@
         position: relative;
     }
 
-    .map-canvas-wrapper,
-    .search-bar {
-        width: var(--geopicker-map-width);
-        float: right;
-        padding-left: var(--geopicker-separator-width);
-        border-left: solid 1px var(--groupline);
-    }
-
     .search-bar {
         margin-top: 0;
         display: flex;
-        justify-content: space-between;
+        gap: 0.8rem;
 
         .input-group {
-            display: flex;
-            width: 80%;
+            width: max(50%, 28rem);
             order: 2;
         }
 
         [name='search'] {
             margin: 0 !important;
-            width: calc(100% - 40px);
+            width: 100%;
             border-top-right-radius: 0;
             border-bottom-right-radius: 0; //display: table-cell; //border-right: none;
         }
@@ -141,6 +143,7 @@
         }
 
         .search-btn {
+            display: none;
             border-top-left-radius: 0;
             border-bottom-left-radius: 0;
             border-left: 0; //display: table-cell;
@@ -148,12 +151,10 @@
     }
 
     .btn:not(.close-chain-btn):not(.toggle-input-type-btn) {
-        height: 34px; //padding-bottom: 4px;
+        border-radius: var(--input-border-radius);
     }
 
     .btn[name='geodetect'] {
-        font-size: 16px;
-        margin: 0 0 0 var(--geopicker-separator-width);
         order: 3;
     }
 
@@ -236,7 +237,6 @@
         }
 
         .btn[name='geodetect'] {
-            margin: 15px auto 15px auto;
             width: 50%;
         }
     }
@@ -281,19 +281,6 @@
         float: none;
         box-sizing: border-box;
         width: 100%;
-
-        /*&:invalid {
-            //copied from bootstrap
-            color: $state-danger-text;
-            border-color: $state-danger-text;
-            @include mixins.box-shadow(inset 0 1px 1px rgba(0, 0, 0, 0.075));
-            // Redeclare so transitions work
-            &:focus {
-                border-color: darken($state-danger-text, 10%);
-                $shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px lighten($state-danger-text, 20%);
-                @include mixins.box-shadow($shadow);
-            }
-        }*/
     }
 
     input[name='alt'],
@@ -362,7 +349,6 @@
         border: 1px solid #ccc;
         border-radius: 3px;
         margin-top: 10px;
-        height: var(--geopicker-map-height);
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -408,6 +394,7 @@
         padding-top: 25px;
 
         .geo-inputs {
+            disply: none;
             //width: 160px;
             margin-left: 25px;
             margin-bottom: 15px;
@@ -423,33 +410,8 @@
             }
         }
 
-        .map-canvas-wrapper {
-            float: none;
-            width: 100%;
-            padding: 0 25px 15px 25px;
-
-            flex: 1;
-
-            display: flex;
-
-            flex-direction: column;
-
-            flex-wrap: nowrap; // have to use flex again to get map canvas to stretch to 100% height
-
-            .map-canvas {
-                height: 100%;
-
-                flex: 1;
-            }
-
-            .show-map-btn {
-                display: none;
-            }
-        }
-
         .search-bar {
             width: 100%;
-            padding: 0 25px 15px 25px;
 
             &.hide-search {
                 display: block;
@@ -464,7 +426,6 @@
 
             [name='geodetect'] {
                 width: 70px;
-                margin-left: 15px;
             }
 
             [name='search'] {
@@ -472,7 +433,6 @@
 
             .input-group {
                 width: auto;
-                flex: 100%;
             }
         }
 
@@ -533,30 +493,13 @@
         .btn-remove {
             margin: 10px 0 5px 0;
         }
-
-        .map-canvas-wrapper,
-        .search-bar {
-            width: 100%;
-            border-left: none;
-            padding-left: 0;
-        }
     }
 }
 
 .or[dir='rtl'] .geopicker {
     .geo-inputs {
+        display: none;
         margin: 0 0 0 var(--geopicker-separator-width);
-    }
-
-    .map-canvas-wrapper,
-    .search-bar {
-        float: left;
-        border-left: none;
-        border-right: solid 1px var(--groupline); //padding-left: 0;
-
-        .input-group {
-            flex-direction: row-reverse;
-        }
     }
 
     .toggle-input-visibility-btn {
@@ -580,7 +523,6 @@
 
     .btn[name='geodetect'] {
         font-size: 16px;
-        margin: 0 var(--geopicker-separator-width) 0 0;
     }
 
     .hide-map-btn {
@@ -589,7 +531,6 @@
 
     .hide-search {
         .btn[name='geodetect'] {
-            margin: 15px auto;
             width: 50%;
         }
     }
@@ -603,29 +544,13 @@
         left: 0;
         right: auto;
     }
-
-    &:not(.full-screen).hide-input {
-        .map-canvas-wrapper,
-        .search-bar {
-            border-right: none;
-            padding-right: var(--geopicker-separator-width);
-            padding-left: 0;
-        }
-    }
 }
 
 @media screen and (max-width: 720px) {
     .geopicker {
         .geo-inputs {
+            display: none;
             width: 100%;
-        }
-
-        .map-canvas-wrapper,
-        .search-bar {
-            width: 100%;
-            float: none;
-            padding-left: 0;
-            border-left: none;
         }
 
         label.geo.alt {
@@ -635,13 +560,6 @@
         input[name='alt'],
         input[name='acc'] {
             width: 50%;
-        }
-    }
-
-    .or[dir='rtl'] .geopicker {
-        .map-canvas-wrapper,
-        .search-bar {
-            border-right: none;
         }
     }
 }
