@@ -1,4 +1,8 @@
 :root {
+    // This allows for some behaviors to deviate for the new default theme, and
+    // any themes derived from it (unless they explicitly override it).
+    --is-material-theme: true;
+
     // Material UI colors
     --m3-white: #ffffff;
     --m3-black: #000000;
@@ -382,6 +386,8 @@
     --theme-control-focus-border-color: var(--m3-ref-primary-60);
     --theme-control-accent-color: var(--brand-primary-color);
 
+    --theme-upload-separator-color: var(--m3-ref-neutral-95);
+
     --theme-menu-shadow: 0px 1px 2px rgba(0, 0, 0, 0.1),
         0px 8px 16px rgba(0, 0, 0, 0.2);
     --theme-menu-item-bg-hover: #f5f5f5;
@@ -424,4 +430,6 @@
     --image-icons-today: #{url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgiIGhlaWdodD0iMjAiIHZpZXdCb3g9IjAgMCAxOCAyMCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGNsaXAtcnVsZT0iZXZlbm9kZCIgZD0iTTE2IDJIMTVWMEgxM1YySDVWMEgzVjJIMkMwLjg5IDIgMCAyLjkgMCA0VjE4QzAgMTkuMSAwLjg5IDIwIDIgMjBIMTZDMTcuMSAyMCAxOCAxOS4xIDE4IDE4VjRDMTggMi45IDE3LjEgMiAxNiAyWk0xNiAxOEgyVjdIMTZWMThaTTMuNSAxMUMzLjUgOS42MiA0LjYyIDguNSA2IDguNUM3LjM4IDguNSA4LjUgOS42MiA4LjUgMTFDOC41IDEyLjM4IDcuMzggMTMuNSA2IDEzLjVDNC42MiAxMy41IDMuNSAxMi4zOCAzLjUgMTFaIiBmaWxsPSIjNDk0NTRGIi8+PC9zdmc+')};
 
     --image-icons-access-time: #{url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHZpZXdCb3g9IjAgMCAyMCAyMCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGNsaXAtcnVsZT0iZXZlbm9kZCIgZD0iTTkuOTkgMEM0LjQ3IDAgMCA0LjQ4IDAgMTBDMCAxNS41MiA0LjQ3IDIwIDkuOTkgMjBDMTUuNTIgMjAgMjAgMTUuNTIgMjAgMTBDMjAgNC40OCAxNS41MiAwIDkuOTkgMFpNMTAgMThDNS41OCAxOCAyIDE0LjQyIDIgMTBDMiA1LjU4IDUuNTggMiAxMCAyQzE0LjQyIDIgMTggNS41OCAxOCAxMEMxOCAxNC40MiAxNC40MiAxOCAxMCAxOFpNOSAxMS4wN0wxNC40OSAxNC4zNkwxNS41MSAxMi42NEwxMSA5LjkzVjQuNDJIOVYxMS4wN1oiIGZpbGw9IiMxQzFCMUYiLz48L3N2Zz4=')};
+
+    --image-upload: #{url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTQiIGhlaWdodD0iMTciIHZpZXdCb3g9IjAgMCAxNCAxNyIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNNSAxMi45OTk3SDlDOS41NSAxMi45OTk3IDEwIDEyLjU0OTcgMTAgMTEuOTk5N1Y2Ljk5OTczSDExLjU5QzEyLjQ4IDYuOTk5NzMgMTIuOTMgNS45MTk3MyAxMi4zIDUuMjg5NzNMNy43MSAwLjY5OTcyN0M3LjMyIDAuMzA5NzI3IDYuNjkgMC4zMDk3MjcgNi4zIDAuNjk5NzI3TDEuNzEgNS4yODk3M0MxLjA4IDUuOTE5NzMgMS41MiA2Ljk5OTczIDIuNDEgNi45OTk3M0g0VjExLjk5OTdDNCAxMi41NDk3IDQuNDUgMTIuOTk5NyA1IDEyLjk5OTdaTTEgMTQuOTk5N0gxM0MxMy41NSAxNC45OTk3IDE0IDE1LjQ0OTcgMTQgMTUuOTk5N0MxNCAxNi41NDk3IDEzLjU1IDE2Ljk5OTcgMTMgMTYuOTk5N0gxQzAuNDUgMTYuOTk5NyAwIDE2LjU0OTcgMCAxNS45OTk3QzAgMTUuNDQ5NyAwLjQ1IDE0Ljk5OTcgMSAxNC45OTk3WiIgZmlsbD0iIzMyMzIzMiIvPjwvc3ZnPg==')};
 }
