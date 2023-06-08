@@ -230,14 +230,12 @@ class Filepicker extends Widget {
 
             this.question
                 .querySelector('.file-picker-file-list')
-                .addEventListener('click', (event) => {
-                    const item = event.target.closest('li');
+                .addEventListener('click', (/* event */) => {
+                    // const item = event.target.closest('li');
                     // const downloadButton = event.target.closest('.download');
-
                     // if (downloadButton != null) {
                     //     const file = this.element.files[item.dataset.item];
                     //     const blobURL = URL.createObjectURL(file);
-
                     //     window.location.href = blobURL;
                     // }
                 });
