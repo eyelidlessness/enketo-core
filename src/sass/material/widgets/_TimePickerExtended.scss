@@ -4,6 +4,9 @@
     input[type='text'] {
         display: inline-block;
         width: var(--input-min-width);
+        padding-right: 5.2rem;
+        background: var(--image-icons-access-time) calc(100% - 1.6rem) 50%/2rem
+            2rem no-repeat;
     }
 }
 
